@@ -53,8 +53,9 @@ export const theme = createTheme({
   },
 
   textVariants: {
-    default: {},
+    defaults: {},
   },
 });
 
 export type Theme = typeof theme;
+export type ThemeColors = keyof Theme['colors'];
