@@ -2,6 +2,10 @@ module.exports = {
   root: true,
   extends: '@react-native',
   plugins: ['import'],
+  rules: {
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
