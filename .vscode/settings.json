@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["commitlint"]
+  "cSpell.words": ["commitlint"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }
