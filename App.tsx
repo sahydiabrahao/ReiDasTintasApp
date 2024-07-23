@@ -1,20 +1,20 @@
-import {Button, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
 
 import {ThemeProvider} from '@shopify/restyle';
 
-import {Text} from '@components';
+import {Button, Text} from '@components';
 import {theme} from '@theme';
 
 function App(): React.JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaView>
+    <SafeAreaView>
+      <ThemeProvider theme={theme}>
         <Button title="Entrar" />
-        <Text preset="paragraphCaption" color="grayBlack">
+        <Text preset="headingLarge" color="grayBlack">
           Rei das Tintas
         </Text>
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   );
 }
 
