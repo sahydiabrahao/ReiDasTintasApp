@@ -10,7 +10,7 @@ function App(): React.JSX.Element {
     <ThemeProvider theme={theme}>
       <SafeAreaView>
         <Button title="Entrar" />
-        <Text italic bold preset="headingSmall" color="grayBlack">
+        <Text bold preset="headingLarge" color="grayBlack">
           Rei das Tintas
         </Text>
       </SafeAreaView>
