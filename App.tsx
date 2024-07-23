@@ -10,10 +10,9 @@ function App(): React.JSX.Element {
     <ThemeProvider theme={theme}>
       <SafeAreaView>
         <Button title="Entrar" />
-        <Text bold preset="headingLarge" color="grayBlack">
+        <Text preset="paragraphCaption" color="grayBlack">
           Rei das Tintas
         </Text>
-        <Text style={{fontFamily: 'Satoshi-Medium'}}>react-native-asset</Text>
       </SafeAreaView>
     </ThemeProvider>
   );
