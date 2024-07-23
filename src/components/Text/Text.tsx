@@ -19,7 +19,7 @@ export function Text({
   style,
   ...sRTextProps
 }: TextProps) {
-  const fontFamily = getFontFamily(preset, bold);
+  const fontFamily = getFontFamily(bold);
   return (
     <SRText
       color="backgroundContrast"
@@ -30,14 +30,7 @@ export function Text({
   );
 }
 
-function getFontFamily(preset: TextVariants, bold?: boolean) {
-  if (
-    preset === 'headingLarge' ||
-    preset === 'headingMedium' ||
-    preset === 'headingSmall'
-  ) {
-    return $fontFamily.bold;
-  }
+function getFontFamily(bold?: boolean) {
   switch (true) {
     case bold:
       return $fontFamily.bold;
