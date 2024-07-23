@@ -13,6 +13,7 @@ function App(): React.JSX.Element {
         <Text bold preset="headingLarge" color="grayBlack">
           Rei das Tintas
         </Text>
+        <Text style={{fontFamily: 'Satoshi-Medium'}}>react-native-asset</Text>
       </SafeAreaView>
     </ThemeProvider>
   );
