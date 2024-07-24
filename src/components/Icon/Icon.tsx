@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {HomeIcon, CartIcon, ContactIcon} from '@assets';
+import {HomeIcon, CartIcon, ContactIcon, LogoIcon} from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
 
@@ -25,6 +25,7 @@ const iconRegistry = {
   home: HomeIcon,
   cart: CartIcon,
   contact: ContactIcon,
+  logo: LogoIcon,
 };
 
 type IconType = typeof iconRegistry;

@@ -1,22 +1,30 @@
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 
 import {ThemeProvider} from '@shopify/restyle';
 
-import {Icon} from '@components';
-import {Button, Text} from '@components';
+import {TextInput} from '@components';
+import {Box, Icon} from '@components';
 import {theme} from '@theme';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView>
       <ThemeProvider theme={theme}>
-        <Button title="Entrar" />
-        <Text preset="headingLarge" color="grayBlack">
-          Rei das Tintas
-        </Text>
-        <Icon name="home" color="bluePrimary" size={40} />
-        <Icon name="cart" color="bluePrimary" size={40} />
-        <Icon name="contact" color="bluePrimary" size={40} />
+        <View
+          style={{
+            paddingHorizontal: 24,
+          }}>
+          <Box>
+            <Icon name="logo" color="bluePrimary" size={80} />
+          </Box>
+          <TextInput />
+
+          <Box>
+            <Icon name="home" color="bluePrimary" size={40} />
+            <Icon name="cart" color="bluePrimary" size={40} />
+            <Icon name="contact" color="bluePrimary" size={40} />
+          </Box>
+        </View>
       </ThemeProvider>
     </SafeAreaView>
   );
