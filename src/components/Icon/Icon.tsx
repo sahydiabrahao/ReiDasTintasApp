@@ -1,6 +1,13 @@
 import React from 'react';
 
-import {HomeIcon, CartIcon, ContactIcon, LogoIcon, SearchIcon} from '@assets';
+import {
+  HomeIcon,
+  CartIcon,
+  ContactIcon,
+  LogoIcon,
+  SearchIcon,
+  MenuIcon,
+} from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
 
@@ -26,6 +33,7 @@ const iconRegistry = {
   cart: CartIcon,
   contact: ContactIcon,
   search: SearchIcon,
+  menu: MenuIcon,
   logo: LogoIcon,
 };
 
