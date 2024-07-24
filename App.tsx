@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
           <Box>
             <Icon name="logo" color="bluePrimary" size={80} />
           </Box>
-          <TextInput />
+          <TextInput RightComponent={<Icon name="search" color="gray3" />} />
 
           <Box>
             <Icon name="home" color="bluePrimary" size={40} />

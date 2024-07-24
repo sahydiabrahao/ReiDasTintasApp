@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {ReactElement, useRef} from 'react';
 import {
   Pressable,
   TextInput as RNTextInput,
@@ -12,8 +12,13 @@ import {$fontFamily, $fontSizes, Text} from '../Text/Text';
 
 interface TextInputProps extends RNTextInputProps {
   label?: string;
+  RightComponent?: ReactElement;
 }
-export function TextInput({label, ...rnTextInputProps}: TextInputProps) {
+export function TextInput({
+  label,
+  RightComponent,
+  ...rnTextInputProps
+}: TextInputProps) {
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 
@@ -33,6 +38,11 @@ export function TextInput({label, ...rnTextInputProps}: TextInputProps) {
             style={$textInputStyle}
             {...rnTextInputProps}
           />
+          {RightComponent && (
+            <Box justifyContent="center" ml="s16">
+              {RightComponent}
+            </Box>
+          )}
         </Box>
       </Box>
     </Pressable>
@@ -41,12 +51,14 @@ export function TextInput({label, ...rnTextInputProps}: TextInputProps) {
 
 const $textInputStyle: TextStyle = {
   padding: 0,
-
+  flexGrow: 1,
+  flexShrink: 1,
   fontFamily: $fontFamily.medium,
   ...$fontSizes.paragraphMedium,
 };
 
 const $textInputContainer: BoxProps = {
+  flexDirection: 'row',
   borderWidth: 1,
   padding: 's16',
   borderColor: 'gray4',
