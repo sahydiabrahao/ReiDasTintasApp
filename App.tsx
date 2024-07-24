@@ -23,6 +23,7 @@ function App(): React.JSX.Element {
             <Icon name="home" color="bluePrimary" size={40} />
             <Icon name="cart" color="bluePrimary" size={40} />
             <Icon name="contact" color="bluePrimary" size={40} />
+            <Icon name="search" color="bluePrimary" size={40} />
           </Box>
         </View>
       </ThemeProvider>
