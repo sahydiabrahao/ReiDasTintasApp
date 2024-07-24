@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {HomeIcon} from '@assets';
+import {HomeIcon, CartIcon, ContactIcon} from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
 
@@ -23,6 +23,8 @@ export function Icon({name, color = 'backgroundContrast', size}: Props) {
 
 const iconRegistry = {
   home: HomeIcon,
+  cart: CartIcon,
+  contact: ContactIcon,
 };
 
 type IconType = typeof iconRegistry;
