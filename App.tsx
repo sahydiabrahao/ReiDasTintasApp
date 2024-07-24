@@ -14,7 +14,7 @@ function App(): React.JSX.Element {
         <Text preset="headingLarge" color="grayBlack">
           Rei das Tintas
         </Text>
-        <Icon name="home" />
+        <Icon name="home" color="bluePrimary" size={40} />
       </ThemeProvider>
     </SafeAreaView>
   );

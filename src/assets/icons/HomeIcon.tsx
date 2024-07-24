@@ -2,12 +2,9 @@ import React from 'react';
 
 import {Path, Svg} from 'react-native-svg';
 
-interface Props {
-  size?: number;
-  color?: string;
-}
+import {iconBase} from '@components';
 
-export function HomeIcon({size = 20, color = 'black'}: Props) {
+export function HomeIcon({size = 20, color = 'black'}: iconBase) {
   return (
     <Svg width={size - 1} height={size} viewBox="0 0 33 34" fill="none">
       <Path
