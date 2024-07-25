@@ -5,7 +5,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {ContactScreen, HomeScreen} from '@screens';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamsList = {
+  HomeScreen: undefined;
+  ContactScreen: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamsList>();
 
 export function Router() {
   return (
