@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {Box, Button, Icon, TextInput} from '@components';
+import {Box, Icon, Text, TextInput, TouchableOpacityBox} from '@components';
 import {RootStackParamsList} from '@routes';
 import {Screen} from '@screens';
 
@@ -31,16 +31,18 @@ export function HomeScreen({navigation}: ScreenProps) {
         boxProps={{marginBottom: 's20'}}
         RightComponent={<Icon name="search" color="gray3" />}
       />
-
+      <Text>HomeScreen</Text>
       <Box
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center">
-        <Button title="contact" onPress={navigateToContactScreen}>
-          <Icon name="home" color="bluePrimary" size={40} />
-        </Button>
+        <Icon name="home" color="bluePrimary" size={40} />
         <Icon name="cart" color="bluePrimary" size={40} />
-        <Icon name="contact" color="bluePrimary" size={40} />
+        <TouchableOpacityBox
+          activeOpacity={1}
+          onPress={navigateToContactScreen}>
+          <Icon name="contact" color="bluePrimary" size={40} />
+        </TouchableOpacityBox>
       </Box>
     </Screen>
   );
