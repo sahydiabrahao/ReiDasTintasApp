@@ -1,9 +1,13 @@
 import React from 'react';
 
-import {Box, Icon, TextInput} from '@components';
+import {Box, Button, Icon, TextInput} from '@components';
 import {Screen} from '@screens';
 
-export function HomeScreen() {
+export function HomeScreen({navigation}) {
+  function navigateToContactScreen() {
+    navigation.navigate('ContactScreen');
+  }
+
   return (
     <Screen scrollable>
       <Box
@@ -27,7 +31,9 @@ export function HomeScreen() {
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center">
-        <Icon name="home" color="bluePrimary" size={40} />
+        <Button title="contact" onPress={navigateToContactScreen}>
+          <Icon name="home" color="bluePrimary" size={40} />
+        </Button>
         <Icon name="cart" color="bluePrimary" size={40} />
         <Icon name="contact" color="bluePrimary" size={40} />
       </Box>
