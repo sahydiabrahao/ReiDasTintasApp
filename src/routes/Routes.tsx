@@ -13,6 +13,7 @@ export function Router() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          fullScreenGestureEnabled: true,
         }}
         initialRouteName="HomeScreen">
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
