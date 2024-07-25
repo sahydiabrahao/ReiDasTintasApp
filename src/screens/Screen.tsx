@@ -1,7 +1,9 @@
 import React from 'react';
 import {KeyboardAvoidingView, Platform} from 'react-native';
 
-import {Box} from '@components';
+// import {useNavigation} from '@react-navigation/native';
+
+import {TouchableOpacityBox} from '@components';
 import {useAppTheme} from '@hooks';
 import {useAppSafeArea} from '@hooks';
 
@@ -15,7 +17,7 @@ interface ScreenProps {
 export function Screen({children, scrollable = false}: ScreenProps) {
   const {bottom, top} = useAppSafeArea();
   const {colors} = useAppTheme();
-
+  // const navigation = useNavigation();
   console.log({
     device: Platform.OS,
     bottom,
@@ -27,12 +29,13 @@ export function Screen({children, scrollable = false}: ScreenProps) {
       style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
-        <Box
+        <TouchableOpacityBox
+          // onPress={navigation.canGoBack}
           paddingBottom="s24"
           paddingHorizontal="s24"
           style={{paddingTop: top, paddingBottom: bottom}}>
           {children}
-        </Box>
+        </TouchableOpacityBox>
       </Container>
     </KeyboardAvoidingView>
   );
