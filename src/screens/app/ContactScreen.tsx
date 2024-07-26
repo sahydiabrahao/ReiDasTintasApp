@@ -1,14 +1,10 @@
 import React from 'react';
 
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
 import {Box, Icon, Text, TextInput, TouchableOpacityBox} from '@components';
-import {RootStackParamList} from '@routes';
+import {AppScreenProps} from '@routes';
 import {Screen} from '@screens';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'ContactScreen'>;
-
-export function ContactScreen({navigation}: ScreenProps) {
+export function ContactScreen({navigation}: AppScreenProps<'ContactScreen'>) {
   function navigateToHomeScreen() {
     navigation.navigate('HomeScreen');
   }

@@ -1,14 +1,14 @@
 import React from 'react';
 
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
 import {Icon, Text, TouchableOpacityBox} from '@components';
-import {RootStackParamList} from '@routes';
+import {AuthScreenProps} from '@routes';
 import {Screen} from '@screens';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
+// type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
-export function SettingsScreen({navigation}: ScreenProps) {
+export function SettingsScreen({
+  navigation,
+}: AuthScreenProps<'SettingsScreen'>) {
   function navigateToHomeScreen() {
     navigation.navigate('HomeScreen');
   }

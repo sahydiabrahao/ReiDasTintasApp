@@ -1,24 +1,20 @@
 import React from 'react';
 
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
 import {Box, Icon, Text, TextInput, TouchableOpacityBox} from '@components';
-import {useResetNavigationHome} from '@hooks';
-import {RootStackParamList} from '@routes';
+// import {useResetNavigationHome} from '@hooks';
+import {AppScreenProps} from '@routes';
 import {Screen} from '@screens';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
-
-export function HomeScreen({navigation}: ScreenProps) {
+export function HomeScreen({navigation}: AppScreenProps<'HomeScreen'>) {
   function navigateToContactScreen() {
     navigation.navigate('ContactScreen');
   }
 
-  const {reset} = useResetNavigationHome();
+  // const {reset} = useResetNavigationHome();
 
-  function navigateReset() {
-    reset({});
-  }
+  // // function navigateReset() {
+  // //   reset({});
+  // // }
 
   return (
     <Screen scrollable>
@@ -43,7 +39,8 @@ export function HomeScreen({navigation}: ScreenProps) {
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center">
-        <TouchableOpacityBox activeOpacity={1} onPress={navigateReset}>
+        {/* //onPress={navigateReset} */}
+        <TouchableOpacityBox activeOpacity={1}>
           <Icon name="home" color="bluePrimary" size={40} />
         </TouchableOpacityBox>
         <Icon name="cart" color="bluePrimary" size={40} />
