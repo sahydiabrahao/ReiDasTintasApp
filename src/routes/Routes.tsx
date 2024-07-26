@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import {AppTabNavigator, AuthTabNavigator} from '@routes';
 
-const authenticated = true;
+const authenticated = false;
 
 export function Router() {
   return (
