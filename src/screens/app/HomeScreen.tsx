@@ -3,14 +3,21 @@ import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Box, Icon, Text, TextInput, TouchableOpacityBox} from '@components';
-import {RootStackParamsList} from '@routes';
+import {useResetNavigationHome} from '@hooks';
+import {RootStackParamList} from '@routes';
 import {Screen} from '@screens';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamsList, 'HomeScreen'>;
+type ScreenProps = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
 export function HomeScreen({navigation}: ScreenProps) {
   function navigateToContactScreen() {
     navigation.navigate('ContactScreen');
+  }
+
+  const {reset} = useResetNavigationHome();
+
+  function navigateReset() {
+    reset({});
   }
 
   return (
@@ -36,7 +43,9 @@ export function HomeScreen({navigation}: ScreenProps) {
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center">
-        <Icon name="home" color="bluePrimary" size={40} />
+        <TouchableOpacityBox activeOpacity={1} onPress={navigateReset}>
+          <Icon name="home" color="bluePrimary" size={40} />
+        </TouchableOpacityBox>
         <Icon name="cart" color="bluePrimary" size={40} />
         <TouchableOpacityBox
           activeOpacity={1}
