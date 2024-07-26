@@ -2,10 +2,11 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {HomeScreen, ContactScreen} from '@screens';
+import {HomeScreen, CartScreen, ContactScreen} from '@screens';
 
 export type AppStackParamList = {
   HomeScreen: undefined;
+  CartScreen: undefined;
   ContactScreen: undefined;
   SettingsScreen: undefined;
 };
@@ -21,6 +22,7 @@ export function AppStack() {
       }}
       initialRouteName="HomeScreen">
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="CartScreen" component={CartScreen} />
       <Stack.Screen name="ContactScreen" component={ContactScreen} />
     </Stack.Navigator>
   );
