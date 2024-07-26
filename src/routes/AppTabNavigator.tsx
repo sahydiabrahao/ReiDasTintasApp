@@ -8,7 +8,6 @@ export type AppTabBottomParamList = {
   HomeScreen: undefined;
   CartScreen: undefined;
   ContactScreen: undefined;
-  SettingsScreen: undefined;
 };
 
 const Tab = createBottomTabNavigator<AppTabBottomParamList>();
