@@ -2,14 +2,14 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import {AppStack, AuthStack} from '@routes';
+import {AppTabNavigator, AuthTabNavigator} from '@routes';
 
-const authenticated = false;
+const authenticated = true;
 
 export function Router() {
   return (
     <NavigationContainer>
-      {authenticated ? <AuthStack /> : <AppStack />}
+      {authenticated ? <AuthTabNavigator /> : <AppTabNavigator />}
     </NavigationContainer>
   );
 }

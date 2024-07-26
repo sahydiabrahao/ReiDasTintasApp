@@ -12,7 +12,7 @@ export function CartScreen({navigation}: AppScreenProps<'CartScreen'>) {
   }
   return (
     <Screen scrollable>
-      <Text>CustomScreen</Text>
+      <Text>CartScreen</Text>
       <TouchableOpacityBox activeOpacity={1} onPress={navigateToHomeScreen}>
         <Icon name="home" color="bluePrimary" size={40} />
       </TouchableOpacityBox>
