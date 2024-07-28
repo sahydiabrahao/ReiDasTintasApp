@@ -2,6 +2,7 @@ import React from 'react';
 import {Image} from 'react-native';
 
 import {Item} from '@domain';
+import {useToast} from '@services';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
 import {$shadowProps} from '@theme';
@@ -11,8 +12,11 @@ interface Props {
 }
 
 export function CardItem({item}: Props) {
+  const {showToast} = useToast();
   function addItemToCart() {
-    return console.log(item.name);
+    showToast({
+      message: 'Item adicionado',
+    });
   }
 
   return (

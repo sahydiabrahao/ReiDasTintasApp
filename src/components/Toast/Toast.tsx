@@ -1,4 +1,7 @@
+import {useEffect} from 'react';
 import {Dimensions} from 'react-native';
+
+import {useToast} from '@services';
 
 import {$shadowProps} from '@theme';
 
@@ -9,6 +12,20 @@ import {Text} from '../Text/Text';
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
 
 export function Toast() {
+  const {toast, hiddenToast} = useToast();
+
+  useEffect(() => {
+    if (toast) {
+      setTimeout(() => {
+        hiddenToast();
+      }, 500);
+    }
+  }, [hiddenToast, toast]);
+
+  if (!toast) {
+    return null;
+  }
+
   return (
     <Box top={600} {...$boxStyle}>
       <Icon color="grayWhite" name="up" />
@@ -18,7 +35,7 @@ export function Toast() {
         ml="s16"
         preset="paragraphMedium"
         bold>
-        Item adicionado
+        {toast?.message}
       </Text>
     </Box>
   );
