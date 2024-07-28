@@ -4,3 +4,4 @@ export * from './Button/Button';
 export * from './Icon/Icon';
 export * from './TextInput/TextInput';
 export * from './CardItem/CardItem';
+export * from './CardContact/CardContact';
