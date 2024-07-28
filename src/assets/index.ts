@@ -6,6 +6,7 @@ export * from './icons/SettingsIcon';
 export * from './icons/SearchIcon';
 export * from './icons/PlusIcon';
 export * from './icons/MinusIcon';
+export * from './icons/UpIcon';
 
 export * from './icons/MenuIcon';
 export * from './icons/LogoIcon';

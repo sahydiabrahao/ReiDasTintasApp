@@ -10,6 +10,7 @@ import {
   SettingsIcon,
   PlusIcon,
   MinusIcon,
+  UpIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -42,6 +43,7 @@ const iconRegistry = {
   search: SearchIcon,
   plus: PlusIcon,
   minus: MinusIcon,
+  up: UpIcon,
 
   menu: MenuIcon,
   logo: LogoIcon,
