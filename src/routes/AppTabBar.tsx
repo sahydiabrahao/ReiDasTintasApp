@@ -60,7 +60,7 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
             onLongPress={onLongPress}
             style={{flex: 1}}>
             <Icon
-              size={28}
+              size={32}
               color={isFocused ? 'primary' : 'backgroundContrast'}
               name={isFocused ? tabItem.icon.focused : tabItem.icon.unfocused}
             />

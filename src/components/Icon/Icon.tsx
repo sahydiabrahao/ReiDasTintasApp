@@ -7,6 +7,7 @@ import {
   LogoIcon,
   SearchIcon,
   MenuIcon,
+  SettingsIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -34,6 +35,8 @@ const iconRegistry = {
   home: HomeIcon,
   cart: CartIcon,
   contact: ContactIcon,
+  settings: SettingsIcon,
+
   search: SearchIcon,
   menu: MenuIcon,
   logo: LogoIcon,
