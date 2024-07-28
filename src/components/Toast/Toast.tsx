@@ -10,15 +10,15 @@ import {$shadowProps} from '@theme';
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
 
 export function Toast() {
-  const {toast, hideToast: hiddenToast} = useToast();
+  const {toast, hideToast} = useToast();
 
   useEffect(() => {
     if (toast) {
       setTimeout(() => {
-        hiddenToast();
+        hideToast();
       }, 500);
     }
-  }, [hiddenToast, toast]);
+  }, [hideToast, toast]);
 
   if (!toast) {
     return null;
