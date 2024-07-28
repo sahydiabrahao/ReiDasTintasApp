@@ -6,7 +6,7 @@ import {Screen} from '@screens';
 
 export function ContactScreen() {
   return (
-    <Screen style={{paddingTop: 0, paddingBottom: 0}}>
+    <Screen>
       <MenuTop />
       <Box alignItems="center" justifyContent="center">
         <Text mb="s16" preset="headingSmall" color="gray3">

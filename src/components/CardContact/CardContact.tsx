@@ -16,6 +16,7 @@ export function CardContact({id, city, address, district, phone}: Props) {
 
   function store(storeID: number) {
     setPickStore(storeID);
+
     return console.log(pickStore);
   }
 
