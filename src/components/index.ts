@@ -8,3 +8,4 @@ export * from './CardContact/CardContact';
 export * from './CardCart/CardCart';
 export * from './MenuTop/MenuTop';
 export * from './Toast/Toast';
+export * from './Order/Order';
