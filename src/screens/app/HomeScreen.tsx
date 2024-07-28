@@ -23,7 +23,8 @@ export function HomeScreen() {
         padding="s4"
         flexDirection="row"
         alignItems="center"
-        justifyContent="center">
+        justifyContent="center"
+        mb="s16">
         {/* <Box alignItems="center" justifyContent="center">
           <Icon name="menu" color="bluePrimary" size={40} />
           </Box> */}
@@ -39,6 +40,7 @@ export function HomeScreen() {
         data={itemList}
         keyExtractor={item => item.id}
         renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
       />
     </Screen>
   );
