@@ -11,6 +11,7 @@ import {
   PlusIcon,
   MinusIcon,
   UpIcon,
+  DownIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -44,6 +45,7 @@ const iconRegistry = {
   plus: PlusIcon,
   minus: MinusIcon,
   up: UpIcon,
+  down: DownIcon,
 
   menu: MenuIcon,
   logo: LogoIcon,

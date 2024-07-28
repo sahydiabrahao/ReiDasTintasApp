@@ -16,6 +16,8 @@ export function CardItem({item}: Props) {
   function addItemToCart() {
     showToast({
       message: 'Item adicionado',
+      position: 'bottom',
+      type: 'success',
     });
   }
 

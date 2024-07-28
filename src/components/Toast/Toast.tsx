@@ -2,21 +2,25 @@ import React from 'react';
 import {useEffect} from 'react';
 import {Dimensions} from 'react-native';
 
-import {useToast} from '@services';
+import {useToast, ToastPosition, ToastType} from '@services';
 
-import {Box, BoxProps, Icon, Text} from '@components';
+import {Box, BoxProps, Icon, IconProps, Text} from '@components';
 import {$shadowProps} from '@theme';
 
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
+const DEFAULT_DURATION = 500;
 
 export function Toast() {
   const {toast, hideToast} = useToast();
+
+  const position: ToastPosition = toast?.position || 'bottom';
+  const type: ToastType = toast?.type || 'success';
 
   useEffect(() => {
     if (toast) {
       setTimeout(() => {
         hideToast();
-      }, 500);
+      }, toast.duration || DEFAULT_DURATION);
     }
   }, [hideToast, toast]);
 
@@ -25,8 +29,8 @@ export function Toast() {
   }
 
   return (
-    <Box bottom={100} {...$boxStyle}>
-      <Icon color="grayWhite" name="up" />
+    <Box {...$boxStyle} style={[{[position]: 100}, {...$shadowProps}]}>
+      <Icon {...mapTypeIcon[type]} />
       <Text
         color="grayWhite"
         style={{flexShrink: 1}}
@@ -39,6 +43,17 @@ export function Toast() {
   );
 }
 
+const mapTypeIcon: Record<ToastType, IconProps> = {
+  success: {
+    color: 'success',
+    name: 'up',
+  },
+  error: {
+    color: 'error',
+    name: 'down',
+  },
+};
+
 const $boxStyle: BoxProps = {
   position: 'absolute',
   backgroundColor: 'grayBlack',
@@ -49,5 +64,4 @@ const $boxStyle: BoxProps = {
   flexDirection: 'row',
   opacity: 0.95,
   maxWidth: MAX_WIDTH,
-  style: {...$shadowProps},
 };
