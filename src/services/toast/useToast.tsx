@@ -1,13 +1,7 @@
-import {useContext} from 'react';
+import {ToastService} from '@services';
 
-import {ToastContext, ToastService} from '@services';
+import {useToastContext} from './useToastContext';
 
 export function useToast(): ToastService {
-  const {toast, hiddenToast, showToast} = useContext(ToastContext);
-
-  return {
-    toast,
-    showToast,
-    hiddenToast,
-  };
+  return useToastContext();
 }
