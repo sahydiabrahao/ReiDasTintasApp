@@ -11,5 +11,5 @@ export interface Toast {
 export interface ToastService {
   toast: Toast | null;
   showToast: (toast: Toast) => void;
-  hiddenToast: () => void;
+  hideToast: () => void;
 }
