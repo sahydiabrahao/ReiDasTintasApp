@@ -20,7 +20,11 @@ export function CartScreen() {
   return (
     <Screen>
       <MenuTop />
-      <Button mb="s16" title="Solicitar orçamento gratuíto" />
+      <Button
+        backgroundColor="grayBlack"
+        mb="s16"
+        title="Solicitar orçamento gratuíto"
+      />
 
       <FlatList
         data={itemList}

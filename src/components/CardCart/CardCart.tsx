@@ -56,10 +56,10 @@ export function CardCart({item}: Props) {
           flexGrow={1}
           flexShrink={1}
           gap="s28">
-          <Box backgroundColor="primary" borderRadius="s12" padding="s14">
+          <Box backgroundColor="grayBlack" borderRadius="s12" padding="s14">
             <Icon name="minus" color="grayWhite" />
           </Box>
-          <Box backgroundColor="primary" borderRadius="s12" padding="s14">
+          <Box backgroundColor="grayBlack" borderRadius="s12" padding="s14">
             <Icon name="plus" color="grayWhite" />
           </Box>
         </Box>
