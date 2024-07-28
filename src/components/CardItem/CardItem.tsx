@@ -34,7 +34,7 @@ export function CardItem({item}: Props) {
       </Box>
       <Image
         style={{
-          width: 120,
+          width: 80,
           height: 120,
         }}
         source={{uri: item.image}}

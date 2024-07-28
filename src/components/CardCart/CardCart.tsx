@@ -23,7 +23,7 @@ export function CardCart({item}: Props) {
       borderRadius="s12">
       <Image
         style={{
-          width: 120,
+          width: 80,
           height: 120,
         }}
         source={{uri: item.image}}
@@ -55,11 +55,11 @@ export function CardCart({item}: Props) {
           justifyContent="space-between"
           flexGrow={1}
           flexShrink={1}
-          gap="s32">
-          <Box backgroundColor="primary" borderRadius="s12" padding="s8">
+          gap="s28">
+          <Box backgroundColor="primary" borderRadius="s12" padding="s14">
             <Icon name="minus" color="grayWhite" />
           </Box>
-          <Box backgroundColor="primary" borderRadius="s12" padding="s8">
+          <Box backgroundColor="primary" borderRadius="s12" padding="s14">
             <Icon name="plus" color="grayWhite" />
           </Box>
         </Box>
