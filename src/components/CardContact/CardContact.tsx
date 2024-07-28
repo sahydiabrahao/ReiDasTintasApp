@@ -15,7 +15,6 @@ export function CardContact({city, address, district, phone}: Props) {
     <Box
       style={$shadowProps}
       padding="s8"
-      mb="s32"
       flexDirection="row"
       justifyContent="space-evenly"
       alignItems="center"
