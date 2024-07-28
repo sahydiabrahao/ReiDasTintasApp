@@ -25,7 +25,7 @@ export function Toast() {
   }
 
   return (
-    <Box top={600} {...$boxStyle}>
+    <Box bottom={100} {...$boxStyle}>
       <Icon color="grayWhite" name="up" />
       <Text
         color="grayWhite"
