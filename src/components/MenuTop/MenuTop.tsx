@@ -14,7 +14,7 @@ export function MenuTop() {
           <Icon name="menu" color="bluePrimary" size={40} />
           </Box> */}
       <Box>
-        <Icon name="logo" color="bluePrimary" size={80} />
+        <Icon name="logo" color="bluePrimary" size={100} />
       </Box>
     </Box>
   );
