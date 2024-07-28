@@ -18,7 +18,7 @@ export function CartScreen() {
   }
 
   return (
-    <Screen>
+    <Screen style={{paddingTop: 0, paddingBottom: 0}}>
       <MenuTop />
       <Button mb="s16" title="Solicitar orçamento gratuíto" />
       <FlatList

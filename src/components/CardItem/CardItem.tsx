@@ -3,7 +3,7 @@ import {Image} from 'react-native';
 
 import {Item} from '@domain';
 
-import {Box, Text} from '@components';
+import {Box, Text, TouchableOpacityBox} from '@components';
 import {$shadowProps} from '@theme';
 
 interface Props {
@@ -11,8 +11,13 @@ interface Props {
 }
 
 export function CardItem({item}: Props) {
+  function addItemToCart() {
+    return console.log(item.name);
+  }
+
   return (
-    <Box
+    <TouchableOpacityBox
+      onPress={addItemToCart}
       style={$shadowProps}
       padding="s8"
       mb="s16"
@@ -39,6 +44,6 @@ export function CardItem({item}: Props) {
         }}
         source={{uri: item.image}}
       />
-    </Box>
+    </TouchableOpacityBox>
   );
 }

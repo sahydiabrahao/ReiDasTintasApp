@@ -1,25 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import {Box, Text} from '@components';
+import {Box, Text, TouchableOpacityBox} from '@components';
 import {$shadowProps} from '@theme';
 
 interface Props {
+  id: number;
   city: string;
   address: string;
   district: string;
   phone: string;
 }
 
-export function CardContact({city, address, district, phone}: Props) {
+export function CardContact({id, city, address, district, phone}: Props) {
+  const [pickStore, setPickStore] = useState<number>(1);
+
+  function store(storeID: number) {
+    setPickStore(storeID);
+    return console.log(pickStore);
+  }
+
   return (
-    <Box
+    <TouchableOpacityBox
+      onPress={() => store(id)}
       style={$shadowProps}
       padding="s8"
       flexDirection="row"
       justifyContent="space-evenly"
       alignItems="center"
-      backgroundColor="gray5"
-      borderRadius="s12">
+      borderRadius="s12"
+      backgroundColor={pickStore === id ? 'bluePrimary' : 'gray5'}>
       <Box justifyContent="center" alignItems="center">
         <Text mb="s8" bold preset="headingMedium">
           {city}
@@ -34,6 +43,6 @@ export function CardContact({city, address, district, phone}: Props) {
           {phone}
         </Text>
       </Box>
-    </Box>
+    </TouchableOpacityBox>
   );
 }

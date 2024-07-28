@@ -18,7 +18,7 @@ export function HomeScreen() {
   }
 
   return (
-    <Screen>
+    <Screen style={{paddingTop: 0, paddingBottom: 0}}>
       <MenuTop />
       {/* <TextInput
         boxProps={{marginBottom: 's20'}}
