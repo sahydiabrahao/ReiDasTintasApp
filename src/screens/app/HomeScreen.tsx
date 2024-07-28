@@ -3,7 +3,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {Item, itemService} from '@domain';
 
-import {Box, CardItem, Icon} from '@components';
+import {CardItem, MenuTop} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -19,19 +19,7 @@ export function HomeScreen() {
 
   return (
     <Screen>
-      <Box
-        padding="s4"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="center"
-        mb="s16">
-        {/* <Box alignItems="center" justifyContent="center">
-          <Icon name="menu" color="bluePrimary" size={40} />
-          </Box> */}
-        <Box>
-          <Icon name="logo" color="bluePrimary" size={80} />
-        </Box>
-      </Box>
+      <MenuTop />
       {/* <TextInput
         boxProps={{marginBottom: 's20'}}
         RightComponent={<Icon name="search" color="gray3" />}

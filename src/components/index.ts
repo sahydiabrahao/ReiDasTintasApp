@@ -5,3 +5,4 @@ export * from './Icon/Icon';
 export * from './TextInput/TextInput';
 export * from './CardItem/CardItem';
 export * from './CardContact/CardContact';
+export * from './MenuTop/MenuTop';
