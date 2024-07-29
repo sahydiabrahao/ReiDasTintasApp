@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 
 import {useOrder} from '@services';
 
-import {Box, Text} from '@components';
-
-export function Order() {
+export function OrderData() {
   const {order} = useOrder();
 
   useEffect(() => {
@@ -16,10 +14,4 @@ export function Order() {
   if (!order) {
     return null;
   }
-
-  return (
-    <Box>
-      <Text>{order.store?.id}</Text>
-    </Box>
-  );
 }

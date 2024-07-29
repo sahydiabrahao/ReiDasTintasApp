@@ -5,3 +5,4 @@ export * from './toast/types';
 export * from './order/useOrder';
 export * from './order/OrderProvider';
 export * from './order/types';
+export * from './order/OrderData';

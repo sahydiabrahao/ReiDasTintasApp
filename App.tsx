@@ -1,8 +1,8 @@
-import {OrderProvider, ToastProvider} from '@services';
+import {OrderData, OrderProvider, ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import {Order, Toast} from '@components';
+import {Toast} from '@components';
 import {Router} from '@routes';
 import {theme} from '@theme';
 
@@ -14,7 +14,7 @@ function App(): React.JSX.Element {
           <ToastProvider>
             <Router />
             <Toast />
-            <Order />
+            <OrderData />
           </ToastProvider>
         </OrderProvider>
       </ThemeProvider>
