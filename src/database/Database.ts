@@ -13,7 +13,7 @@ export interface ItemDB {
   age: string;
 }
 
-export async function getDBConnection() {
+export async function getDBConnection(): Promise<SQLiteDatabase> {
   var db = SQLite.openDatabase({
     name: DATABASE_NAME,
     location: DATABASE_LOCATION,
@@ -30,7 +30,7 @@ export async function createTable(db: SQLiteDatabase) {
   console.log('Created table');
 }
 
-export async function Desconectar(db: SQLiteDatabase) {
+export async function disconnect(db: SQLiteDatabase) {
   try {
     if (db) {
       db.close();
@@ -71,7 +71,6 @@ export async function getItems(db: SQLiteDatabase) {
     return list;
   } catch (error) {
     console.error(error);
-    console.log('Nenhum item encontrado');
     throw Error('Failed to get Items !!!');
   }
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import {Image} from 'react-native';
 
 import {Item} from '@domain';
-import {useToast} from '@services';
+import {database, useToast} from '@services';
+import {useDatabase} from '@services';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
 import {$shadowProps} from '@theme';
@@ -13,7 +14,25 @@ interface Props {
 
 export function CardItem({item}: Props) {
   const {showToast} = useToast();
-  function addItemToCart() {
+  const {getDBConnection, insertItems, getItems} = useDatabase();
+  async function addItemToCart() {
+    const db = getDBConnection();
+
+    let testeDB: database = {
+      storeID: '3',
+      storePhone: '6530161291',
+      category: 'Parede',
+      name: 'Toque de Luz',
+      brand: 'Suvinil',
+      specification: 'Semibrilho',
+      quantity: 18,
+      unit: 'Litros',
+    };
+
+    insertItems(await db, testeDB);
+
+    getItems(await db);
+
     showToast({
       message: 'Item adicionado',
       position: 'bottom',

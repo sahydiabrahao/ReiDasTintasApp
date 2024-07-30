@@ -1,4 +1,4 @@
-import {OrderData, OrderProvider, ToastProvider} from '@services';
+import {DatabaseProvider, ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -10,13 +10,12 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <OrderProvider>
+        <DatabaseProvider>
           <ToastProvider>
             <Router />
             <Toast />
-            <OrderData />
           </ToastProvider>
-        </OrderProvider>
+        </DatabaseProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
