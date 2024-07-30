@@ -10,7 +10,8 @@
       "@screens": ["src/screens"],
       "@theme": ["src/theme"],
       "@domain": ["src/domain"],
-      "@services": ["src/services"]
+      "@services": ["src/services"],
+      "@database": ["src/database"]
     }
   }
 }

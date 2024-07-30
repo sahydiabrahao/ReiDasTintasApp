@@ -1,6 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
+import {
+  createTable,
+  Desconectar,
+  getDBConnection,
+  getItems,
+  insertItems,
+  ItemDB,
+} from '@database';
 import {Item, itemService} from '@domain';
 
 import {CardItem, MenuTop} from '@components';
@@ -16,6 +24,31 @@ export function HomeScreen() {
   function renderItem({item}: ListRenderItemInfo<Item>) {
     return <CardItem item={item} />;
   }
+  const loadDataCallback = useCallback(async () => {
+    try {
+      const db = await getDBConnection();
+
+      // await db.executeSql('DROP TABLE ReiDasTintas');
+
+      await createTable(db);
+
+      let item: ItemDB = {
+        name: 'joao',
+        age: '12',
+      };
+      await insertItems(db, item);
+
+      await getItems(db);
+
+      await Desconectar(db);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadDataCallback();
+  }, [loadDataCallback]);
 
   return (
     <Screen>

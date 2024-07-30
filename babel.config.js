@@ -14,6 +14,7 @@ module.exports = {
           '@theme': './src/theme',
           '@domain': './src/domain',
           '@services': './src/services',
+          '@database': './src/database',
         },
       },
     ],
