@@ -1,28 +1,40 @@
+import {Item, Contact} from '@domain';
 import {SQLiteDatabase} from 'react-native-sqlite-storage';
 
-export const DATABASE_NAME = 'ReiDasTintas';
+export const DATABASE_NAME = 'ReiDasTintasDB';
+export const TABLE_ITEM = 'Item';
+export const TABLE_CONTACT = 'Contact';
 export const DATABASE_VERSION = '1.0';
 export const DATABAE_DISPLAYNAME = 'ReiDasTintas';
 export const DATABASE_SIZE = 200000;
 export const DATABASE_LOCATION = 'default';
 
-export interface database {
-  storeID: string;
-  storePhone?: string;
+export interface ItemDB {
+  id: string;
   category: string;
+  quantity: number;
   name: string;
   brand: string;
   specification?: string;
-  quantity: number;
   unit: string;
+}
+export interface ContactDB {
+  id: string;
+  city: string;
+  address: string;
+  district: string;
+  phone: string;
 }
 
 export interface DatabaseService {
-  database: database | null;
+  itemDB: ItemDB | null;
+  contactDB: ContactDB | null;
   getDBConnection: () => Promise<SQLiteDatabase>;
   createTable: (db: SQLiteDatabase) => void;
   disconnect: (db: SQLiteDatabase) => void;
   deleteTable: (db: SQLiteDatabase) => void;
-  insertItems: (db: SQLiteDatabase, database: database) => void;
-  getItems: (db: SQLiteDatabase) => Promise<database[]>;
+  insertItem: (db: SQLiteDatabase, database: Item) => void;
+  insertContact: (db: SQLiteDatabase, database: Contact) => void;
+  getItems: (db: SQLiteDatabase) => Promise<ItemDB[]>;
+  getContacts: (db: SQLiteDatabase) => Promise<ContactDB[]>;
 }
