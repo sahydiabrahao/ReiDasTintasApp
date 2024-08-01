@@ -14,3 +14,6 @@ export * from './icons/LogoIcon';
 
 export * from './images/SuvinilToqueSeda';
 export * from './images/SuvinilToqueLuz';
+export * from './images/SuvinilFoscoCompleto';
+export * from './images/SuvinilClassica';
+export * from './images/SuvinilRendeCobreMuito';

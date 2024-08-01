@@ -31,6 +31,7 @@ export function Screen({
       <Container backgroundColor={colors.background}>
         <Box
           paddingHorizontal="s8"
+          marginBottom="s60"
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           {...boxProps}>
           {children}
