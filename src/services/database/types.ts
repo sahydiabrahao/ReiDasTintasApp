@@ -17,6 +17,7 @@ export interface ItemDB {
   brand: string;
   specification?: string;
   unit: string;
+  image: string;
 }
 export interface ContactDB {
   id: string;

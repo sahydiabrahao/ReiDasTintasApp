@@ -18,7 +18,7 @@ export function HomeScreen() {
     return <CardItem item={item} />;
   }
 
-  const {getDBConnection, createTable, disconnect} = useDatabase();
+  const {getDBConnection, createTable} = useDatabase();
 
   const loadDataCallback = useCallback(async () => {
     try {
@@ -35,12 +35,10 @@ export function HomeScreen() {
       // await insertItems(db, item);
 
       // await getItems(db);
-
-      await disconnect(db);
     } catch (error) {
       console.error(error);
     }
-  }, [createTable, disconnect, getDBConnection]);
+  }, [createTable, getDBConnection]);
 
   useEffect(() => {
     loadDataCallback();

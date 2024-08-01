@@ -5,7 +5,6 @@ import {Item} from '@domain';
 import {useToast} from '@services';
 import {useDatabase} from '@services';
 
-import {SuvinilToqueLuz} from '@assets';
 import {Box, Text, TouchableOpacityBox} from '@components';
 import {$shadowProps} from '@theme';
 
@@ -15,27 +14,28 @@ interface Props {
 
 export function CardItem({item}: Props) {
   const {showToast} = useToast();
-  const {getDBConnection, insertItem, getItems} = useDatabase();
+  const {getDBConnection, insertItem, disconnect} = useDatabase();
 
-  async function addItem() {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  async function addItem(item: Item) {
     const db = getDBConnection();
 
     let testeDB: Item = {
-      id: '3',
-      category: 'Parede',
-      quantity: 3,
-      name: 'Toque de Luz',
-      brand: 'Suvinil',
-      specification: 'Semibrilho',
-      unit: '18 Litros',
-      image: SuvinilToqueLuz,
+      id: item.id,
+      category: item.category,
+      quantity: item.quantity,
+      name: item.name,
+      brand: item.brand,
+      specification: item.specification,
+      unit: item.unit,
+      image: item.image,
     };
 
     // deleteTable(await db);
 
     insertItem(await db, testeDB);
 
-    getItems(await db);
+    disconnect(await db);
 
     showToast({
       message: 'Item adicionado',
@@ -46,7 +46,7 @@ export function CardItem({item}: Props) {
 
   return (
     <TouchableOpacityBox
-      onPress={addItem}
+      onPress={() => addItem(item)}
       style={$shadowProps}
       padding="s8"
       mb="s16"
@@ -55,7 +55,7 @@ export function CardItem({item}: Props) {
       alignItems="center"
       backgroundColor="gray5"
       borderRadius="s12">
-      <Box>
+      <Box alignItems="center" flexGrow={1}>
         <Text bold preset="headingSmall">
           {item.name}
         </Text>
@@ -66,13 +66,15 @@ export function CardItem({item}: Props) {
           <Text preset="paragraphMedium">{item.unit}</Text>
         </Box>
       </Box>
-      <Image
-        style={{
-          width: 80,
-          height: 120,
-        }}
-        source={{uri: item.image}}
-      />
+      <Box width={80}>
+        <Image
+          style={{
+            width: 80,
+            height: 120,
+          }}
+          source={{uri: item.image}}
+        />
+      </Box>
     </TouchableOpacityBox>
   );
 }

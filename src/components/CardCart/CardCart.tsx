@@ -35,7 +35,6 @@ export function CardCart({item}: Props) {
         <Text preset="paragraphMedium">{item.brand}</Text>
         <Text preset="paragraphMedium">{item.specification}</Text>
         <Box flexDirection="row">
-          <Text preset="paragraphMedium">{item.quantity} </Text>
           <Text preset="paragraphMedium">{item.unit}</Text>
         </Box>
       </Box>
@@ -46,9 +45,7 @@ export function CardCart({item}: Props) {
         mb="s8"
         mt="s32"
         flexGrow={1}>
-        <Text bold preset="paragraphMedium">
-          100
-        </Text>
+        <Text preset="paragraphMedium">{item.quantity} </Text>
         <Box
           flexDirection="row"
           alignItems="flex-end"

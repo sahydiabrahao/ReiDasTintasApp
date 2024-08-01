@@ -11,9 +11,8 @@ interface Props {
 }
 
 export function CardContact({contact}: Props) {
-  const {showToast} = useToast();
-
   const {getDBConnection, insertContact, getContacts} = useDatabase();
+  const {showToast} = useToast();
 
   async function selectContact({}: Contact) {
     const db = getDBConnection();
@@ -41,44 +40,25 @@ export function CardContact({contact}: Props) {
   return (
     <TouchableOpacityBox
       mb="s32"
-      onPress={() => selectContact(contact)}
+      onPress={() => [selectContact(contact)]}
       style={$shadowProps}
       padding="s8"
       flexDirection="row"
       justifyContent="space-evenly"
       alignItems="center"
       borderRadius="s12"
-      // backgroundColor={order?.store?.id === id ? 'grayBlack' : 'gray5'}>
-      backgroundColor="grayBlack">
+      backgroundColor="gray5">
       <Box justifyContent="center" alignItems="center">
-        <Text
-          // color={order?.store?.id === id ? 'grayWhite' : 'grayBlack'}
-          color="grayWhite"
-          mb="s8"
-          bold
-          preset="headingMedium">
+        <Text color="grayBlack" mb="s8" bold preset="headingMedium">
           {contact.city}
         </Text>
-        <Text
-          // color={order?.store?.id === id ? 'grayWhite' : 'grayBlack'}
-          color="grayWhite"
-          mb="s8"
-          preset="headingSmall">
+        <Text color="grayBlack" mb="s8" preset="headingSmall">
           {contact.district}
         </Text>
-        <Text
-          // color={order?.store?.id === id ? 'grayWhite' : 'grayBlack'}
-          color="grayWhite"
-          mb="s8"
-          preset="headingSmall">
+        <Text color="grayBlack" mb="s8" preset="headingSmall">
           {contact.address}
         </Text>
-        <Text
-          // color={order?.store?.id === id ? 'grayWhite' : 'grayBlack'}
-          color="grayWhite"
-          mb="s8"
-          bold
-          preset="headingSmall">
+        <Text color="grayBlack" mb="s8" bold preset="headingSmall">
           {contact.phone}
         </Text>
       </Box>
