@@ -25,12 +25,14 @@ export function ContactScreen() {
           Selecione sua loja
         </Text>
       </Box>
-      <FlatList
-        data={contactList}
-        keyExtractor={item => item.phone}
-        renderItem={renderItem}
-        showsVerticalScrollIndicator={false}
-      />
+      <Box flexShrink={1} marginBottom="s60">
+        <FlatList
+          data={contactList}
+          keyExtractor={item => item.phone}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+        />
+      </Box>
     </Screen>
   );
 }

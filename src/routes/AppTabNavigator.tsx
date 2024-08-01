@@ -27,9 +27,7 @@ export function AppTabNavigator() {
       tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          paddingTop: 20,
-        },
+        tabBarStyle: {},
       }}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="CartScreen" component={CartScreen} />

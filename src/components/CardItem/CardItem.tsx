@@ -48,23 +48,20 @@ export function CardItem({item}: Props) {
     <TouchableOpacityBox
       onPress={() => addItem(item)}
       style={$shadowProps}
-      padding="s8"
-      mb="s16"
+      padding="s2"
       flexDirection="row"
       justifyContent="space-evenly"
       alignItems="center"
       backgroundColor="gray5"
-      borderRadius="s12">
+      borderColor="gray4"
+      borderBottomWidth={1}>
       <Box alignItems="center" flexGrow={1}>
         <Text bold preset="headingSmall">
           {item.name}
         </Text>
         <Text preset="paragraphMedium">{item.brand}</Text>
         <Text preset="paragraphMedium">{item.specification}</Text>
-        <Box flexDirection="row">
-          <Text preset="paragraphMedium">{item.quantity} </Text>
-          <Text preset="paragraphMedium">{item.unit}</Text>
-        </Box>
+        <Text preset="paragraphMedium">{item.unit}</Text>
       </Box>
       <Box width={80}>
         <Image

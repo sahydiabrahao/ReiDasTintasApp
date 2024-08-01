@@ -8,6 +8,8 @@ export * from './icons/PlusIcon';
 export * from './icons/MinusIcon';
 export * from './icons/UpIcon';
 export * from './icons/DownIcon';
+export * from './icons/DeleteIcon';
+export * from './icons/EditIcon';
 
 export * from './icons/MenuIcon';
 export * from './icons/LogoIcon';

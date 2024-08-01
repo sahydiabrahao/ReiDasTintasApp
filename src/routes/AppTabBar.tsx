@@ -58,6 +58,7 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
+            flexShrink={1}
             style={{flex: 1}}>
             <Icon
               size={32}

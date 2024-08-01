@@ -4,7 +4,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {Item, itemService} from '@domain';
 import {useDatabase} from '@services';
 
-import {CardItem, MenuTop} from '@components';
+import {Box, CardItem, MenuTop} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -51,12 +51,14 @@ export function HomeScreen() {
         boxProps={{marginBottom: 's20'}}
         RightComponent={<Icon name="search" color="gray3" />}
         /> */}
-      <FlatList
-        data={itemList}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-        showsVerticalScrollIndicator={false}
-      />
+      <Box flexShrink={1} marginBottom="s60">
+        <FlatList
+          data={itemList}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+        />
+      </Box>
     </Screen>
   );
 }
