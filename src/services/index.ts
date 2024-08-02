@@ -2,4 +2,4 @@ export * from './toast/useToast';
 export * from './toast/ToastProvider';
 export * from './toast/types';
 
-export * from './updateDatabase/UpdateDatabaseProvider';
+export * from './store/store';
