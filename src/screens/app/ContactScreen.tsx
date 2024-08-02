@@ -25,7 +25,7 @@ export function ContactScreen() {
           Selecione sua loja
         </Text>
       </Box>
-      <Box flexShrink={1} marginBottom="s60">
+      <Box flexGrow={1} marginBottom="s60">
         <FlatList
           data={contactList}
           keyExtractor={item => item.phone}

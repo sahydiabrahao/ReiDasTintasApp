@@ -51,7 +51,7 @@ export function HomeScreen() {
         boxProps={{marginBottom: 's20'}}
         RightComponent={<Icon name="search" color="gray3" />}
         /> */}
-      <Box flexShrink={1} marginBottom="s60">
+      <Box flexGrow={1} marginBottom="s60">
         <FlatList
           data={itemList}
           keyExtractor={item => item.id}

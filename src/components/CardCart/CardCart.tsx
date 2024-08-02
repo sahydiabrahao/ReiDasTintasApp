@@ -20,7 +20,7 @@ export function CardCart({item}: Props) {
       borderColor="gray4"
       borderBottomWidth={1}>
       <Text preset="paragraphLarge">{item.quantity} </Text>
-      <Box flexDirection="row">
+      <Box flexDirection="row" flexGrow={1}>
         <Image
           style={{
             width: 80,
@@ -37,12 +37,8 @@ export function CardCart({item}: Props) {
           <Text preset="paragraphMedium">{item.unit}</Text>
         </Box>
       </Box>
-      <Box
-        flexGrow={1}
-        flexDirection="column"
-        alignItems="flex-end"
-        justifyContent="center">
-        <Box alignItems="flex-end" justifyContent="space-between" flexGrow={1}>
+      <Box flexShrink={1} flexDirection="column">
+        <Box alignItems="stretch" justifyContent="space-evenly" flexGrow={1}>
           <Box backgroundColor="gray3" borderRadius="s12" padding="s14">
             <Icon name="delete" color="grayWhite" />
           </Box>

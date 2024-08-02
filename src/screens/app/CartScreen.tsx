@@ -52,7 +52,7 @@ export function CartScreen() {
       </Box>
 
       {itemList.lengh !== 0 ? (
-        <Box flexShrink={1} marginBottom="s60">
+        <Box flexGrow={1} marginBottom="s100">
           <FlatList
             data={itemList}
             keyExtractor={item => item.id}
@@ -61,7 +61,7 @@ export function CartScreen() {
           />
         </Box>
       ) : (
-        <Box flexShrink={1} marginBottom="s60">
+        <Box flexGrow={1} marginBottom="s100">
           <Text color="grayBlack">Nenhum item adicionado</Text>
         </Box>
       )}
