@@ -1,4 +1,5 @@
-import {DatabaseProvider, ToastProvider} from '@services';
+import {DatabaseProvider} from '@database';
+import {ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 

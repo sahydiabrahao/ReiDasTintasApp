@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 
-import {DatabaseContext, DatabaseService} from '@services';
+import {DatabaseContext, DatabaseService} from '@database';
 
 export function useDatabaseContext(): DatabaseService {
   const context = useContext(DatabaseContext);

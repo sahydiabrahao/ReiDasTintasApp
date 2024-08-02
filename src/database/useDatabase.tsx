@@ -1,4 +1,4 @@
-import {DatabaseService} from '@services';
+import {DatabaseService} from '@database';
 
 import {useDatabaseContext} from './useDatabaseContext';
 

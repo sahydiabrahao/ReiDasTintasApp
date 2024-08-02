@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
+import {useDatabase} from '@database';
 import {Item, itemService} from '@domain';
-import {useDatabase} from '@services';
 
 import {Box, CardItem, MenuTop} from '@components';
 import {Screen} from '@screens';

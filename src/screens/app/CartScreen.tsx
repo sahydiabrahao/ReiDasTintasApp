@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
+import {useDatabase} from '@database';
 import {Item} from '@domain';
 import {useFocusEffect} from '@react-navigation/native';
-import {useDatabase} from '@services';
 
 import {Box, Button, CardCart, MenuTop, Text} from '@components';
 import {Screen} from '@screens';

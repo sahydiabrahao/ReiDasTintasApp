@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {createContext, useState} from 'react';
 
-import {Item, Contact} from '@domain';
 import {
   DATABASE_LOCATION,
   DATABASE_NAME,
@@ -10,7 +9,8 @@ import {
   ContactDB,
   TABLE_CONTACT,
   TABLE_ITEM,
-} from '@services';
+} from '@database';
+import {Item, Contact} from '@domain';
 import SQLite, {SQLiteDatabase} from 'react-native-sqlite-storage';
 
 SQLite.DEBUG(true);

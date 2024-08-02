@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {useDatabase} from '@database';
 import {Contact} from '@domain';
-import {useDatabase, useToast} from '@services';
+import {useToast} from '@services';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
 

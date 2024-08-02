@@ -1,9 +1,9 @@
 import React from 'react';
 import {Image} from 'react-native';
 
+import {useDatabase} from '@database';
 import {Item} from '@domain';
 import {useToast} from '@services';
-import {useDatabase} from '@services';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
 import {$shadowProps} from '@theme';
