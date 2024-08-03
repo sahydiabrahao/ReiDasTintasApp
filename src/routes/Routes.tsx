@@ -11,7 +11,6 @@ export function Router() {
   return (
     <NavigationContainer>
       <MenuTop />
-
       {authenticated ? <AuthTabNavigator /> : <AppTabNavigator />}
     </NavigationContainer>
   );

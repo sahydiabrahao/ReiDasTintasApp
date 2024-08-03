@@ -35,13 +35,8 @@ export function CartScreen() {
 
   return (
     <Screen scrollable>
-      {itemList.lengh !== 0 ? (
+      {itemList.length > 0 ? (
         <Box flexGrow={1}>
-          <Button
-            backgroundColor="grayBlack"
-            mb="s8"
-            title="Solicitar orçamento gratuíto"
-          />
           <FlatList
             data={itemList}
             keyExtractor={item => item.id}
@@ -50,10 +45,17 @@ export function CartScreen() {
             contentContainerStyle={{gap: 16}}
             scrollEnabled={false}
           />
+          <Button
+            backgroundColor="grayBlack"
+            mt="s8"
+            title="Solicitar orçamento gratuíto"
+          />
         </Box>
       ) : (
-        <Box flexGrow={1}>
-          <Text color="grayBlack">Nenhum item adicionado</Text>
+        <Box mb="s12" alignItems="center" justifyContent="center">
+          <Text preset="headingSmall" color="gray3">
+            Nenhum item adicionado
+          </Text>
         </Box>
       )}
     </Screen>

@@ -7,13 +7,15 @@ export function MenuTop() {
     <Box
       flexDirection="row"
       alignItems="center"
-      justifyContent="center"
-      mb="s8">
-      {/* <Box alignItems="center" justifyContent="center">
-        <Icon name="menu" color="grayBlack" size={32} />
-      </Box> */}
+      justifyContent="space-between"
+      padding="s16"
+      backgroundColor="bluePrimary"
+      elevation={2}>
+      <Box alignItems="center" justifyContent="center">
+        <Icon name="menu" color="grayWhite" size={40} />
+      </Box>
       <Box>
-        <Icon name="logo" color="bluePrimary" size={70} />
+        <Icon name="logo" color="grayWhite" size={70} />
       </Box>
     </Box>
   );

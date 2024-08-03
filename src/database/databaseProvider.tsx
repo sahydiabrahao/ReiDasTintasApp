@@ -97,7 +97,7 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
   async function insertContact(db: SQLiteDatabase, contact: Contact) {
     const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
     const values = [
-      '1',
+      '0',
       contact.phone,
       contact.city,
       contact.address,
@@ -134,7 +134,7 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
           databaseList.push(result.rows.item(index));
         }
       });
-      // console.log('Database List:', databaseList);
+      console.log('Database List:', databaseList);
       return databaseList;
     } catch (error) {
       console.error(error);
