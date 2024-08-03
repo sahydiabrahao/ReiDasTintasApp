@@ -24,6 +24,8 @@ export const DatabaseContext = createContext<DatabaseService>({
   disconnect: () => {},
   deleteTable: () => {},
   insertItem: () => {},
+  increment: () => {},
+  decrement: () => {},
   deleteItem: () => {},
   insertContact: () => {},
   getItems: () => Promise.resolve([]),
@@ -94,8 +96,21 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
 
     await db.executeSql(query, values);
   }
+
+  async function increment(db: SQLiteDatabase, id: string) {
+    const query = `UPDATE ${TABLE_ITEM} SET quantity = quantity + 1 WHERE id = ${id}`;
+
+    await db.executeSql(query);
+  }
+
+  async function decrement(db: SQLiteDatabase, id: string) {
+    const query = `UPDATE ${TABLE_ITEM} SET quantity = CASE WHEN quantity > 1 THEN quantity - 1 ELSE 1 END WHERE id = ${id}`;
+
+    await db.executeSql(query);
+  }
+
   async function deleteItem(db: SQLiteDatabase, id: string) {
-    const query = `DELETE from ${TABLE_ITEM} where id = ${id}`;
+    const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ${id}`;
 
     await db.executeSql(query);
   }
@@ -157,6 +172,8 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
         disconnect,
         deleteTable,
         insertItem,
+        increment,
+        decrement,
         deleteItem,
         insertContact,
         getItems,

@@ -10,7 +10,14 @@ import {Screen} from '@screens';
 export function CartScreen() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
-  const {getDBConnection, getItems, deleteItem, disconnect} = useDatabase();
+  const {
+    getDBConnection,
+    getItems,
+    deleteItem,
+    increment,
+    decrement,
+    disconnect,
+  } = useDatabase();
   async function fethData() {
     const db = getDBConnection();
     let itemsDB = getItems(await db);
@@ -38,8 +45,35 @@ export function CartScreen() {
     }
   }
 
+  async function onIncrement(id: string) {
+    try {
+      const db = await getDBConnection();
+      increment(await db, id);
+      fethData();
+      setItemList([]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function onDecrement(id: string) {
+    try {
+      const db = await getDBConnection();
+      decrement(await db, id);
+      fethData();
+      setItemList([]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const renderCartItems = itemList.map(item => (
-    <CardCart key={item.id} item={item} onDelete={onDelete} />
+    <CardCart
+      key={item.id}
+      item={item}
+      onDelete={onDelete}
+      onIncrement={onIncrement}
+      onDecrement={onDecrement}
+    />
   ));
 
   return (

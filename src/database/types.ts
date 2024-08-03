@@ -35,6 +35,8 @@ export interface DatabaseService {
   disconnect: (db: SQLiteDatabase) => void;
   deleteTable: (db: SQLiteDatabase) => void;
   insertItem: (db: SQLiteDatabase, database: Item) => void;
+  increment: (db: SQLiteDatabase, id: string) => void;
+  decrement: (db: SQLiteDatabase, id: string) => void;
   deleteItem: (db: SQLiteDatabase, id: string) => void;
   insertContact: (db: SQLiteDatabase, database: Contact) => void;
   getItems: (db: SQLiteDatabase) => Promise<ItemDB[]>;
