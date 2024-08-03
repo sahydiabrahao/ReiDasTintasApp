@@ -5,7 +5,7 @@ import {useDatabase} from '@database';
 import {Item} from '@domain';
 import {useFocusEffect} from '@react-navigation/native';
 
-import {Box, Button, CardCart, MenuTop, Text} from '@components';
+import {Box, Button, CardCart, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CartScreen() {
@@ -34,27 +34,25 @@ export function CartScreen() {
   }
 
   return (
-    <Screen>
-      <Box>
-        <MenuTop />
-        <Button
-          backgroundColor="grayBlack"
-          mb="s8"
-          title="Solicitar orçamento gratuíto"
-        />
-      </Box>
-
+    <Screen scrollable>
       {itemList.lengh !== 0 ? (
-        <Box flexGrow={1} marginBottom="s100">
+        <Box flexGrow={1}>
+          <Button
+            backgroundColor="grayBlack"
+            mb="s8"
+            title="Solicitar orçamento gratuíto"
+          />
           <FlatList
             data={itemList}
             keyExtractor={item => item.id}
             renderItem={renderItem}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={{gap: 16}}
+            scrollEnabled={false}
           />
         </Box>
       ) : (
-        <Box flexGrow={1} marginBottom="s100">
+        <Box flexGrow={1}>
           <Text color="grayBlack">Nenhum item adicionado</Text>
         </Box>
       )}

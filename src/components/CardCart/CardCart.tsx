@@ -3,7 +3,7 @@ import {Image} from 'react-native';
 
 import {Item} from '@domain';
 
-import {Box, Icon, Text} from '@components';
+import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   item: Item;
@@ -11,8 +11,8 @@ interface Props {
 
 export function CardCart({item}: Props) {
   return (
-    <Box
-      padding="s4"
+    <TouchableOpacityBox
+      padding="s2"
       flexDirection="row"
       justifyContent="flex-start"
       alignItems="center"
@@ -47,6 +47,6 @@ export function CardCart({item}: Props) {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </TouchableOpacityBox>
   );
 }

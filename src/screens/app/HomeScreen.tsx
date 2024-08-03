@@ -4,7 +4,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {useDatabase} from '@database';
 import {Item, itemService} from '@domain';
 
-import {Box, CardItem, MenuTop} from '@components';
+import {Box, CardItem} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -33,20 +33,21 @@ export function HomeScreen() {
   }, [loadDataCallback]);
 
   return (
-    <Screen>
-      <MenuTop />
-      {/* <TextInput
-        boxProps={{marginBottom: 's20'}}
-        RightComponent={<Icon name="search" color="gray3" />}
-        /> */}
-      <Box flexGrow={1} marginBottom="s60">
+    <Screen scrollable>
+      <Box flexGrow={1}>
         <FlatList
           data={itemList}
           keyExtractor={item => item.id}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={{gap: 16}}
+          scrollEnabled={false}
         />
       </Box>
+      {/* <TextInput
+        boxProps={{marginBottom: 's20'}}
+        RightComponent={<Icon name="search" color="gray3" />}
+        /> */}
     </Screen>
   );
 }
