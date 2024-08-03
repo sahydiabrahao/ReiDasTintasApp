@@ -18,8 +18,6 @@ export function CardItem({item}: Props) {
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   async function addItem(item: Item) {
-    const db = getDBConnection();
-
     let testeDB: Item = {
       id: item.id,
       category: item.category,
@@ -31,11 +29,10 @@ export function CardItem({item}: Props) {
       image: item.image,
     };
 
-    // deleteTable(await db);
-
+    const db = getDBConnection();
     insertItem(await db, testeDB);
-
     disconnect(await db);
+    // deleteTable(await db);
 
     showToast({
       message: 'Item adicionado',

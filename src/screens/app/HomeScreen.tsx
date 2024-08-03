@@ -9,6 +9,7 @@ import {Screen} from '@screens';
 
 export function HomeScreen() {
   const [itemList, setitemList] = useState<Item[]>([]);
+  const {getDBConnection, createTable} = useDatabase();
 
   useEffect(() => {
     itemService.getList().then(List => setitemList(List));
@@ -18,23 +19,10 @@ export function HomeScreen() {
     return <CardItem item={item} />;
   }
 
-  const {getDBConnection, createTable} = useDatabase();
-
   const loadDataCallback = useCallback(async () => {
     try {
       const db = await getDBConnection();
-
-      // await db.executeSql('DROP TABLE ReiDasTintas');
-
       await createTable(db);
-
-      // let item: ItemDB = {
-      //   name: 'joao',
-      //   age: '12',
-      // };
-      // await insertItems(db, item);
-
-      // await getItems(db);
     } catch (error) {
       console.error(error);
     }

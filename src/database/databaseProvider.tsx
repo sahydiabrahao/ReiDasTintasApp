@@ -116,7 +116,7 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
           databaseList.push(result.rows.item(index));
         }
       });
-      console.log('Database List:', databaseList);
+      // console.log('Database List:', databaseList);
       return databaseList;
     } catch (error) {
       console.error(error);
@@ -134,7 +134,7 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
           databaseList.push(result.rows.item(index));
         }
       });
-      console.log('Database List:', databaseList);
+      // console.log('Database List:', databaseList);
       return databaseList;
     } catch (error) {
       console.error(error);

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {DatabaseProvider} from '@database';
 import {ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';

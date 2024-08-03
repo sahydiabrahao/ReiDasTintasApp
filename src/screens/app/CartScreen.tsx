@@ -17,19 +17,12 @@ export function CartScreen() {
     React.useCallback(() => {
       async function fethData() {
         const db = getDBConnection();
-
         let itemsDB = getItems(await db);
-
-        console.log('itemsDB:', itemsDB);
-
         for (let i: number = 0; i < (await itemsDB).length; i++) {
           let item = (await itemsDB).find(ob => ob.id === i.toString());
-          console.log('item:', item);
           setItemList((prev: any) => [...prev, item]);
         }
-        console.log('itemList:', itemList);
       }
-
       fethData();
       setItemList([]);
       // eslint-disable-next-line react-hooks/exhaustive-deps
