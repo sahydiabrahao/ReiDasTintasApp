@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {Contact, contactService} from '@domain';
 
@@ -13,25 +12,22 @@ export function ContactScreen() {
     contactService.getList().then(List => setcontactList(List));
   }, []);
 
-  function renderItem({item}: ListRenderItemInfo<Contact>) {
-    return <CardContact contact={item} />;
-  }
+  const renderContacts = contactList.map(contact => (
+    <CardContact contact={contact} />
+  ));
 
   return (
-    <Screen>
-      <Box flexGrow={1}>
-        <Box mb="s12" alignItems="center" justifyContent="center">
-          <Text preset="headingSmall" color="gray3">
-            Selecione sua loja
-          </Text>
-        </Box>
-        <FlatList
-          data={contactList}
-          keyExtractor={item => item.phone}
-          renderItem={renderItem}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{gap: 16}}
-        />
+    <Screen flex={1}>
+      <Box
+        backgroundColor="grayWhite"
+        alignItems="center"
+        justifyContent="center">
+        <Text preset="headingSmall" color="gray3">
+          Selecione sua loja
+        </Text>
+      </Box>
+      <Box flexGrow={1} justifyContent="space-around">
+        {renderContacts}
       </Box>
     </Screen>
   );

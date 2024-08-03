@@ -8,7 +8,7 @@ import {
 
 import {useAppTheme} from '../../hooks/useAppTheme';
 import {Box, BoxProps} from '../Box/Box';
-import {$fontFamily, $fontSizes, Text} from '../Text/Text';
+import {$fontFamily, $fontSizes} from '../Text/Text';
 
 interface TextInputProps extends RNTextInputProps {
   label?: string;
@@ -16,7 +16,6 @@ interface TextInputProps extends RNTextInputProps {
   boxProps?: BoxProps;
 }
 export function TextInput({
-  label,
   RightComponent,
   boxProps,
   ...rnTextInputProps
@@ -30,9 +29,6 @@ export function TextInput({
   return (
     <Box {...boxProps}>
       <Pressable onPress={focusInput}>
-        <Text preset="paragraphMedium" marginBottom="s4">
-          {label}
-        </Text>
         <Box {...$textInputContainer}>
           <RNTextInput
             ref={inputRef}

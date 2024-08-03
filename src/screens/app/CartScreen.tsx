@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {useDatabase} from '@database';
 import {Item} from '@domain';
@@ -9,7 +8,7 @@ import {Box, Button, CardCart, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CartScreen() {
-  const [itemList, setItemList] = useState<any>([]);
+  const [itemList, setItemList] = useState<Item[]>([]);
 
   const {getDBConnection, getItems} = useDatabase();
 
@@ -29,25 +28,16 @@ export function CartScreen() {
     }, []),
   );
 
-  function renderItem({item}: ListRenderItemInfo<Item>) {
-    return <CardCart item={item} />;
-  }
+  const renderCartItems = itemList.map(item => <CardCart item={item} />);
 
   return (
     <Screen scrollable>
       {itemList.length > 0 ? (
-        <Box flexGrow={1}>
-          <FlatList
-            data={itemList}
-            keyExtractor={item => item.id}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{gap: 16}}
-            scrollEnabled={false}
-          />
+        <Box backgroundColor="grayWhite" marginHorizontal="s8">
+          {renderCartItems}
           <Button
+            mt="s12"
             backgroundColor="grayBlack"
-            mt="s8"
             title="Solicitar orçamento gratuíto"
           />
         </Box>

@@ -1,10 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {useDatabase} from '@database';
 import {Item, itemService} from '@domain';
 
-import {Box, CardItem} from '@components';
+import {Box, CardItem, Icon, TextInput} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -14,10 +13,6 @@ export function HomeScreen() {
   useEffect(() => {
     itemService.getList().then(List => setitemList(List));
   }, []);
-
-  function renderItem({item}: ListRenderItemInfo<Item>) {
-    return <CardItem item={item} />;
-  }
 
   const loadDataCallback = useCallback(async () => {
     try {
@@ -32,22 +27,14 @@ export function HomeScreen() {
     loadDataCallback();
   }, [loadDataCallback]);
 
+  const renderCardItems = itemList.map(item => <CardItem item={item} />);
+
   return (
     <Screen scrollable>
-      <Box flexGrow={1}>
-        <FlatList
-          data={itemList}
-          keyExtractor={item => item.id}
-          renderItem={renderItem}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{gap: 16}}
-          scrollEnabled={false}
-        />
+      <Box backgroundColor="grayWhite" mb="s12">
+        <TextInput RightComponent={<Icon name="search" color="gray3" />} />
       </Box>
-      {/* <TextInput
-        boxProps={{marginBottom: 's20'}}
-        RightComponent={<Icon name="search" color="gray3" />}
-        /> */}
+      <Box flexGrow={1}>{renderCardItems}</Box>
     </Screen>
   );
 }
