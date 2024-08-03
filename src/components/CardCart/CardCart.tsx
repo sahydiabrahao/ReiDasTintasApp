@@ -4,12 +4,12 @@ import {Image} from 'react-native';
 import {Item} from '@domain';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
-
 interface Props {
   item: Item;
+  onDelete: (id: string) => void;
 }
 
-export function CardCart({item}: Props) {
+export function CardCart({item, onDelete}: Props) {
   return (
     <TouchableOpacityBox
       padding="s2"
@@ -39,9 +39,13 @@ export function CardCart({item}: Props) {
       </Box>
       <Box flexShrink={1} flexDirection="column">
         <Box alignItems="stretch" justifyContent="space-evenly" flexGrow={1}>
-          <Box backgroundColor="gray3" borderRadius="s12" padding="s14">
+          <TouchableOpacityBox
+            onPress={() => onDelete(item.id)}
+            backgroundColor="gray3"
+            borderRadius="s12"
+            padding="s14">
             <Icon name="delete" color="grayWhite" />
-          </Box>
+          </TouchableOpacityBox>
           <Box backgroundColor="grayBlack" borderRadius="s12" padding="s14">
             <Icon name="edit" color="grayWhite" />
           </Box>

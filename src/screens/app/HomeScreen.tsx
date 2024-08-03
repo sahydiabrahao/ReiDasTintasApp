@@ -8,7 +8,9 @@ import {Screen} from '@screens';
 
 export function HomeScreen() {
   const [itemList, setitemList] = useState<Item[]>([]);
-  const {getDBConnection, createTable} = useDatabase();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {getDBConnection, createTable, deleteTable} = useDatabase();
 
   useEffect(() => {
     itemService.getList().then(List => setitemList(List));
@@ -18,6 +20,8 @@ export function HomeScreen() {
     try {
       const db = await getDBConnection();
       await createTable(db);
+
+      // await deleteTable(db);
     } catch (error) {
       console.error(error);
     }
@@ -27,7 +31,9 @@ export function HomeScreen() {
     loadDataCallback();
   }, [loadDataCallback]);
 
-  const renderCardItems = itemList.map(item => <CardItem item={item} />);
+  const renderCardItems = itemList.map(item => (
+    <CardItem key={item.id} item={item} />
+  ));
 
   return (
     <Screen scrollable>

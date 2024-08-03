@@ -13,7 +13,7 @@ export function ContactScreen() {
   }, []);
 
   const renderContacts = contactList.map(contact => (
-    <CardContact contact={contact} />
+    <CardContact key={contact.phone} contact={contact} />
   ));
 
   return (

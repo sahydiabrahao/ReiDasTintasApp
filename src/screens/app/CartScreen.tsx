@@ -10,25 +10,37 @@ import {Screen} from '@screens';
 export function CartScreen() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
-  const {getDBConnection, getItems} = useDatabase();
-
+  const {getDBConnection, getItems, deleteItem, disconnect} = useDatabase();
+  async function fethData() {
+    const db = getDBConnection();
+    let itemsDB = getItems(await db);
+    const filteredItems = (await itemsDB).filter(item => item !== undefined);
+    setItemList(prev => [...prev, ...filteredItems]);
+    disconnect(await db);
+  }
   useFocusEffect(
     React.useCallback(() => {
-      async function fethData() {
-        const db = getDBConnection();
-        let itemsDB = getItems(await db);
-        for (let i: number = 0; i < (await itemsDB).length; i++) {
-          let item = (await itemsDB).find(ob => ob.id === i.toString());
-          setItemList((prev: any) => [...prev, item]);
-        }
-      }
       fethData();
       setItemList([]);
+      disconnect;
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
+    }, [deleteItem]),
   );
 
-  const renderCartItems = itemList.map(item => <CardCart item={item} />);
+  async function onDelete(id: string) {
+    try {
+      const db = await getDBConnection();
+      deleteItem(await db, id);
+      fethData();
+      setItemList([]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const renderCartItems = itemList.map(item => (
+    <CardCart key={item.id} item={item} onDelete={onDelete} />
+  ));
 
   return (
     <Screen scrollable>
