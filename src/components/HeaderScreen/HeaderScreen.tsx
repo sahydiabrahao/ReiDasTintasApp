@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Box, Icon, TouchableOpacityBox} from '@components';
 
-export function MenuTop() {
+export function HeaderScreen() {
   const navigation = useNavigation();
 
   function navigateToCategoryScreen() {

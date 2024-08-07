@@ -6,5 +6,5 @@ export * from './TextInput/TextInput';
 export * from './CardItem/CardItem';
 export * from './CardContact/CardContact';
 export * from './CardCart/CardCart';
-export * from './MenuTop/MenuTop';
+export * from './HeaderScreen/HeaderScreen';
 export * from './Toast/Toast';

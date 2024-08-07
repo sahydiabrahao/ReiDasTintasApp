@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useDatabase} from '@database';
 import {Item, itemService} from '@domain';
 
-import {Box, CardItem, Icon, TextInput} from '@components';
+import {Box, CardItem} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -37,9 +37,6 @@ export function HomeScreen() {
 
   return (
     <Screen scrollable>
-      <Box backgroundColor="grayWhite" mb="s12">
-        <TextInput RightComponent={<Icon name="search" color="gray3" />} />
-      </Box>
       <Box flexGrow={1}>{renderCardItems}</Box>
     </Screen>
   );
