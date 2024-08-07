@@ -3,7 +3,7 @@ import {KeyboardAvoidingView, Platform} from 'react-native';
 
 // import {useNavigation} from '@react-navigation/native';
 
-import {Box, BoxProps} from '@components';
+import {Box, BoxProps, MenuTop} from '@components';
 import {useAppTheme} from '@hooks';
 import {useAppSafeArea} from '@hooks';
 
@@ -33,6 +33,7 @@ export function Screen({
           paddingHorizontal="s8"
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           {...boxProps}>
+          <MenuTop />
           {children}
         </Box>
       </Container>
