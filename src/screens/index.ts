@@ -3,4 +3,5 @@ export * from './components/ScreenContainer';
 export * from './app/HomeScreen';
 export * from './app/CartScreen';
 export * from './app/ContactScreen';
+export * from './app/CategoryScreen';
 export * from './auth/SettingsScreen';

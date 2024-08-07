@@ -1,8 +1,11 @@
 import React from 'react';
 
-import {Box, Icon} from '@components';
+import {useNavigation} from '@react-navigation/native';
 
+import {Box, Icon, TouchableOpacityBox} from '@components';
 export function MenuTop() {
+  const navigation = useNavigation();
+
   return (
     <Box>
       <Box
@@ -12,9 +15,12 @@ export function MenuTop() {
         padding="s16"
         backgroundColor="bluePrimary"
         elevation={2}>
-        <Box alignItems="center" justifyContent="center">
+        <TouchableOpacityBox
+          onPress={() => navigation.navigate('CategoryScreen')}
+          alignItems="center"
+          justifyContent="center">
           <Icon name="menu" color="grayWhite" size={40} />
-        </Box>
+        </TouchableOpacityBox>
         <Box>
           <Icon name="logo" color="grayWhite" size={70} />
         </Box>
