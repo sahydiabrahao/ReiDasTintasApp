@@ -2,8 +2,8 @@ import {contactApi} from './contactApi';
 import {Contact} from './type';
 
 async function getList(): Promise<Contact[]> {
-  const itemList = await contactApi.getList();
-  return itemList;
+  const contactList = await contactApi.getList();
+  return contactList;
 }
 
 export const contactService = {

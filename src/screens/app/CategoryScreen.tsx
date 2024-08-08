@@ -1,28 +1,23 @@
 import React from 'react';
 
-import {useNavigation} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 
-import {Box, Icon, Text, TouchableOpacityBox} from '@components';
+import {Box, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CategoryScreen() {
-  const navigation = useNavigation();
-
-  function navigateToCategoryScreen() {
-    navigation.navigate('AppTabNavigator');
-  }
+  const route = useRoute();
+  const {name}: any = route.params;
 
   return (
     <Screen scrollable>
-      <Box backgroundColor="grayWhite" mb="s12">
-        <Text>Categorias</Text>
-      </Box>
-      <TouchableOpacityBox
-        onPress={navigateToCategoryScreen}
+      <Box
+        flexDirection="row"
         alignItems="center"
-        justifyContent="center">
-        <Icon name="menu" color="grayBlack" size={40} />
-      </TouchableOpacityBox>
+        justifyContent="space-between"
+        mb="s12">
+        <Text preset="headingSmall">{name}</Text>
+      </Box>
     </Screen>
   );
 }

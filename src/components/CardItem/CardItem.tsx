@@ -6,7 +6,6 @@ import {Item} from '@domain';
 import {useToast} from '@services';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
-import {$shadowProps} from '@theme';
 
 interface Props {
   item: Item;
@@ -44,7 +43,6 @@ export function CardItem({item}: Props) {
   return (
     <TouchableOpacityBox
       onPress={() => addItem(item)}
-      style={$shadowProps}
       padding="s2"
       flexDirection="row"
       justifyContent="space-evenly"

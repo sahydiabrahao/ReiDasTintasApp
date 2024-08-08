@@ -19,6 +19,7 @@ export function ContactScreen() {
   return (
     <Screen flex={1}>
       <Box
+        mb="s12"
         backgroundColor="grayWhite"
         alignItems="center"
         justifyContent="center">
@@ -26,9 +27,7 @@ export function ContactScreen() {
           Selecione sua loja
         </Text>
       </Box>
-      <Box flexGrow={1} justifyContent="space-around">
-        {renderContacts}
-      </Box>
+      <Box flexGrow={1}>{renderContacts}</Box>
     </Screen>
   );
 }

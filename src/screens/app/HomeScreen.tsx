@@ -1,42 +1,32 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {useDatabase} from '@database';
-import {Item, itemService} from '@domain';
+import {Category, categoryListMock, categoryService} from '@domain';
+import {useNavigation} from '@react-navigation/native';
 
-import {Box, CardItem} from '@components';
+import {Box, CardCategory} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
-  const [itemList, setitemList] = useState<Item[]>([]);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const {getDBConnection, createTable, deleteTable} = useDatabase();
+  const [categoryList, setcategoryList] =
+    useState<Category[]>(categoryListMock);
+  const navigation = useNavigation();
 
   useEffect(() => {
-    itemService.getList().then(List => setitemList(List));
+    categoryService.getList().then(List => setcategoryList(List));
   }, []);
 
-  const loadDataCallback = useCallback(async () => {
-    try {
-      const db = await getDBConnection();
-      await createTable(db);
+  function onSelect(name: string) {
+    navigation.navigate('CategoryScreen', {name});
 
-      // await deleteTable(db);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [createTable, getDBConnection]);
+    return name;
+  }
 
-  useEffect(() => {
-    loadDataCallback();
-  }, [loadDataCallback]);
-
-  const renderCardItems = itemList.map(item => (
-    <CardItem key={item.id} item={item} />
+  const renderCardItems = categoryList.map(category => (
+    <CardCategory category={category} onSelect={onSelect} />
   ));
 
   return (
-    <Screen scrollable>
+    <Screen>
       <Box flexGrow={1}>{renderCardItems}</Box>
     </Screen>
   );

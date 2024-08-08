@@ -7,7 +7,7 @@ import {CategoryScreen} from '@screens';
 
 export type AppStackParamList = {
   AppTabNavigator: undefined;
-  CategoryScreen: undefined;
+  CategoryScreen: {name: string};
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
