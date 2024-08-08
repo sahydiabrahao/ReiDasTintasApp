@@ -12,8 +12,8 @@ export function CategoryScreen() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
   useEffect(() => {
-    itemService.getList().then(List => setItemList(List));
-  }, []);
+    itemService.getList(name).then(List => setItemList(List));
+  }, [name]);
 
   const renderCardItems = itemList.map(item => <CardItem item={item} />);
 

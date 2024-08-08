@@ -11,7 +11,7 @@ import {Item} from './type';
 export const itemListMock: Item[] = [
   {
     id: '0',
-    category: 'Parede',
+    category: 'Metal',
     name: 'Toque de Luz',
     brand: 'Suvinil',
     specification: 'Semibrilho',
@@ -21,7 +21,7 @@ export const itemListMock: Item[] = [
   },
   {
     id: '1',
-    category: 'Parede',
+    category: 'Pintura de paredes',
     name: 'Toque de Seda',
     brand: 'Suvinil',
     specification: 'Acetinado',
@@ -31,7 +31,7 @@ export const itemListMock: Item[] = [
   },
   {
     id: '2',
-    category: 'Parede',
+    category: 'Pintura de madeiras',
     name: 'Fosco Completo',
     brand: 'Suvinil',
     specification: 'Fosco',

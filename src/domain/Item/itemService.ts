@@ -1,9 +1,10 @@
 import {itemApi} from './itemApi';
 import {Item} from './type';
 
-async function getList(): Promise<Item[]> {
+async function getList(category: string): Promise<Item[]> {
   const itemList = await itemApi.getList();
-  return itemList;
+  const filteredList = itemList.filter(item => item.category === category);
+  return filteredList;
 }
 
 export const itemService = {
