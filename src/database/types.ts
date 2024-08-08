@@ -30,9 +30,9 @@ export interface ContactDB {
 export interface DatabaseService {
   itemDB: ItemDB | null;
   contactDB: ContactDB | null;
-  getDBConnection: () => Promise<SQLiteDatabase>;
+  dbConnect: () => Promise<SQLiteDatabase>;
   createTable: (db: SQLiteDatabase) => void;
-  disconnect: (db: SQLiteDatabase) => void;
+  dbDisconnect: (db: SQLiteDatabase) => void;
   deleteTable: (db: SQLiteDatabase) => void;
   insertItem: (db: SQLiteDatabase, database: Item) => void;
   increment: (db: SQLiteDatabase, id: string) => void;

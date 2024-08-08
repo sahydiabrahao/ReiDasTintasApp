@@ -9,6 +9,8 @@ import {
   ContactDB,
   TABLE_CONTACT,
   TABLE_ITEM,
+  dbConnect,
+  dbDisconnect,
 } from '@database';
 import {Item, Contact} from '@domain';
 import SQLite, {SQLiteDatabase} from 'react-native-sqlite-storage';
@@ -19,9 +21,9 @@ SQLite.enablePromise(true);
 export const DatabaseContext = createContext<DatabaseService>({
   itemDB: null,
   contactDB: null,
-  getDBConnection: () => Promise.resolve(null as unknown as SQLiteDatabase),
+  dbConnect: () => Promise.resolve(null as unknown as SQLiteDatabase),
   createTable: () => {},
-  disconnect: () => {},
+  dbDisconnect: () => {},
   deleteTable: () => {},
   insertItem: () => {},
   increment: () => {},
@@ -37,15 +39,8 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
   const [contactDB, setContactDB] =
     useState<DatabaseService['contactDB']>(null);
 
-  async function getDBConnection(): Promise<SQLiteDatabase> {
-    var db = SQLite.openDatabase({
-      name: DATABASE_NAME,
-      location: DATABASE_LOCATION,
-    });
-    console.log('Getting DB connection');
-    return db;
-  }
-
+  dbConnect;
+  dbDisconnect;
   async function createTable(db: SQLiteDatabase) {
     const query1 = `CREATE TABLE IF NOT EXISTS ${TABLE_ITEM} (id VARCHAR(30) PRIMARY KEY, category VARCHAR(30), quantity INTEGER, name VARCHAR(30), brand VARCHAR(30), specification VARCHAR(30), unit VARCHAR(30), image TEXT)`;
     const query2 = `CREATE TABLE IF NOT EXISTS ${TABLE_CONTACT} (id VARCHAR(30) PRIMARY KEY, city VARCHAR(30), address VARCHAR(30), district VARCHAR(30), phone VARCHAR(30))`;
@@ -55,19 +50,6 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
 
     console.log(`Created table: ${TABLE_ITEM}`);
     console.log(`Created table: ${TABLE_CONTACT}`);
-  }
-
-  async function disconnect(db: SQLiteDatabase) {
-    try {
-      if (db) {
-        db.close();
-        console.log(`${TABLE_ITEM} connection is closed`);
-      } else {
-        console.log(`${TABLE_ITEM} connection is not open`);
-      }
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   async function deleteTable(db: SQLiteDatabase) {
@@ -167,9 +149,9 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
       value={{
         itemDB,
         contactDB,
-        getDBConnection,
+        dbConnect,
         createTable,
-        disconnect,
+        dbDisconnect,
         deleteTable,
         insertItem,
         increment,

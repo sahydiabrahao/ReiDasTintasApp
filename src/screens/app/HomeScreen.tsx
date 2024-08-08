@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
+import {useDatabase} from '@database';
 import {Category, categoryListMock, categoryService} from '@domain';
 import {useNavigation} from '@react-navigation/native';
 
@@ -11,9 +12,13 @@ export function HomeScreen() {
     useState<Category[]>(categoryListMock);
   const navigation = useNavigation();
 
+  const {dbConnect} = useDatabase();
+
   useEffect(() => {
     categoryService.getList().then(List => setcategoryList(List));
-  }, []);
+
+    dbConnect();
+  }, [dbConnect]);
 
   function onSelect(name: string) {
     navigation.navigate('CategoryScreen', {name});
