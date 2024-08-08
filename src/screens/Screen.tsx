@@ -26,12 +26,12 @@ export function Screen({
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <HeaderScreen />
       <Container backgroundColor={colors.background}>
         <Box
           paddingHorizontal="s8"
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           {...boxProps}>
-          <HeaderScreen />
           {children}
         </Box>
       </Container>

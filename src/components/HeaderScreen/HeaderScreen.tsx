@@ -19,11 +19,10 @@ export function HeaderScreen() {
 
   return (
     <Box
-      padding="s16"
+      justifyContent="center"
+      padding="s12"
       backgroundColor="bluePrimary"
-      elevation={2}
-      mb="s12"
-      style={{marginHorizontal: -12, marginTop: -20}}>
+      elevation={2}>
       {screenName === 'HomeScreen' ? (
         <Box
           flexDirection="row"
