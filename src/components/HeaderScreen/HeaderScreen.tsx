@@ -13,8 +13,8 @@ export function HeaderScreen() {
     navigation.navigate('AppTabNavigator');
   }
 
-  function navigateToCategoryScreen() {
-    console.log('navigation.navigate(CategoryScreen)');
+  function navigateToContactScreen() {
+    navigation.navigate('ContactScreen');
   }
 
   return (
@@ -23,7 +23,7 @@ export function HeaderScreen() {
       padding="s12"
       backgroundColor="bluePrimary"
       elevation={2}>
-      {screenName === 'HomeScreen' ? (
+      {screenName !== 'ContactScreen' ? (
         <Box
           flexDirection="row"
           alignItems="center"
@@ -33,11 +33,11 @@ export function HeaderScreen() {
           </TouchableOpacityBox>
 
           <TouchableOpacityBox
-            onPress={navigateToCategoryScreen}
+            onPress={navigateToContactScreen}
             activeOpacity={1}
             alignItems="center"
             justifyContent="center">
-            <Icon name="search" color="grayWhite" size={24} />
+            <Icon name="contact" color="grayWhite" size={24} />
           </TouchableOpacityBox>
         </Box>
       ) : (

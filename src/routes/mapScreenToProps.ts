@@ -25,11 +25,11 @@ export const mapScreenToProps: Record<
       unfocused: 'cart',
     },
   },
-  ContactScreen: {
-    label: 'Contato',
+  SearchScreen: {
+    label: 'Busca',
     icon: {
-      focused: 'contact',
-      unfocused: 'contact',
+      focused: 'search',
+      unfocused: 'search',
     },
   },
 };

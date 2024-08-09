@@ -10,33 +10,27 @@ import {Screen} from '@screens';
 export function CartScreen() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
-  const {
-    getDBConnection,
-    getItems,
-    deleteItem,
-    increment,
-    decrement,
-    disconnect,
-  } = useDatabase();
+  const {dbConnect, getItems, deleteItem, increment, decrement, dbDisconnect} =
+    useDatabase();
   async function fethData() {
-    const db = getDBConnection();
+    const db = dbConnect();
     let itemsDB = getItems(await db);
     const filteredItems = (await itemsDB).filter(item => item !== undefined);
     setItemList(prev => [...prev, ...filteredItems]);
-    disconnect(await db);
+    dbDisconnect(await db);
   }
   useFocusEffect(
     React.useCallback(() => {
       fethData();
       setItemList([]);
-      disconnect;
+      dbDisconnect;
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deleteItem]),
   );
 
   async function onDelete(id: string) {
     try {
-      const db = await getDBConnection();
+      const db = await dbConnect();
       deleteItem(await db, id);
       fethData();
       setItemList([]);
@@ -47,7 +41,7 @@ export function CartScreen() {
 
   async function onIncrement(id: string) {
     try {
-      const db = await getDBConnection();
+      const db = await dbConnect();
       increment(await db, id);
       fethData();
       setItemList([]);
@@ -57,7 +51,7 @@ export function CartScreen() {
   }
   async function onDecrement(id: string) {
     try {
-      const db = await getDBConnection();
+      const db = await dbConnect();
       decrement(await db, id);
       fethData();
       setItemList([]);

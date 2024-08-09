@@ -5,14 +5,14 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 
-import {CartScreen, ContactScreen, HomeScreen} from '@screens';
+import {SearchScreen, CartScreen, HomeScreen} from '@screens';
 
 import {AppTabBar} from './AppTabBar';
 
 export type AppTabBottomParamList = {
   HomeScreen: undefined;
   CartScreen: undefined;
-  ContactScreen: undefined;
+  SearchScreen: undefined;
 };
 
 const Tab = createBottomTabNavigator<AppTabBottomParamList>();
@@ -31,7 +31,7 @@ export function AppTabNavigator() {
       }}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="CartScreen" component={CartScreen} />
-      <Tab.Screen name="ContactScreen" component={ContactScreen} />
+      <Tab.Screen name="SearchScreen" component={SearchScreen} />
     </Tab.Navigator>
   );
 }

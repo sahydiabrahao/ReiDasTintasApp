@@ -2,12 +2,12 @@ import React from 'react';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {CartScreen, ContactScreen, HomeScreen, SettingsScreen} from '@screens';
+import {CartScreen, SearchScreen, HomeScreen, SettingsScreen} from '@screens';
 
 export type AuthTabBottomParamList = {
   HomeScreen: undefined;
   CartScreen: undefined;
-  ContactScreen: undefined;
+  SearchScreen: undefined;
   SettingsScreen: undefined;
 };
 
@@ -21,7 +21,7 @@ export function AuthTabNavigator() {
       }}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="CartScreen" component={CartScreen} />
-      <Tab.Screen name="ContactScreen" component={ContactScreen} />
+      <Tab.Screen name="SearchScreen" component={SearchScreen} />
       <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
     </Tab.Navigator>
   );

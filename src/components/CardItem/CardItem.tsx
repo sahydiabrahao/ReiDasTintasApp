@@ -13,7 +13,7 @@ interface Props {
 
 export function CardItem({item}: Props) {
   const {showToast} = useToast();
-  const {getDBConnection, insertItem, disconnect} = useDatabase();
+  const {dbConnect, insertItem, dbDisconnect} = useDatabase();
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   async function addItem(item: Item) {
@@ -28,10 +28,9 @@ export function CardItem({item}: Props) {
       image: item.image,
     };
 
-    const db = getDBConnection();
+    const db = dbConnect();
     insertItem(await db, testeDB);
-    disconnect(await db);
-    // deleteTable(await db);
+    dbDisconnect(await db);
 
     showToast({
       message: 'Item adicionado',

@@ -12,18 +12,23 @@ export function HomeScreen() {
     useState<Category[]>(categoryListMock);
   const navigation = useNavigation();
 
-  const {dbConnect} = useDatabase();
+  const {dbConnect, dbDisconnect, createTable} = useDatabase();
 
   useEffect(() => {
     categoryService.getList().then(List => setcategoryList(List));
 
-    dbConnect();
-  }, [dbConnect]);
+    onAppLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  function onSelect(name: string) {
-    navigation.navigate('CategoryScreen', {name});
+  async function onAppLoad() {
+    const db = dbConnect();
+    createTable(await db);
+    dbDisconnect(await db);
+  }
 
-    return name;
+  function onSelect() {
+    navigation.navigate('ContactScreen');
   }
 
   const renderCardItems = categoryList.map(category => (
