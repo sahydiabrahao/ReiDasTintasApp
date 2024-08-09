@@ -11,8 +11,7 @@ interface Props {
 }
 
 export function CardContact({contact}: Props) {
-  const {getDBConnection, insertContact, getContacts, disconnect} =
-    useDatabase();
+  const {dbConnect, insertContact, getContacts, dbDisconnect} = useDatabase();
   const {showToast} = useToast();
 
   async function selectContact({}: Contact) {
@@ -23,10 +22,10 @@ export function CardContact({contact}: Props) {
       phone: contact.phone,
     };
 
-    const db = getDBConnection();
+    const db = dbConnect();
     insertContact(await db, testeDB);
     getContacts(await db);
-    disconnect(await db);
+    dbDisconnect(await db);
 
     showToast({
       message: 'Ótima escolha! ',
