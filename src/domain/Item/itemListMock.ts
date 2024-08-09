@@ -41,7 +41,7 @@ export const itemListMock: Item[] = [
   },
   {
     id: '3',
-    category: 'Parede',
+    category: 'Pintura de metais',
     name: 'Classica',
     brand: 'Suvinil',
     specification: 'Fosco',
