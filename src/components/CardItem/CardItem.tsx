@@ -42,29 +42,41 @@ export function CardItem({item}: Props) {
   return (
     <TouchableOpacityBox
       onPress={() => addItem(item)}
-      padding="s2"
-      flexDirection="row"
+      padding="s8"
       justifyContent="space-evenly"
       alignItems="center"
-      backgroundColor="gray5"
       borderColor="gray4"
-      borderBottomWidth={1}>
-      <Box alignItems="center" flexGrow={1}>
-        <Text bold preset="headingSmall">
-          {item.name}
-        </Text>
-        <Text preset="paragraphMedium">{item.brand}</Text>
-        <Text preset="paragraphMedium">{item.specification}</Text>
-        <Text preset="paragraphMedium">{item.unit}</Text>
-      </Box>
-      <Box width={80}>
+      width={'48%'}
+      borderRadius="s12"
+      borderWidth={1}>
+      <Box
+        width={120}
+        height={120}
+        backgroundColor="gray5"
+        style={{
+          borderRadius: 12,
+        }}>
         <Image
           style={{
-            width: 80,
-            height: 120,
+            flex: 1,
+            objectFit: 'cover',
           }}
           source={{uri: item.image}}
         />
+      </Box>
+      <Box alignItems="flex-start" flexGrow={1}>
+        <Text bold preset="paragraphMedium">
+          {item.name}
+        </Text>
+        <Box flexDirection="row">
+          <Text preset="paragraphCaption" mr="s4">
+            {item.brand},
+          </Text>
+          <Text preset="paragraphCaption" mr="s4">
+            {item.specification},
+          </Text>
+          <Text preset="paragraphCaption">{item.unit}</Text>
+        </Box>
       </Box>
     </TouchableOpacityBox>
   );
