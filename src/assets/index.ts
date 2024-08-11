@@ -25,6 +25,8 @@ export * from './icons/SolventIcon';
 export * from './icons/SprayIcon';
 export * from './icons/WoodIcon';
 export * from './icons/TextureIcon';
+export * from './icons/RubberizedIcon';
+export * from './icons/SandPapperIcon';
 
 export * from './icons/MenuIcon';
 export * from './icons/LogoIcon';

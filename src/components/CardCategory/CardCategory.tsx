@@ -28,7 +28,7 @@ export function CardCategory({category, onSelect}: Props) {
         <Icon name={category.icon} color="grayBlack" size={32} />
       </Box>
       <Box>
-        <Text preset="paragraphLarge" color="grayBlack">
+        <Text preset="paragraphMedium" color="grayBlack">
           {category.name}
         </Text>
       </Box>
