@@ -1,13 +1,11 @@
-import {Item, Contact} from '@domain';
+import {Contact} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-interface DatabaseState {
-  items: Item[];
+interface ContactState {
   contacts: Contact;
 }
 
-const initialState: DatabaseState = {
-  items: [],
+const initialState: ContactState = {
   contacts: {
     city: 'Cuiabá - MT',
     district: 'Jardim Imperial',
@@ -16,8 +14,8 @@ const initialState: DatabaseState = {
   },
 };
 
-const databaseSlice = createSlice({
-  name: 'database',
+const contactSlice = createSlice({
+  name: 'contact',
   initialState,
   reducers: {
     setContact: (state, action: PayloadAction<Contact>) => {
@@ -26,5 +24,5 @@ const databaseSlice = createSlice({
   },
 });
 
-export const {setContact} = databaseSlice.actions;
-export default databaseSlice.reducer;
+export const {setContact} = contactSlice.actions;
+export default contactSlice.reducer;

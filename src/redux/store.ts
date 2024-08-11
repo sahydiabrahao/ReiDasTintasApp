@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 
-import databaseReducer from './database/databaseSlice';
+import contactReducer from './contact/contactSlice';
+import itemtReducer from './item/itemSlice';
 
 export const store = configureStore({
   reducer: {
-    database: databaseReducer,
+    contact: contactReducer,
+    item: itemtReducer,
   },
 });
 

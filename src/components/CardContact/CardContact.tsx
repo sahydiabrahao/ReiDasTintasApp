@@ -18,10 +18,10 @@ export function CardContact({contact}: Props) {
 
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state: RootState) => state.database.contacts);
+  const contacts = useSelector((state: RootState) => state.contact.contacts);
 
   async function selectContact({}: Contact) {
-    let testeDB: Contact = {
+    let data: Contact = {
       city: contact.city,
       district: contact.district,
       address: contact.address,
@@ -29,7 +29,7 @@ export function CardContact({contact}: Props) {
     };
 
     const db = dbConnect();
-    insertContact(await db, testeDB);
+    insertContact(await db, data);
     getContacts(await db);
     dbDisconnect(await db);
 
@@ -40,7 +40,6 @@ export function CardContact({contact}: Props) {
     });
 
     dispatch(setContact(contact));
-    console.log(contacts);
   }
 
   return (

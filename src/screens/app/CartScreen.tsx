@@ -1,54 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-import {useDatabase} from '@database';
-import {Item} from '@domain';
-import {useFocusEffect} from '@react-navigation/native';
+import {
+  decrementItemQuantity,
+  incrementItemQuantity,
+  removeItemById,
+  RootState,
+} from '@redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, CardCart, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CartScreen() {
-  const [itemList, setItemList] = useState<Item[]>([]);
+  const itemList = useSelector((state: RootState) => state.item.items);
+  const dispatch = useDispatch();
 
-  const {dbConnect, getItems, deleteItem, increment, decrement, dbDisconnect} =
-    useDatabase();
-
-  useFocusEffect(
-    React.useCallback(() => {
-      setItemList([]);
-      fetchData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
-  );
-
-  const fetchData = async () => {
-    try {
-      const db = await dbConnect();
-      const itemsDB = await getItems(db);
-      setItemList(itemsDB);
-      await dbDisconnect(db);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  async function onDelete(id: string) {
-    const db = await dbConnect();
-    deleteItem(await db, id);
-    fetchData();
-    setItemList([]);
+  function onDelete(id: string) {
+    dispatch(removeItemById(id));
   }
-  async function onIncrement(id: string) {
-    const db = await dbConnect();
-    await increment(db, id);
-    fetchData();
-    setItemList([]);
+  function onIncrement(id: string) {
+    dispatch(incrementItemQuantity(id));
   }
-  async function onDecrement(id: string) {
-    const db = await dbConnect();
-    await decrement(db, id);
-    fetchData();
-    setItemList([]);
+  function onDecrement(id: string) {
+    dispatch(decrementItemQuantity(id));
   }
 
   const renderCartItems = itemList.map(item => (

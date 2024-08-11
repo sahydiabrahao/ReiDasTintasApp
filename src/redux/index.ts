@@ -1,2 +1,3 @@
 export * from './store';
-export * from './database/databaseSlice';
+export * from './contact/contactSlice';
+export * from './item/itemSlice';
