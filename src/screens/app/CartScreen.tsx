@@ -29,35 +29,23 @@ export function CartScreen() {
   );
 
   async function onDelete(id: string) {
-    try {
-      const db = await dbConnect();
-      deleteItem(await db, id);
-      fethData();
-      setItemList([]);
-    } catch (error) {
-      console.error(error);
-    }
+    const db = await dbConnect();
+    deleteItem(await db, id);
+    fethData();
+    setItemList([]);
   }
 
   async function onIncrement(id: string) {
-    try {
-      const db = await dbConnect();
-      increment(await db, id);
-      fethData();
-      setItemList([]);
-    } catch (error) {
-      console.error(error);
-    }
+    const db = await dbConnect();
+    await increment(db, id);
+    fethData();
+    setItemList([]);
   }
   async function onDecrement(id: string) {
-    try {
-      const db = await dbConnect();
-      decrement(await db, id);
-      fethData();
-      setItemList([]);
-    } catch (error) {
-      console.error(error);
-    }
+    const db = await dbConnect();
+    await decrement(db, id);
+    fethData();
+    setItemList([]);
   }
 
   const renderCartItems = itemList.map(item => (
