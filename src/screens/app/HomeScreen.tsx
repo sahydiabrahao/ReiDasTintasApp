@@ -51,9 +51,17 @@ export function HomeScreen() {
       {isRendered ? (
         <Box flexGrow={1}>{renderCardItems}</Box>
       ) : (
-        <Box flexGrow={1}>
+        <Box>
           <Button onPress={handleFunctionCall} title={'Voltar'} />
-          {renderItems}
+          <Box
+            flexGrow={1}
+            flexDirection="row"
+            justifyContent="flex-start"
+            flex={1}
+            flexWrap="wrap"
+            gap="s12">
+            {renderItems}
+          </Box>
         </Box>
       )}
     </Screen>
