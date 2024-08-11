@@ -14,7 +14,7 @@ const palette = {
   gray1: '#636363',
   gray2: '#8E8E8E',
   gray3: '#B3B3B3',
-  gray4: '#E1E1E1',
+  gray4: '#E5EBF1',
   gray5: '#F5F5F5',
   grayWhite: '#FFFFFF',
 };
@@ -69,11 +69,11 @@ export const theme = createTheme({
 });
 
 export const $shadowProps: ViewStyle = {
-  elevation: 7,
+  elevation: 2,
   shadowColor: '#000000',
   shadowOpacity: 0.05,
-  shadowRadius: 12,
-  shadowOffset: {width: 0, height: -3},
+  shadowRadius: 3,
+  shadowOffset: {width: 1, height: 40},
 };
 
 export type Theme = typeof theme;

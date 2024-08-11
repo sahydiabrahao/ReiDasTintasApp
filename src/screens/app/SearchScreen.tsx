@@ -38,7 +38,14 @@ export function SearchScreen() {
           RightComponent={<Icon name="search" color="gray3" />}
         />
       </Box>
-      <Box>{renderCardItems}</Box>
+      <Box
+        flexDirection="row"
+        justifyContent="flex-start"
+        flex={1}
+        flexWrap="wrap"
+        gap="s12">
+        {renderCardItems}
+      </Box>
       <Box />
     </Screen>
   );
