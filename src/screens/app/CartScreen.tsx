@@ -73,13 +73,14 @@ export function CartScreen() {
   return (
     <Screen scrollable>
       {itemList.length > 0 ? (
-        <Box backgroundColor="grayWhite" marginHorizontal="s8">
-          {renderCartItems}
+        <Box backgroundColor="grayWhite">
           <Button
-            mt="s12"
+            mb="s12"
             backgroundColor="grayBlack"
             title="Solicitar orçamento gratuíto"
+            preset="primary"
           />
+          {renderCartItems}
         </Box>
       ) : (
         <Box mb="s12" alignItems="center" justifyContent="center">

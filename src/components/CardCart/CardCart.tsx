@@ -13,11 +13,7 @@ interface Props {
 
 export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
   return (
-    <Box
-      backgroundColor="gray5"
-      borderColor="gray4"
-      borderRadius="s12"
-      mb="s12">
+    <Box mb="s12">
       <Box flexDirection="row">
         <Box flexDirection="row" flexGrow={1} justifyContent="flex-start">
           <TouchableOpacityBox
