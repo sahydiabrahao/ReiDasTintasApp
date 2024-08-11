@@ -18,7 +18,7 @@ export function CardContact({contact}: Props) {
 
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state: RootState) => state.contact.contacts);
+  const contacts = useSelector((state: RootState) => state.contact.contact);
 
   async function selectContact({}: Contact) {
     let data: Contact = {

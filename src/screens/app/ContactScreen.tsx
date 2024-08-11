@@ -1,18 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-import {Contact, contactService} from '@domain';
+import {RootState} from '@redux';
+import {useSelector} from 'react-redux';
 
 import {Box, CardContact, Text} from '@components';
 import {Screen} from '@screens';
 
 export function ContactScreen() {
-  const [contactList, setcontactList] = useState<Contact[]>([]);
+  const getContacts = useSelector((state: RootState) => state.contact.contacts);
 
-  useEffect(() => {
-    contactService.getList().then(List => setcontactList(List));
-  }, []);
-
-  const renderContacts = contactList.map(contact => (
+  const renderContacts = getContacts.map(contact => (
     <CardContact key={contact.phone} contact={contact} />
   ));
 
