@@ -14,6 +14,18 @@ export * from './icons/DeliveryIcon';
 export * from './icons/CheckedBoxcon';
 export * from './icons/UncheckedBoxIcon';
 
+export * from './icons/WallIcon';
+export * from './icons/AccessorieIcon';
+export * from './icons/EffectIcon';
+export * from './icons/FloorIcon';
+export * from './icons/MetalIcon';
+export * from './icons/PuttyIcon';
+export * from './icons/SealerIcon';
+export * from './icons/SolventIcon';
+export * from './icons/SprayIcon';
+export * from './icons/WoodIcon';
+export * from './icons/TextureIcon';
+
 export * from './icons/MenuIcon';
 export * from './icons/LogoIcon';
 

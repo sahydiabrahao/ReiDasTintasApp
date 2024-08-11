@@ -17,6 +17,17 @@ import {
   DeliveryIcon,
   CheckedBoxIcon,
   UnCheckedBoxIcon,
+  WallIcon,
+  WoodIcon,
+  MetalIcon,
+  FloorIcon,
+  SprayIcon,
+  SealerIcon,
+  PuttyIcon,
+  TextureIcon,
+  EffectIcon,
+  SolventIcon,
+  AcessorieIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -56,6 +67,18 @@ const iconRegistry = {
   delivery: DeliveryIcon,
   checkedBox: CheckedBoxIcon,
   unCheckedBox: UnCheckedBoxIcon,
+
+  wall: WallIcon,
+  wood: WoodIcon,
+  metal: MetalIcon,
+  floor: FloorIcon,
+  spray: SprayIcon,
+  sealer: SealerIcon,
+  putty: PuttyIcon,
+  texture: TextureIcon,
+  effect: EffectIcon,
+  solvent: SolventIcon,
+  acessorie: AcessorieIcon,
 
   menu: MenuIcon,
   logo: LogoIcon,
