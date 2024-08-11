@@ -37,14 +37,19 @@ const itemSlice = createSlice({
       }
     },
     filterItemsByCategory: (state, action: PayloadAction<string>) => {
-      // Recebe o nome da categoria do payload
       const categoryName = action.payload;
-      // Filtra os itens que pertencem à categoria fornecida
       state.filteredItems = state.itemsDatabase.filter(
         itemsDatabase => itemsDatabase.category === categoryName,
       );
     },
-    // Outras ações podem ser adicionadas aqui conforme necessário
+    filterItemsBySearch: (state, action: PayloadAction<string>) => {
+      const searchText = action.payload.toLowerCase();
+      state.filteredItems = state.itemsDatabase.filter(item =>
+        Object.values(item).some(value =>
+          value.toString().toLowerCase().includes(searchText),
+        ),
+      );
+    },
   },
 });
 
@@ -54,5 +59,6 @@ export const {
   incrementItemQuantity,
   decrementItemQuantity,
   filterItemsByCategory,
+  filterItemsBySearch,
 } = itemSlice.actions;
 export default itemSlice.reducer;

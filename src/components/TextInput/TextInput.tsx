@@ -53,6 +53,7 @@ const $textInputStyle: TextStyle = {
   flexShrink: 1,
   fontFamily: $fontFamily.medium,
   ...$fontSizes.paragraphMedium,
+  color: '#000',
 };
 
 const $textInputContainer: BoxProps = {

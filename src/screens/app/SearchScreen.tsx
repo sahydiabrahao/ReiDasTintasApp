@@ -1,26 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
-import {Item, itemService} from '@domain';
+import {Item} from '@domain';
+import {filterItemsBySearch} from '@redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardItem, Icon, TextInput} from '@components';
 import {Screen} from '@screens';
 
 export function SearchScreen() {
-  const [text, setText] = useState('');
-  const [items, setItems] = useState<Item[]>([]);
+  const [searchText, setSearchText] = useState('');
+  const dispatch = useDispatch();
+  const filteredItems = useSelector((state: any) => state.item.filteredItems); // Ajuste o tipo conforme necessário
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  function onChangeText(newText: string, setText: any) {
-    setText(newText);
-    itemService.searchItem(text).then(List => setItems(List));
-  }
-
-  useEffect(() => {
-    itemService.searchItem(text).then(List => setItems(List));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const renderCardItems = items.map(item => <CardItem item={item} />);
+  const handleSearchChange = (text: string) => {
+    setSearchText(text);
+    dispatch(filterItemsBySearch(text));
+  };
+  const renderCardItems = filteredItems.map((item: Item) => (
+    <CardItem key={item.id} item={item} />
+  ));
 
   return (
     <Screen flex={1} scrollable>
@@ -32,9 +30,10 @@ export function SearchScreen() {
       />
       <Box>
         <TextInput
-          defaultValue={text}
-          onChangeText={newText => onChangeText(newText, setText)}
+          value={searchText}
+          onChangeText={handleSearchChange}
           boxProps={{marginBottom: 's12'}}
+          placeholder="Pesquisa..."
           RightComponent={<Icon name="search" color="gray3" />}
         />
       </Box>
