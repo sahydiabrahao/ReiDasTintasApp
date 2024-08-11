@@ -12,51 +12,57 @@ export function CartScreen() {
 
   const {dbConnect, getItems, deleteItem, increment, decrement, dbDisconnect} =
     useDatabase();
-  async function fethData() {
-    const db = dbConnect();
-    let itemsDB = getItems(await db);
-    const filteredItems = (await itemsDB).filter(item => item !== undefined);
-    setItemList(prev => [...prev, ...filteredItems]);
-    dbDisconnect(await db);
-  }
+
   useFocusEffect(
     React.useCallback(() => {
-      fethData();
       setItemList([]);
-      dbDisconnect;
+      fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [deleteItem]),
+    }, []),
   );
+
+  const fetchData = async () => {
+    try {
+      const db = await dbConnect();
+      const itemsDB = await getItems(db);
+      setItemList(itemsDB);
+      await dbDisconnect(db);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   async function onDelete(id: string) {
     try {
       const db = await dbConnect();
-      deleteItem(await db, id);
-      fethData();
+      await deleteItem(db, id);
+      await fetchData();
       setItemList([]);
+      await dbDisconnect(db);
     } catch (error) {
-      console.error(error);
+      console.error('Error deleting item:', error);
     }
   }
-
   async function onIncrement(id: string) {
     try {
       const db = await dbConnect();
-      increment(await db, id);
-      fethData();
+      await increment(db, id);
+      await fetchData();
       setItemList([]);
+      await dbDisconnect(db);
     } catch (error) {
-      console.error(error);
+      console.error('Error incrementing item:', error);
     }
   }
   async function onDecrement(id: string) {
     try {
       const db = await dbConnect();
-      decrement(await db, id);
-      fethData();
+      await decrement(db, id);
+      await fetchData();
       setItemList([]);
+      await dbDisconnect(db);
     } catch (error) {
-      console.error(error);
+      console.error('Error decremeting item:', error);
     }
   }
 

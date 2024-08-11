@@ -13,8 +13,12 @@ export async function getItems(db: SQLiteDatabase) {
         databaseList.push(result.rows.item(index));
       }
     });
+    const filteredItems = (await databaseList).filter(
+      item => item !== undefined,
+    );
+
     // console.log('Database List:', databaseList);
-    return databaseList;
+    return filteredItems;
   } catch (error) {
     // console.error(error);
     throw Error('Failed to get Items !!!');
