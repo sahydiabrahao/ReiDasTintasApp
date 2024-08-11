@@ -15,6 +15,16 @@ import {
 import {Item, Contact} from '@domain';
 import SQLite, {SQLiteDatabase} from 'react-native-sqlite-storage';
 
+import {getContacts, insertContact} from './tables/contact';
+import {
+  insertItem,
+  increment,
+  decrement,
+  deleteItem,
+  getItems,
+} from './tables/item';
+import {createTable, deleteTable} from './utils/utils';
+
 SQLite.DEBUG(true);
 SQLite.enablePromise(true);
 
@@ -41,109 +51,16 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
 
   dbConnect;
   dbDisconnect;
-  async function createTable(db: SQLiteDatabase) {
-    const query1 = `CREATE TABLE IF NOT EXISTS ${TABLE_ITEM} (id VARCHAR(30) PRIMARY KEY, category VARCHAR(30), quantity INTEGER, name VARCHAR(30), brand VARCHAR(30), specification VARCHAR(30), unit VARCHAR(30), image TEXT)`;
-    const query2 = `CREATE TABLE IF NOT EXISTS ${TABLE_CONTACT} (id VARCHAR(30) PRIMARY KEY, city VARCHAR(30), address VARCHAR(30), district VARCHAR(30), phone VARCHAR(30))`;
+  createTable;
+  deleteTable;
+  insertItem;
+  increment;
+  decrement;
+  deleteItem;
+  getItems;
+  insertContact;
+  getContacts;
 
-    await db.executeSql(query1);
-    await db.executeSql(query2);
-
-    console.log(`Created table: ${TABLE_ITEM}`);
-    console.log(`Created table: ${TABLE_CONTACT}`);
-  }
-
-  async function deleteTable(db: SQLiteDatabase) {
-    const query1 = `DROP TABLE ${TABLE_ITEM};`;
-    const query2 = `DROP TABLE ${TABLE_CONTACT};`;
-
-    await db.executeSql(query1);
-    await db.executeSql(query2);
-
-    console.log(`${TABLE_ITEM} has been deleted`);
-    console.log(`${TABLE_CONTACT} has been deleted`);
-  }
-
-  async function insertItem(db: SQLiteDatabase, item: Item) {
-    const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, category, quantity, name, brand, specification, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    const values = [
-      item.id,
-      item.category,
-      item.quantity,
-      item.name,
-      item.brand,
-      item.specification,
-      item.unit,
-      item.image,
-    ];
-
-    await db.executeSql(query, values);
-  }
-
-  async function increment(db: SQLiteDatabase, id: string) {
-    const query = `UPDATE ${TABLE_ITEM} SET quantity = quantity + 1 WHERE id = ${id}`;
-
-    await db.executeSql(query);
-  }
-
-  async function decrement(db: SQLiteDatabase, id: string) {
-    const query = `UPDATE ${TABLE_ITEM} SET quantity = CASE WHEN quantity > 1 THEN quantity - 1 ELSE 1 END WHERE id = ${id}`;
-
-    await db.executeSql(query);
-  }
-
-  async function deleteItem(db: SQLiteDatabase, id: string) {
-    const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ${id}`;
-
-    await db.executeSql(query);
-  }
-
-  async function insertContact(db: SQLiteDatabase, contact: Contact) {
-    const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
-    const values = [
-      '0',
-      contact.phone,
-      contact.city,
-      contact.address,
-      contact.district,
-    ];
-    await db.executeSql(query, values);
-  }
-
-  async function getItems(db: SQLiteDatabase) {
-    try {
-      const databaseList: ItemDB[] = [];
-      const results = await db.executeSql(`SELECT * FROM ${TABLE_ITEM}`);
-
-      results.forEach(result => {
-        for (let index = 0; index < result.rows.length; index++) {
-          databaseList.push(result.rows.item(index));
-        }
-      });
-      // console.log('Database List:', databaseList);
-      return databaseList;
-    } catch (error) {
-      // console.error(error);
-      throw Error('Failed to get Items !!!');
-    }
-  }
-
-  async function getContacts(db: SQLiteDatabase) {
-    try {
-      const databaseList: ContactDB[] = [];
-      const results = await db.executeSql(`SELECT * FROM ${TABLE_CONTACT}`);
-
-      results.forEach(result => {
-        for (let index = 0; index < result.rows.length; index++) {
-          databaseList.push(result.rows.item(index));
-        }
-      });
-      // console.log('Database List:', databaseList);
-      return databaseList;
-    } catch (error) {
-      // console.error(error);
-      throw Error('Failed to get Contacts !!!');
-    }
-  }
   return (
     <DatabaseContext.Provider
       value={{
