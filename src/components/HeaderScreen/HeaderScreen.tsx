@@ -15,14 +15,17 @@ export function HeaderScreen() {
     (state: RootState) => state.contact.isBackButtonVisible,
   );
 
-  function navigateToHome() {
+  function navigateToHomeScreen() {
     navigation.navigate('AppTabNavigator');
     dispatch(selectCategory('Init'));
-    dispatch(toggleBackButtonVisibility(!isBackButtonVisible));
   }
 
   function navigateToContactScreen() {
     navigation.navigate('ContactScreen');
+    dispatch(toggleBackButtonVisibility(!isBackButtonVisible));
+  }
+  function goBack() {
+    navigation.navigate('AppTabNavigator');
     dispatch(toggleBackButtonVisibility(!isBackButtonVisible));
   }
 
@@ -33,25 +36,25 @@ export function HeaderScreen() {
       backgroundColor="bluePrimary"
       elevation={2}>
       {isBackButtonVisible ? (
-        <TouchableOpacityBox
-          activeOpacity={1}
-          onPress={navigateToHome}
+        <Box
           flexDirection="row"
           alignItems="center"
           justifyContent="space-between">
-          <Box>
+          <TouchableOpacityBox onPress={navigateToHomeScreen} activeOpacity={1}>
             <Icon name="logo" color="grayWhite" size={70} />
-          </Box>
-          <Text preset="headingSmall" color="grayWhite">
-            Voltar
-          </Text>
-        </TouchableOpacityBox>
+          </TouchableOpacityBox>
+          <TouchableOpacityBox onPress={goBack} activeOpacity={1}>
+            <Text preset="headingSmall" color="grayWhite">
+              Voltar
+            </Text>
+          </TouchableOpacityBox>
+        </Box>
       ) : (
         <Box
           flexDirection="row"
           alignItems="center"
           justifyContent="space-between">
-          <TouchableOpacityBox onPress={navigateToHome} activeOpacity={1}>
+          <TouchableOpacityBox onPress={navigateToHomeScreen} activeOpacity={1}>
             <Icon name="logo" color="grayWhite" size={70} />
           </TouchableOpacityBox>
 
