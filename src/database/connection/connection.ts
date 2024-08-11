@@ -20,6 +20,6 @@ export async function dbDisconnect(db: SQLiteDatabase) {
       console.log(`${TABLE_ITEM} connection is not open`);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }

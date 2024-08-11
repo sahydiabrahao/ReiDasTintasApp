@@ -27,6 +27,7 @@ export function HomeScreen() {
     categoryService.getCategories().then(List => setcategoryList(List));
     setcategoryList(categoryListMock);
     dbInit();
+    setIsRendered(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,7 +51,7 @@ export function HomeScreen() {
 
   return (
     <Screen scrollable>
-      {isRendered ? (
+      {!isRendered ? (
         <Box
           flexGrow={1}
           flexDirection="row"

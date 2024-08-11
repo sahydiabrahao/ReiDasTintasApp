@@ -122,7 +122,7 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
       // console.log('Database List:', databaseList);
       return databaseList;
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       throw Error('Failed to get Items !!!');
     }
   }
@@ -140,7 +140,7 @@ export function DatabaseProvider({children}: React.PropsWithChildren<{}>) {
       // console.log('Database List:', databaseList);
       return databaseList;
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       throw Error('Failed to get Contacts !!!');
     }
   }
