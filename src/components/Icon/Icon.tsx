@@ -14,6 +14,7 @@ import {
   DownIcon,
   DeleteIcon,
   EditIcon,
+  DeliveryIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -50,6 +51,7 @@ const iconRegistry = {
   down: DownIcon,
   delete: DeleteIcon,
   edit: EditIcon,
+  delivery: DeliveryIcon,
 
   menu: MenuIcon,
   logo: LogoIcon,
