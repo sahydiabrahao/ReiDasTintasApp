@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import {Item, itemsDatabase} from '@domain';
+import {Item, itemsMock} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface ItemState {
@@ -10,7 +10,7 @@ interface ItemState {
 
 const initialState: ItemState = {
   items: [],
-  itemsDatabase: itemsDatabase,
+  itemsDatabase: itemsMock,
   filteredItems: [],
 };
 

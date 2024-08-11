@@ -1,8 +1,8 @@
-import {contactListMock} from './contactsListMock';
+import {contactsMock} from './contactsMock';
 import {Contact} from './type';
 
 async function getList(): Promise<Contact[]> {
-  return contactListMock;
+  return contactsMock;
 }
 
 export const contactApi = {

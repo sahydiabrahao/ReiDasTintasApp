@@ -1,6 +1,6 @@
 import {Contact} from '@domain';
 
-export const contactListMock: Contact[] = [
+export const contactsMock: Contact[] = [
   {
     city: 'Cuiabá - MT',
     district: 'Jardim Imperial',

@@ -1,17 +1,14 @@
-import {Contact} from '@domain';
+import {Contact, contactsMock} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface ContactState {
   contacts: Contact;
+  isBackButtonVisible: boolean;
 }
 
 const initialState: ContactState = {
-  contacts: {
-    city: 'Cuiabá - MT',
-    district: 'Jardim Imperial',
-    address: 'Av. das Torres, 24',
-    phone: '(65) 3057 9889',
-  },
+  contacts: contactsMock[0],
+  isBackButtonVisible: false,
 };
 
 const contactSlice = createSlice({
@@ -21,8 +18,11 @@ const contactSlice = createSlice({
     setContact: (state, action: PayloadAction<Contact>) => {
       state.contacts = action.payload;
     },
+    toggleBackButtonVisibility: (state, action: PayloadAction<boolean>) => {
+      state.isBackButtonVisible = action.payload;
+    },
   },
 });
 
-export const {setContact} = contactSlice.actions;
+export const {setContact, toggleBackButtonVisibility} = contactSlice.actions;
 export default contactSlice.reducer;
