@@ -76,7 +76,7 @@ export function CartScreen() {
         <Box backgroundColor="grayWhite">
           <Button
             mb="s12"
-            backgroundColor="grayBlack"
+            backgroundColor="bluePrimary"
             title="Solicitar orçamento gratuíto"
             preset="primary"
           />

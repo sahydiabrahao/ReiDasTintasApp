@@ -36,7 +36,7 @@ export function HomeScreen() {
     setIsRendered(!isRendered);
   }
 
-  const renderCardItems = categoryList.map(category => (
+  const renderCardCategory = categoryList.map(category => (
     <CardCategory
       key={category.name}
       category={category}
@@ -44,15 +44,31 @@ export function HomeScreen() {
     />
   ));
 
-  const renderItems = items.map(item => <CardItem key={item.id} item={item} />);
+  const renderCardItems = items.map(item => (
+    <CardItem key={item.id} item={item} />
+  ));
 
   return (
-    <Screen scrollable>
+    <Screen>
       {isRendered ? (
-        <Box flexGrow={1}>{renderCardItems}</Box>
+        <Box
+          flexGrow={1}
+          flexDirection="row"
+          justifyContent="flex-start"
+          flex={1}
+          flexWrap="wrap"
+          rowGap="s32"
+          columnGap="s12">
+          {renderCardCategory}
+        </Box>
       ) : (
         <Box>
-          <Button onPress={handleFunctionCall} title={'Voltar'} />
+          <Button
+            backgroundColor="bluePrimary"
+            onPress={handleFunctionCall}
+            title={'Inicio'}
+            mb="s12"
+          />
           <Box
             flexGrow={1}
             flexDirection="row"
@@ -60,7 +76,7 @@ export function HomeScreen() {
             flex={1}
             flexWrap="wrap"
             gap="s12">
-            {renderItems}
+            {renderCardItems}
           </Box>
         </Box>
       )}

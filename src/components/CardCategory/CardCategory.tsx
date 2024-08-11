@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Category} from '@domain';
 
-import {Text, TouchableOpacityBox} from '@components';
+import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   category: Category;
@@ -13,13 +13,25 @@ export function CardCategory({category, onSelect}: Props) {
   return (
     <TouchableOpacityBox
       onPress={() => onSelect(category.name)}
-      padding="s16"
-      backgroundColor="gray5"
-      borderColor="gray4"
-      borderBottomWidth={1}>
-      <Text bold preset="headingMedium" color="grayBlack">
-        {category.name}
-      </Text>
+      mb="s12"
+      width={'31%'}
+      borderRadius="s12"
+      justifyContent="flex-start"
+      alignItems="center">
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor="gray5"
+        borderRadius="s100"
+        width={64}
+        height={64}>
+        <Icon name={category.icon} color="grayBlack" size={32} />
+      </Box>
+      <Box>
+        <Text preset="paragraphLarge" color="grayBlack">
+          {category.name}
+        </Text>
+      </Box>
     </TouchableOpacityBox>
   );
 }
