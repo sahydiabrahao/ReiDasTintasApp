@@ -11,6 +11,8 @@ export * from './icons/DownIcon';
 export * from './icons/DeleteIcon';
 export * from './icons/EditIcon';
 export * from './icons/DeliveryIcon';
+export * from './icons/CheckedBoxcon';
+export * from './icons/UncheckedBoxIcon';
 
 export * from './icons/MenuIcon';
 export * from './icons/LogoIcon';

@@ -15,6 +15,8 @@ import {
   DeleteIcon,
   EditIcon,
   DeliveryIcon,
+  CheckedBoxIcon,
+  UnCheckedBoxIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -52,6 +54,8 @@ const iconRegistry = {
   delete: DeleteIcon,
   edit: EditIcon,
   delivery: DeliveryIcon,
+  checkedBox: CheckedBoxIcon,
+  unCheckedBox: UnCheckedBoxIcon,
 
   menu: MenuIcon,
   logo: LogoIcon,

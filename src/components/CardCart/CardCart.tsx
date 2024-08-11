@@ -13,16 +13,21 @@ interface Props {
 
 export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
   return (
-    <Box mb="s12">
+    <Box mb="s8">
       <Box flexDirection="row">
-        <Box flexDirection="row" flexGrow={1} justifyContent="flex-start">
+        <Box
+          flexDirection="row"
+          flexGrow={1}
+          justifyContent="flex-start"
+          borderColor="gray5"
+          borderWidth={1}
+          borderRadius="s12">
           <TouchableOpacityBox
             onPress={() => onDelete(item.id)}
             alignItems="center"
             justifyContent="center"
             backgroundColor="bluePrimary"
-            paddingVertical="s12"
-            paddingHorizontal="s12"
+            padding="s12"
             style={{
               borderBottomLeftRadius: 12,
               borderTopLeftRadius: 12,
@@ -32,7 +37,6 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           <Box
             width={120}
             height={120}
-            backgroundColor="gray5"
             style={{
               borderRadius: 12,
             }}>

@@ -4,7 +4,7 @@ import {useDatabase} from '@database';
 import {Contact} from '@domain';
 import {useToast} from '@services';
 
-import {Box, Text, TouchableOpacityBox} from '@components';
+import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   contact: Contact;
@@ -17,8 +17,8 @@ export function CardContact({contact}: Props) {
   async function selectContact({}: Contact) {
     let testeDB: Contact = {
       city: contact.city,
-      address: contact.address,
       district: contact.district,
+      address: contact.address,
       phone: contact.phone,
     };
 
@@ -37,21 +37,34 @@ export function CardContact({contact}: Props) {
   return (
     <TouchableOpacityBox
       onPress={() => [selectContact(contact)]}
-      padding="s2"
+      mb="s32"
+      borderRadius="s12"
       flexDirection="row"
       justifyContent="space-evenly"
-      alignItems="center"
-      borderColor="gray4"
-      borderBottomWidth={1}
       backgroundColor="gray5">
-      <Box justifyContent="center" alignItems="center">
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor="bluePrimary"
+        padding="s12"
+        style={{
+          borderBottomLeftRadius: 12,
+          borderTopLeftRadius: 12,
+        }}>
+        <Icon name="delivery" color="grayWhite" />
+      </Box>
+      <Box
+        flexGrow={1}
+        justifyContent="center"
+        alignItems="center"
+        padding="s12">
         <Text color="grayBlack" mb="s8" bold preset="headingMedium">
           {contact.city}
         </Text>
         <Text color="grayBlack" mb="s8" preset="headingSmall">
           {contact.district}
         </Text>
-        <Text color="grayBlack" mb="s8" preset="headingSmall">
+        <Text color="grayBlack" mb="s8" preset="paragraphMedium">
           {contact.address}
         </Text>
         <Text color="grayBlack" mb="s8" bold preset="headingSmall">
