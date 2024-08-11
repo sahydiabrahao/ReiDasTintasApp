@@ -1,20 +1,21 @@
+import {CollorSprayUsoGeral} from '@spray';
 import {
-  Classica09,
-  Classica18,
-  Classica36,
-  FoscoCompleto09,
-  FoscoCompleto18,
-  FoscoCompleto36,
-  RendeCobreMuito09,
-  RendeCobreMuito18,
-  RendeCobreMuito36,
-  ToqueDeLuz09,
-  ToqueDeLuz18,
-  ToqueDeLuz36,
-  ToqueDeSeda09,
-  ToqueDeSeda18,
-  ToqueDeSeda36,
-} from '@assets';
+  SuvinilClassica09,
+  SuvinilClassica18,
+  SuvinilClassica36,
+  SuvinilFoscoCompleto09,
+  SuvinilFoscoCompleto18,
+  SuvinilFoscoCompleto36,
+  SuvinilRendeCobreMuito09,
+  SuvinilRendeCobreMuito18,
+  SuvinilRendeCobreMuito36,
+  SuvinilToqueDeLuz09,
+  SuvinilToqueDeLuz18,
+  SuvinilToqueDeLuz36,
+  SuvinilToqueDeSeda09,
+  SuvinilToqueDeSeda18,
+  SuvinilToqueDeSeda36,
+} from '@wall';
 
 import {Item} from './type';
 
@@ -27,7 +28,7 @@ export const itemListMock: Item[] = [
     specification: 'Semibrilho',
     quantity: 1,
     unit: '18 L',
-    image: ToqueDeLuz18,
+    image: SuvinilToqueDeLuz18,
   },
   {
     id: '1',
@@ -37,7 +38,7 @@ export const itemListMock: Item[] = [
     specification: 'Semibrilho',
     quantity: 1,
     unit: '3,6 L',
-    image: ToqueDeLuz36,
+    image: SuvinilToqueDeLuz36,
   },
   {
     id: '2',
@@ -47,7 +48,7 @@ export const itemListMock: Item[] = [
     specification: 'Semibrilho',
     quantity: 1,
     unit: '0,9 L',
-    image: ToqueDeLuz09,
+    image: SuvinilToqueDeLuz09,
   },
   {
     id: '3',
@@ -57,7 +58,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '18 L',
-    image: ToqueDeSeda18,
+    image: SuvinilToqueDeSeda18,
   },
   {
     id: '4',
@@ -67,7 +68,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '3,6 L',
-    image: ToqueDeSeda36,
+    image: SuvinilToqueDeSeda36,
   },
   {
     id: '5',
@@ -77,7 +78,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '0,9 L',
-    image: ToqueDeSeda09,
+    image: SuvinilToqueDeSeda09,
   },
   {
     id: '6',
@@ -87,7 +88,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '18 L',
-    image: FoscoCompleto18,
+    image: SuvinilFoscoCompleto18,
   },
   {
     id: '7',
@@ -97,7 +98,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '3,6 L',
-    image: FoscoCompleto36,
+    image: SuvinilFoscoCompleto36,
   },
   {
     id: '8',
@@ -107,7 +108,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '0,9 L',
-    image: FoscoCompleto09,
+    image: SuvinilFoscoCompleto09,
   },
   {
     id: '9',
@@ -117,7 +118,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '18 L',
-    image: Classica18,
+    image: SuvinilClassica18,
   },
   {
     id: '10',
@@ -127,7 +128,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '3,6 L',
-    image: Classica36,
+    image: SuvinilClassica36,
   },
   {
     id: '11',
@@ -137,7 +138,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '0,9 L',
-    image: Classica09,
+    image: SuvinilClassica09,
   },
   {
     id: '12',
@@ -147,7 +148,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '18 L',
-    image: RendeCobreMuito18,
+    image: SuvinilRendeCobreMuito18,
   },
   {
     id: '13',
@@ -157,7 +158,7 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '3,6 L',
-    image: RendeCobreMuito36,
+    image: SuvinilRendeCobreMuito36,
   },
   {
     id: '14',
@@ -167,6 +168,16 @@ export const itemListMock: Item[] = [
     specification: 'Fosco',
     quantity: 1,
     unit: '0,9 L',
-    image: RendeCobreMuito09,
+    image: SuvinilRendeCobreMuito09,
+  },
+  {
+    id: '15',
+    category: 'Spray',
+    name: 'Collor Uso Geral',
+    brand: 'Ciacollor',
+    specification: 'Brilhante',
+    quantity: 1,
+    unit: '0,4 L',
+    image: CollorSprayUsoGeral,
   },
 ];

@@ -11,7 +11,20 @@
       "@theme": ["src/theme"],
       "@domain": ["src/domain"],
       "@services": ["src/services"],
-      "@database": ["src/database"]
+      "@database": ["src/database"],
+      "@wall": ["src/assets/images/Wall"],
+      "@wood": ["./src/assets/images/Wood"],
+      "@metal": ["./src/assets/images/Metal"],
+      "@floor": ["./src/assets/images/Floor"],
+      "@spray": ["./src/assets/images/Spray"],
+      "@sealer": ["./src/assets/images/Sealer"],
+      "@putty": ["./src/assets/images/Putty"],
+      "@texture": ["./src/assets/images/Texture"],
+      "@effect": ["./src/assets/images/Effect"],
+      "@solvent": ["./src/assets/images/Solvent"],
+      "@acessorie": ["./src/assets/images/Acessorie"],
+      "@rubberized": ["./src/assets/images/Rubberized"],
+      "@sandPapper": ["./src/assets/images/SandPapper"]
     }
   }
 }

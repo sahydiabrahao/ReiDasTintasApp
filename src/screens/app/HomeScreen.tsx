@@ -49,7 +49,7 @@ export function HomeScreen() {
   ));
 
   return (
-    <Screen>
+    <Screen scrollable>
       {isRendered ? (
         <Box
           flexGrow={1}
