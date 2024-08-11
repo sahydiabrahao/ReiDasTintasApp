@@ -1,4 +1,4 @@
-import {itemListMock} from './itemListMock';
+import {itemListMock} from './itemsDatabase';
 import {Item} from './type';
 
 async function getList(): Promise<Item[]> {

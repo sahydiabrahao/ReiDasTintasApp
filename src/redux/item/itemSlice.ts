@@ -1,12 +1,17 @@
-import {Item} from '@domain';
+/* eslint-disable @typescript-eslint/no-shadow */
+import {Item, itemsDatabase} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface ItemState {
   items: Item[];
+  itemsDatabase: Item[];
+  filteredItems: Item[];
 }
 
 const initialState: ItemState = {
   items: [],
+  itemsDatabase: itemsDatabase,
+  filteredItems: [],
 };
 
 const itemSlice = createSlice({
@@ -31,6 +36,15 @@ const itemSlice = createSlice({
         item.quantity -= 1;
       }
     },
+    filterItemsByCategory: (state, action: PayloadAction<string>) => {
+      // Recebe o nome da categoria do payload
+      const categoryName = action.payload;
+      // Filtra os itens que pertencem à categoria fornecida
+      state.filteredItems = state.itemsDatabase.filter(
+        itemsDatabase => itemsDatabase.category === categoryName,
+      );
+    },
+    // Outras ações podem ser adicionadas aqui conforme necessário
   },
 });
 
@@ -39,5 +53,6 @@ export const {
   removeItemById,
   incrementItemQuantity,
   decrementItemQuantity,
+  filterItemsByCategory,
 } = itemSlice.actions;
 export default itemSlice.reducer;

@@ -19,7 +19,7 @@ import {
 
 import {Item} from './type';
 
-export const itemListMock: Item[] = [
+export const itemsDatabase: Item[] = [
   {
     id: '0',
     category: 'Parede',

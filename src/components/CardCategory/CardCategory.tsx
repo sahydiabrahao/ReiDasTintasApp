@@ -1,15 +1,23 @@
 import React from 'react';
 
 import {Category} from '@domain';
+import {filterItemsByCategory, selectCategory} from '@redux';
+import {useDispatch} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   category: Category;
-  onSelect: (name: string) => void;
 }
 
-export function CardCategory({category, onSelect}: Props) {
+export function CardCategory({category}: Props) {
+  const dispatch = useDispatch();
+
+  function onSelect(categoryName: string) {
+    dispatch(selectCategory(categoryName));
+    dispatch(filterItemsByCategory(categoryName));
+  }
+
   return (
     <TouchableOpacityBox
       onPress={() => onSelect(category.name)}

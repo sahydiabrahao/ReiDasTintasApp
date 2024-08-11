@@ -1,6 +1,6 @@
 export * from './Item/type';
 export * from './Item/itemService';
-export * from './Item/itemListMock';
+export * from './Item/itemsDatabase';
 
 export * from './Contact/type';
 export * from './Contact/contactService';

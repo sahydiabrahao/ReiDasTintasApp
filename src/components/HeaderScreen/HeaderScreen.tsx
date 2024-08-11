@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {selectCategory} from '@redux';
+import {useDispatch} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
@@ -9,8 +11,11 @@ export function HeaderScreen() {
   const route = useRoute();
   const screenName = route.name;
 
+  const dispatch = useDispatch();
+
   function navigateToHome() {
     navigation.navigate('AppTabNavigator');
+    dispatch(selectCategory('Init'));
   }
 
   function navigateToContactScreen() {
