@@ -2,7 +2,9 @@ import React from 'react';
 
 import {useDatabase} from '@database';
 import {Contact} from '@domain';
+import {RootState, setContact} from '@redux';
 import {useToast} from '@services';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
@@ -13,6 +15,10 @@ interface Props {
 export function CardContact({contact}: Props) {
   const {dbConnect, insertContact, getContacts, dbDisconnect} = useDatabase();
   const {showToast} = useToast();
+
+  const dispatch = useDispatch();
+
+  const contacts = useSelector((state: RootState) => state.database.contacts);
 
   async function selectContact({}: Contact) {
     let testeDB: Contact = {
@@ -32,6 +38,9 @@ export function CardContact({contact}: Props) {
       position: 'bottom',
       type: 'success',
     });
+
+    dispatch(setContact(contact));
+    console.log(contacts);
   }
 
   return (
@@ -45,13 +54,19 @@ export function CardContact({contact}: Props) {
       <Box
         alignItems="center"
         justifyContent="center"
-        backgroundColor="bluePrimary"
+        backgroundColor={
+          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
+        }
         padding="s12"
         style={{
           borderBottomLeftRadius: 12,
           borderTopLeftRadius: 12,
         }}>
-        <Icon name="delivery" color="grayWhite" />
+        {contacts.phone === contact.phone ? (
+          <Icon name="delivery" color="grayWhite" size={24} />
+        ) : (
+          <Box padding="s12" />
+        )}
       </Box>
       <Box
         flexGrow={1}

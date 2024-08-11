@@ -15,6 +15,7 @@ module.exports = {
           '@domain': './src/domain',
           '@services': './src/services',
           '@database': './src/database',
+          '@redux': './src/redux',
           '@wall': './src/assets/images/Wall',
           '@wood': './src/assets/images/Wood',
           '@metal': './src/assets/images/Metal',

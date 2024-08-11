@@ -55,6 +55,5 @@ export async function decrement(db: SQLiteDatabase, id: string) {
 
 export async function deleteItem(db: SQLiteDatabase, id: string) {
   const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ${id}`;
-
   await db.executeSql(query);
 }

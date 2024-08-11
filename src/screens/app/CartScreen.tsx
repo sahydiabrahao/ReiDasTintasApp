@@ -33,37 +33,22 @@ export function CartScreen() {
   };
 
   async function onDelete(id: string) {
-    try {
-      const db = await dbConnect();
-      await deleteItem(db, id);
-      await fetchData();
-      setItemList([]);
-      await dbDisconnect(db);
-    } catch (error) {
-      console.error('Error deleting item:', error);
-    }
+    const db = await dbConnect();
+    deleteItem(await db, id);
+    fetchData();
+    setItemList([]);
   }
   async function onIncrement(id: string) {
-    try {
-      const db = await dbConnect();
-      await increment(db, id);
-      await fetchData();
-      setItemList([]);
-      await dbDisconnect(db);
-    } catch (error) {
-      console.error('Error incrementing item:', error);
-    }
+    const db = await dbConnect();
+    await increment(db, id);
+    fetchData();
+    setItemList([]);
   }
   async function onDecrement(id: string) {
-    try {
-      const db = await dbConnect();
-      await decrement(db, id);
-      await fetchData();
-      setItemList([]);
-      await dbDisconnect(db);
-    } catch (error) {
-      console.error('Error decremeting item:', error);
-    }
+    const db = await dbConnect();
+    await decrement(db, id);
+    fetchData();
+    setItemList([]);
   }
 
   const renderCartItems = itemList.map(item => (
