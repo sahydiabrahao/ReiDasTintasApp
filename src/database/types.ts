@@ -1,6 +1,3 @@
-import {Item, Contact} from '@domain';
-import {SQLiteDatabase} from 'react-native-sqlite-storage';
-
 export const DATABASE_NAME = 'ReiDasTintasDB';
 export const TABLE_ITEM = 'Item';
 export const TABLE_CONTACT = 'Contact';
@@ -25,20 +22,4 @@ export interface ContactDB {
   address: string;
   district: string;
   phone: string;
-}
-
-export interface DatabaseService {
-  itemDB: ItemDB | null;
-  contactDB: ContactDB | null;
-  dbConnect: () => Promise<SQLiteDatabase>;
-  createTable: (db: SQLiteDatabase) => void;
-  dbDisconnect: (db: SQLiteDatabase) => void;
-  deleteTable: (db: SQLiteDatabase) => void;
-  insertItem: (db: SQLiteDatabase, database: Item) => void;
-  increment: (db: SQLiteDatabase, id: string) => void;
-  decrement: (db: SQLiteDatabase, id: string) => void;
-  deleteItem: (db: SQLiteDatabase, id: string) => void;
-  insertContact: (db: SQLiteDatabase, database: Contact) => void;
-  getItems: (db: SQLiteDatabase) => Promise<ItemDB[]>;
-  getContacts: (db: SQLiteDatabase) => Promise<ContactDB[]>;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
 
-import {useDatabase} from '@database';
 import {Item} from '@domain';
 import {pushItem} from '@redux';
 import {useToast} from '@services';
@@ -15,27 +14,11 @@ interface Props {
 
 export function CardItem({item}: Props) {
   const {showToast} = useToast();
-  const {dbConnect, insertItem, dbDisconnect} = useDatabase();
 
   const dispatch = useDispatch();
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   async function addItem(item: Item) {
-    let data: Item = {
-      id: item.id,
-      category: item.category,
-      quantity: item.quantity,
-      name: item.name,
-      brand: item.brand,
-      specification: item.specification,
-      unit: item.unit,
-      image: item.image,
-    };
-
-    const db = dbConnect();
-    insertItem(await db, data);
-    dbDisconnect(await db);
-
     showToast({
       message: 'Item adicionado',
       position: 'bottom',

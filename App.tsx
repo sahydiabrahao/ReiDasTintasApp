@@ -1,4 +1,3 @@
-import {DatabaseProvider} from '@database';
 import {store} from '@redux';
 import {ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
@@ -14,12 +13,10 @@ function App(): React.JSX.Element {
     <SafeAreaProvider>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <DatabaseProvider>
-            <ToastProvider>
-              <Router />
-              <Toast />
-            </ToastProvider>
-          </DatabaseProvider>
+          <ToastProvider>
+            <Router />
+            <Toast />
+          </ToastProvider>
         </ThemeProvider>
       </Provider>
     </SafeAreaProvider>

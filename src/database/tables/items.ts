@@ -3,7 +3,7 @@ import {SQLiteDatabase} from 'react-native-sqlite-storage';
 
 import {ItemDB, TABLE_ITEM} from '../types';
 
-export async function getItems(db: SQLiteDatabase) {
+export async function fetchAllItems(db: SQLiteDatabase) {
   try {
     const databaseList: ItemDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_ITEM}`);
@@ -25,7 +25,7 @@ export async function getItems(db: SQLiteDatabase) {
   }
 }
 
-export async function insertItem(db: SQLiteDatabase, item: Item) {
+export async function addItem(db: SQLiteDatabase, item: Item) {
   const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, category, quantity, name, brand, specification, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
   const values = [
     item.id,
@@ -41,19 +41,19 @@ export async function insertItem(db: SQLiteDatabase, item: Item) {
   await db.executeSql(query, values);
 }
 
-export async function increment(db: SQLiteDatabase, id: string) {
+export async function increaseItemQuantity(db: SQLiteDatabase, id: string) {
   const query = `UPDATE ${TABLE_ITEM} SET quantity = quantity + 1 WHERE id = ${id}`;
 
   await db.executeSql(query);
 }
 
-export async function decrement(db: SQLiteDatabase, id: string) {
+export async function decreaseItemQuantity(db: SQLiteDatabase, id: string) {
   const query = `UPDATE ${TABLE_ITEM} SET quantity = CASE WHEN quantity > 1 THEN quantity - 1 ELSE 1 END WHERE id = ${id}`;
 
   await db.executeSql(query);
 }
 
-export async function deleteItem(db: SQLiteDatabase, id: string) {
+export async function removeItem(db: SQLiteDatabase, id: string) {
   const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ${id}`;
   await db.executeSql(query);
 }

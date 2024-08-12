@@ -3,7 +3,10 @@ import {SQLiteDatabase} from 'react-native-sqlite-storage';
 
 import {TABLE_CONTACT, ContactDB} from '../types';
 
-export async function insertContact(db: SQLiteDatabase, contact: Contact) {
+export async function insertOrUpdateContact(
+  db: SQLiteDatabase,
+  contact: Contact,
+) {
   const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
   const values = [
     '0',
@@ -15,7 +18,7 @@ export async function insertContact(db: SQLiteDatabase, contact: Contact) {
   await db.executeSql(query, values);
 }
 
-export async function getContacts(db: SQLiteDatabase) {
+export async function fetchContacts(db: SQLiteDatabase) {
   try {
     const databaseList: ContactDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_CONTACT}`);

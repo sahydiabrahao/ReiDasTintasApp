@@ -24,7 +24,8 @@
     "react-native-screens": "^3.32.0",
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-svg": "^15.4.0",
-    "react-redux": "^9.1.2"
+    "react-redux": "^9.1.2",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -39,6 +40,7 @@
     "@types/react": "^18.2.6",
     "@types/react-native-sqlite-storage": "^6.0.5",
     "@types/react-test-renderer": "^18.0.0",
+    "@types/redux-thunk": "^2.1.0",
     "babel-jest": "^29.6.3",
     "babel-plugin-module-resolver": "^5.0.2",
     "commitizen": "^4.3.0",

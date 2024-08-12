@@ -2,7 +2,7 @@ import SQLite, {SQLiteDatabase} from 'react-native-sqlite-storage';
 
 import {DATABASE_NAME, DATABASE_LOCATION, TABLE_ITEM} from '../types';
 
-export async function dbConnect(): Promise<SQLiteDatabase> {
+export async function connect(): Promise<SQLiteDatabase> {
   var db = SQLite.openDatabase({
     name: DATABASE_NAME,
     location: DATABASE_LOCATION,
@@ -11,7 +11,7 @@ export async function dbConnect(): Promise<SQLiteDatabase> {
   return db;
 }
 
-export async function dbDisconnect(db: SQLiteDatabase) {
+export async function disconnect(db: SQLiteDatabase) {
   try {
     if (db) {
       db.close();
