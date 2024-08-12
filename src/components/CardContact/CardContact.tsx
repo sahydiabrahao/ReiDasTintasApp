@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {useDatabase} from '@database';
 import {Contact} from '@domain';
 import {RootState, setContact} from '@redux';
 import {useToast} from '@services';
@@ -13,33 +12,20 @@ interface Props {
 }
 
 export function CardContact({contact}: Props) {
-  const {dbConnect, insertContact, getContacts, dbDisconnect} = useDatabase();
   const {showToast} = useToast();
 
   const dispatch = useDispatch();
 
   const contacts = useSelector((state: RootState) => state.contact.contact);
 
-  async function selectContact({}: Contact) {
-    let data: Contact = {
-      city: contact.city,
-      district: contact.district,
-      address: contact.address,
-      phone: contact.phone,
-    };
-
-    const db = dbConnect();
-    insertContact(await db, data);
-    getContacts(await db);
-    dbDisconnect(await db);
-
+  async function selectContact(contactSelected: Contact) {
     showToast({
       message: 'Ótima escolha! ',
       position: 'bottom',
       type: 'success',
     });
 
-    dispatch(setContact(contact));
+    dispatch(setContact(contactSelected));
   }
 
   return (
