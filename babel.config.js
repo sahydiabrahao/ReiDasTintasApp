@@ -27,7 +27,7 @@ module.exports = {
           '@effect': './src/assets/images/Effect',
           '@solvent': './src/assets/images/Solvent',
           '@acessorie': './src/assets/images/Acessorie',
-          '@rubberized': './src/assets/images/Rubberized',
+          '@rubberized': './src/assets/images/Protection',
           '@sandPapper': './src/assets/images/SandPapper',
         },
       },

@@ -28,7 +28,7 @@ import {
   EffectIcon,
   SolventIcon,
   AcessorieIcon,
-  RubberizedIcon,
+  ProtectionIcon,
   SandPapperIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
@@ -81,7 +81,7 @@ const iconRegistry = {
   effect: EffectIcon,
   solvent: SolventIcon,
   acessorie: AcessorieIcon,
-  rubberized: RubberizedIcon,
+  protection: ProtectionIcon,
   sandPapper: SandPapperIcon,
 
   menu: MenuIcon,

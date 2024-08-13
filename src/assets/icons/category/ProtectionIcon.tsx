@@ -4,7 +4,7 @@ import {Path, Svg} from 'react-native-svg';
 
 import {iconBase} from '@components';
 
-export function RubberizedIcon({size = 20, color = 'black'}: iconBase) {
+export function ProtectionIcon({size = 20, color = 'black'}: iconBase) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path

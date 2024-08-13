@@ -25,7 +25,7 @@ export * from './icons/category/SolventIcon';
 export * from './icons/category/SprayIcon';
 export * from './icons/category/WoodIcon';
 export * from './icons/category/TextureIcon';
-export * from './icons/category/RubberizedIcon';
+export * from './icons/category/ProtectionIcon';
 export * from './icons/category/SandPapperIcon';
 
 export * from './icons/utils/MenuIcon';
