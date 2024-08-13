@@ -48,7 +48,7 @@ export function CardItem({item}: Props) {
         <Image
           style={{
             flex: 1,
-            objectFit: 'cover',
+            objectFit: 'contain',
           }}
           source={{uri: item.image}}
         />
