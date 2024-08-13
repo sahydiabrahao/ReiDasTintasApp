@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {RootState, selectCategory, toggleBackButtonVisibility} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -8,7 +8,7 @@ import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 export function HeaderScreen() {
   const navigation = useNavigation();
-
+  const route = useRoute();
   const dispatch = useDispatch();
 
   const isBackButtonVisible = useSelector(
@@ -35,7 +35,7 @@ export function HeaderScreen() {
       padding="s12"
       backgroundColor="bluePrimary"
       elevation={2}>
-      {isBackButtonVisible ? (
+      {isBackButtonVisible && route.name === 'ContactScreen' ? (
         <Box
           flexDirection="row"
           alignItems="center"
