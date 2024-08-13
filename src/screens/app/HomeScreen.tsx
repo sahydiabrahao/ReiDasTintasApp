@@ -34,9 +34,10 @@ export function HomeScreen() {
           flexGrow={1}
           flexDirection="row"
           justifyContent="flex-start"
+          alignItems="center"
           flex={1}
           flexWrap="wrap"
-          rowGap="s32"
+          rowGap="s12"
           columnGap="s12">
           {renderCardCategory}
         </Box>
