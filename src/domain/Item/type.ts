@@ -6,6 +6,7 @@ export interface Item {
   brand: string;
   specification?: string;
   quantity: number;
+  base?: string;
   unit: string;
 
   image: string;
