@@ -18,7 +18,7 @@ export function CardContact({contact}: Props) {
 
   const contacts = useSelector((state: RootState) => state.contact.contact);
 
-  async function selectContact(contactSelected: Contact) {
+  function selectContact(contactSelected: Contact) {
     showToast({
       message: 'Ótima escolha! ',
       position: 'bottom',
