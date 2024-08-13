@@ -13,3 +13,12 @@ export * from './Suvinil/SuvinilClassica09';
 export * from './Suvinil/SuvinilRendeCobreMuito18';
 export * from './Suvinil/SuvinilRendeCobreMuito36';
 export * from './Suvinil/SuvinilRendeCobreMuito09';
+
+export * from './Ciacollor/CiacollorCiallar18';
+export * from './Ciacollor/CiacollorCiallar36';
+export * from './Ciacollor/CiacollorCiaturbo18';
+export * from './Ciacollor/CiacollorCiaturbo36';
+export * from './Ciacollor/CiacollorPerformance18';
+export * from './Ciacollor/CiacollorPerformance36';
+export * from './Ciacollor/CiacollorSublime18';
+export * from './Ciacollor/CiacollorSublime36';
