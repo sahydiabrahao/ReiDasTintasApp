@@ -8,7 +8,7 @@ import {Box, BoxProps, Icon, IconProps, Text} from '@components';
 import {$shadowProps} from '@theme';
 
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
-const DEFAULT_DURATION = 1000;
+const DEFAULT_DURATION = 300;
 
 export function Toast() {
   const {toast, hideToast} = useToast();
@@ -29,7 +29,7 @@ export function Toast() {
   }
 
   return (
-    <Box {...$boxStyle} style={[{[position]: 100}, {...$shadowProps}]}>
+    <Box {...$boxStyle} style={[{[position]: 80}, {...$shadowProps}]}>
       <Icon {...mapTypeIcon[type]} />
       <Text
         color="grayWhite"

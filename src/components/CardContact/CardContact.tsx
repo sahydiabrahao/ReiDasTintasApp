@@ -71,6 +71,23 @@ export function CardContact({contact}: Props) {
           {contact.phone}
         </Text>
       </Box>
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor={
+          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
+        }
+        padding="s12"
+        style={{
+          borderBottomRightRadius: 12,
+          borderTopRightRadius: 12,
+        }}>
+        {contacts.phone === contact.phone ? (
+          <Icon name="delivery" color="grayWhite" size={24} />
+        ) : (
+          <Box padding="s12" />
+        )}
+      </Box>
     </TouchableOpacityBox>
   );
 }
