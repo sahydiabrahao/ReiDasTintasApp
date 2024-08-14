@@ -46,3 +46,5 @@ export * from './Renner/RennerRekolorProFosco36';
 export * from './Renner/RennerRekolorProSemibrilho09';
 export * from './Renner/RennerRekolorProSemibrilho18';
 export * from './Renner/RennerRekolorProSemibrilho36';
+
+export * from './Anjo/AnjoAnjoUp18';
