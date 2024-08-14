@@ -1,1 +1,1 @@
-export const SayerlackPoliulack36 = ''
+export const SayerlackPoliulack36 = '';
