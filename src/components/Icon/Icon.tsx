@@ -27,9 +27,13 @@ import {
   TextureIcon,
   EffectIcon,
   SolventIcon,
-  AcessorieIcon,
+  PaintForkIcon,
   ProtectionIcon,
   SandPapperIcon,
+  PaintBrushIcon,
+  SpatulaIcon,
+  TrowelIcon,
+  PaintRollIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -80,9 +84,13 @@ const iconRegistry = {
   texture: TextureIcon,
   effect: EffectIcon,
   solvent: SolventIcon,
-  acessorie: AcessorieIcon,
+  paintFork: PaintForkIcon,
   protection: ProtectionIcon,
   sandPapper: SandPapperIcon,
+  paintBrush: PaintBrushIcon,
+  spatula: SpatulaIcon,
+  trowel: TrowelIcon,
+  paintRoll: PaintRollIcon,
 
   menu: MenuIcon,
   logo: LogoIcon,

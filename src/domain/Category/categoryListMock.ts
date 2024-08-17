@@ -11,7 +11,11 @@ export const categoryListMock: Category[] = [
   {name: 'Textura', icon: 'texture'},
   {name: 'Efeito', icon: 'effect'},
   {name: 'Solvente', icon: 'solvent'},
-  {name: 'Acessório', icon: 'acessorie'},
+  {name: 'Garfo', icon: 'paintFork'},
   {name: 'Proteção', icon: 'protection'},
   {name: 'Lixa', icon: 'sandPapper'},
+  {name: 'Trincha', icon: 'paintBrush'},
+  {name: 'Espátula', icon: 'spatula'},
+  {name: 'Desempenadeira', icon: 'trowel'},
+  {name: 'Rolo', icon: 'paintRoll'},
 ];

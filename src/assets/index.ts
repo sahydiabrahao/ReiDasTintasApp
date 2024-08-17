@@ -15,7 +15,7 @@ export * from './icons/utils/CheckedBoxcon';
 export * from './icons/utils/UncheckedBoxIcon';
 
 export * from './icons/category/WallIcon';
-export * from './icons/category/AccessorieIcon';
+export * from './icons/category/PaintForkIcon';
 export * from './icons/category/EffectIcon';
 export * from './icons/category/FloorIcon';
 export * from './icons/category/MetalIcon';
@@ -27,6 +27,10 @@ export * from './icons/category/WoodIcon';
 export * from './icons/category/TextureIcon';
 export * from './icons/category/ProtectionIcon';
 export * from './icons/category/SandPapperIcon';
+export * from './icons/category/PaintBrushIcon';
+export * from './icons/category/SpatulaIcon';
+export * from './icons/category/TrowelIcon';
+export * from './icons/category/PaintRollIcon';
 
 export * from './icons/utils/MenuIcon';
 export * from './icons/utils/LogoIcon';

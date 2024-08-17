@@ -31,3 +31,5 @@ export * from './WoodPutty/VonderMassaMadeira120';
 export * from './WoodPutty/VonderMassaMadeira150';
 export * from './WoodPutty/VonderMassaMadeira180';
 export * from './WoodPutty/VonderMassaMadeira220';
+
+export * from './Dry/M3Seco80';
