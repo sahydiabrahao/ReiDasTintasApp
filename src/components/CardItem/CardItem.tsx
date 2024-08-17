@@ -6,7 +6,7 @@ import {pushItem} from '@redux';
 import {useToast} from '@services';
 import {useDispatch} from 'react-redux';
 
-import {Box, Text, TouchableOpacityBox} from '@components';
+import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   item: Item;
@@ -29,44 +29,52 @@ export function CardItem({item}: Props) {
   }
 
   return (
-    <TouchableOpacityBox
-      onPress={() => addItem(item)}
-      padding="s8"
-      justifyContent="space-evenly"
-      alignItems="center"
-      borderColor="gray4"
-      width={'48%'}
-      borderRadius="s12"
-      borderWidth={1}>
-      <Box
-        width={120}
-        height={120}
-        backgroundColor="gray5"
-        style={{
-          borderRadius: 12,
-        }}>
-        <Image
+    <Box borderRadius="s12">
+      <Box flexDirection="row">
+        <TouchableOpacityBox
+          onPress={() => addItem(item)}
+          alignItems="center"
+          justifyContent="center"
+          backgroundColor="bluePrimary"
+          padding="s10"
           style={{
-            flex: 1,
-            objectFit: 'contain',
-          }}
-          source={{uri: item.image}}
-        />
-      </Box>
-      <Box alignItems="flex-start" flexGrow={1}>
-        <Text bold preset="paragraphMedium">
-          {item.name}
-        </Text>
-        <Box flexDirection="row">
-          <Text preset="paragraphCaption" mr="s4">
-            {item.brand},
-          </Text>
-          <Text preset="paragraphCaption" mr="s4">
-            {item.specification},
-          </Text>
-          <Text preset="paragraphCaption">{item.unit}</Text>
+            borderBottomLeftRadius: 12,
+            borderTopLeftRadius: 12,
+          }}>
+          <Icon name="cart" color="grayWhite" />
+        </TouchableOpacityBox>
+        <Box flexDirection="row" flexGrow={1} justifyContent="flex-start">
+          <Box borderColor="gray5" width={120} height={120}>
+            <Image
+              style={{
+                flex: 1,
+                objectFit: 'contain',
+              }}
+              source={{uri: item.image}}
+            />
+          </Box>
+          <Box flexGrow={1} alignItems="center" justifyContent="center">
+            <Text bold preset="paragraphMedium">
+              {item.name}
+            </Text>
+            <Text preset="paragraphCaption">{item.brand}</Text>
+            <Text preset="paragraphCaption">{item.specification}</Text>
+            <Text preset="paragraphCaption">{item.unit}</Text>
+          </Box>
         </Box>
+        <TouchableOpacityBox
+          onPress={() => addItem(item)}
+          alignItems="center"
+          justifyContent="center"
+          backgroundColor="bluePrimary"
+          padding="s10"
+          style={{
+            borderBottomRightRadius: 12,
+            borderTopRightRadius: 12,
+          }}>
+          <Icon name="cart" color="grayWhite" />
+        </TouchableOpacityBox>
       </Box>
-    </TouchableOpacityBox>
+    </Box>
   );
 }

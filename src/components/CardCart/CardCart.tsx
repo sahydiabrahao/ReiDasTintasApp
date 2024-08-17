@@ -20,7 +20,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"
-          padding="s12"
+          padding="s10"
           style={{
             borderBottomLeftRadius: 12,
             borderTopLeftRadius: 12,
@@ -42,7 +42,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             <Image
               style={{
                 flex: 1,
-                objectFit: 'cover',
+                objectFit: 'contain',
               }}
               source={{uri: item.image}}
             />
@@ -64,7 +64,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             flexGrow={1}
             onPress={() => onIncrement(item.id)}
             backgroundColor="bluePrimary"
-            padding="s14"
+            padding="s10"
             style={{
               borderTopRightRadius: 12,
             }}>
@@ -76,7 +76,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             flexGrow={1}
             onPress={() => onDecrement(item.id)}
             backgroundColor="bluePrimary"
-            padding="s14"
+            padding="s10"
             style={{
               borderBottomRightRadius: 12,
             }}>

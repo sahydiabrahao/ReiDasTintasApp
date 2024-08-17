@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
+import {selectCategory} from '@redux';
+import {useDispatch} from 'react-redux';
 
 import {
   Box,
@@ -17,6 +19,7 @@ import {$shadowProps} from '@theme';
 
 export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
   const {bottom} = useAppSafeArea();
+  const dispatch = useDispatch();
   return (
     <Box {...$boxWrapper} style={[{paddingBottom: bottom}, $shadowProps]}>
       {state.routes.map((route, index) => {
@@ -28,6 +31,8 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
         const isFocused = state.index === index;
 
         const onPress = () => {
+          dispatch(selectCategory('Init'));
+
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,

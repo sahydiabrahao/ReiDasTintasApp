@@ -21,8 +21,8 @@ export function CardCategory({category}: Props) {
   return (
     <TouchableOpacityBox
       onPress={() => onSelect(category.name)}
-      mb="s12"
-      width={'31%'}
+      flexDirection="row"
+      mb="s8"
       borderRadius="s12"
       justifyContent="flex-start"
       alignItems="center">
@@ -30,13 +30,22 @@ export function CardCategory({category}: Props) {
         alignItems="center"
         justifyContent="center"
         backgroundColor="gray5"
-        borderRadius="s100"
+        borderBottomLeftRadius="s12"
+        borderTopLeftRadius="s12"
         width={64}
         height={64}>
         <Icon name={category.icon} color="grayBlack" size={32} />
       </Box>
-      <Box>
-        <Text preset="paragraphMedium" color="grayBlack">
+      <Box
+        height={64}
+        flexGrow={1}
+        alignItems="center"
+        justifyContent="center"
+        borderWidth={1}
+        borderColor="gray5"
+        borderBottomRightRadius="s12"
+        borderTopRightRadius="s12">
+        <Text preset="headingMedium" color="grayBlack">
           {category.name}
         </Text>
       </Box>
