@@ -42,7 +42,7 @@ export function CardContact({contact}: Props) {
         backgroundColor={
           contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
         }
-        padding="s12"
+        padding="s10"
         style={{
           borderBottomLeftRadius: 12,
           borderTopLeftRadius: 12,
@@ -77,7 +77,7 @@ export function CardContact({contact}: Props) {
         backgroundColor={
           contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
         }
-        padding="s12"
+        padding="s10"
         style={{
           borderBottomRightRadius: 12,
           borderTopRightRadius: 12,
