@@ -536,7 +536,7 @@ export const itemsMock: Item[] = [
     image: RennerGoldSuperlavavel09,
   },
   {
-    id: '41',
+    id: '44',
     category: 'Parede',
     name: 'Rekolor Gold',
     brand: 'Renner',
@@ -547,7 +547,7 @@ export const itemsMock: Item[] = [
     image: RennerGoldSuperresistencia18,
   },
   {
-    id: '42',
+    id: '45',
     category: 'Parede',
     name: 'Rekolor Gold',
     brand: 'Renner',
@@ -558,7 +558,7 @@ export const itemsMock: Item[] = [
     image: RennerGoldSupperresistencia36,
   },
   {
-    id: '43',
+    id: '46',
     category: 'Parede',
     name: 'Rekolor Gold',
     brand: 'Renner',

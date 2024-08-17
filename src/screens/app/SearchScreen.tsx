@@ -10,13 +10,13 @@ import {Screen} from '@screens';
 export function SearchScreen() {
   const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
-  const filteredItems = useSelector((state: any) => state.item.filteredItems); // Ajuste o tipo conforme necessário
+  const searchItems = useSelector((state: any) => state.item.searchItems); // Ajuste o tipo conforme necessário
 
   const handleSearchChange = (text: string) => {
     setSearchText(text);
     dispatch(filterItemsBySearch(text));
   };
-  const renderCardItems = filteredItems.map((item: Item) => (
+  const renderCardItems = searchItems.map((item: Item) => (
     <CardItem key={item.id} item={item} />
   ));
 

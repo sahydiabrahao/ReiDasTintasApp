@@ -6,12 +6,14 @@ interface ItemState {
   items: Item[];
   itemsDatabase: Item[];
   filteredItems: Item[];
+  searchItems: Item[];
 }
 
 const initialState: ItemState = {
   items: [],
   itemsDatabase: itemsMock,
   filteredItems: [],
+  searchItems: [],
 };
 
 const itemSlice = createSlice({
@@ -44,7 +46,12 @@ const itemSlice = createSlice({
     },
     filterItemsBySearch: (state, action: PayloadAction<string>) => {
       const searchText = action.payload.toLowerCase();
-      state.filteredItems = state.itemsDatabase.filter(item =>
+      if (searchText.trim() === '' || searchText.trim().length < 2) {
+        state.searchItems = [];
+        return;
+      }
+
+      state.searchItems = state.itemsDatabase.filter(item =>
         Object.values(item).some(value =>
           value.toString().toLowerCase().includes(searchText),
         ),
