@@ -10,7 +10,7 @@ export const trowelMock: Item[] = [
     specification: '-',
     quantity: 1,
     base: '-',
-    unit: 'Un',
+    unit: 'Unidade',
     image: AtlasDesempenadeira143,
   },
   {
@@ -20,7 +20,7 @@ export const trowelMock: Item[] = [
     specification: '-',
     quantity: 1,
     base: '-',
-    unit: 'Un',
+    unit: 'Unidade',
     image: AtlasDesempenadeira164,
   },
 ];

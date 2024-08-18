@@ -30,17 +30,18 @@ export function CardContact({contact}: Props) {
 
   return (
     <TouchableOpacityBox
+      borderColor="gray5"
+      borderWidth={1}
       onPress={() => [selectContact(contact)]}
       mb="s32"
       borderRadius="s12"
       flexDirection="row"
-      justifyContent="space-evenly"
-      backgroundColor="gray5">
+      justifyContent="space-evenly">
       <Box
         alignItems="center"
         justifyContent="center"
         backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
+          contacts.phone === contact.phone ? 'bluePrimary' : 'grayWhite'
         }
         padding="s10"
         style={{
@@ -75,7 +76,7 @@ export function CardContact({contact}: Props) {
         alignItems="center"
         justifyContent="center"
         backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
+          contacts.phone === contact.phone ? 'bluePrimary' : 'grayWhite'
         }
         padding="s10"
         style={{

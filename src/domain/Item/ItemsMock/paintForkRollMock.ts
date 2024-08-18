@@ -10,7 +10,7 @@ export const paintForkRollMock: Item[] = [
     specification: '-',
     quantity: 1,
     base: '-',
-    unit: 'Un',
+    unit: 'Unidade',
     image: AtlasGarfoBucha,
   },
   {
@@ -20,7 +20,7 @@ export const paintForkRollMock: Item[] = [
     specification: '-',
     quantity: 1,
     base: '-',
-    unit: 'Un',
+    unit: 'Unidade',
     image: AtlasGarfoGaiola,
   },
   {
@@ -30,7 +30,7 @@ export const paintForkRollMock: Item[] = [
     specification: '-',
     quantity: 1,
     base: '-',
-    unit: 'Un',
+    unit: 'Unidade',
     image: AtlasGarfoDuplo,
   },
 ];

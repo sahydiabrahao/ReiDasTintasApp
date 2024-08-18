@@ -43,7 +43,12 @@ export function CardItem({item}: Props) {
           }}>
           <Icon name="cart" color="grayWhite" />
         </TouchableOpacityBox>
-        <Box flexDirection="row" flexGrow={1} justifyContent="flex-start">
+        <Box
+          borderWidth={1}
+          borderColor="gray5"
+          flexDirection="row"
+          flexGrow={1}
+          justifyContent="flex-start">
           <Box borderColor="gray5" width={120} height={120}>
             <Image
               style={{
