@@ -30,7 +30,7 @@ module.exports = {
           '@paintFork': './src/assets/images/PaintFork',
           '@paintBrush': './src/assets/images/PaintBrush',
           '@spatula': './src/assets/images/Spatula',
-          '@trowell': './src/assets/images/Trowell',
+          '@trowel': './src/assets/images/Trowel',
           '@protection': './src/assets/images/Protection',
           '@sandPapper': './src/assets/images/SandPapper',
         },
