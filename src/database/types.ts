@@ -1,6 +1,6 @@
-export const DATABASE_NAME = 'ReiDasTintasDB2';
-export const TABLE_ITEM = 'Item2';
-export const TABLE_CONTACT = 'Contact2';
+export const DATABASE_NAME = 'ReiDasTintasDB';
+export const TABLE_ITEM = 'Item';
+export const TABLE_CONTACT = 'Contact';
 export const DATABASE_VERSION = '1.0';
 export const DATABAE_DISPLAYNAME = 'ReiDasTintas';
 export const DATABASE_SIZE = 200000;

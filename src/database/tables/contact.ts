@@ -1,12 +1,11 @@
 import {Contact} from '@domain';
-import {SQLiteDatabase} from 'react-native-sqlite-storage';
+import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
 import {TABLE_CONTACT, ContactDB} from '../types';
 
-export async function insertOrUpdateContact(
-  db: SQLiteDatabase,
-  contact: Contact,
-) {
+enablePromise(true);
+
+export async function addContact(db: SQLiteDatabase, contact: Contact) {
   const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
   const values = [
     '0',
@@ -15,10 +14,11 @@ export async function insertOrUpdateContact(
     contact.address,
     contact.district,
   ];
+  console.log('Contact successfully updated.');
   await db.executeSql(query, values);
 }
 
-export async function fetchContacts(db: SQLiteDatabase) {
+export async function fetchAllContacts(db: SQLiteDatabase) {
   try {
     const databaseList: ContactDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_CONTACT}`);
@@ -28,10 +28,14 @@ export async function fetchContacts(db: SQLiteDatabase) {
         databaseList.push(result.rows.item(index));
       }
     });
+    const filteredItems = (await databaseList).filter(
+      item => item !== undefined,
+    );
+
     // console.log('Database List:', databaseList);
-    return databaseList;
+    return filteredItems;
   } catch (error) {
     // console.error(error);
-    throw Error('Failed to get Contacts !!!');
+    throw Error('Failed to load contacts.');
   }
 }

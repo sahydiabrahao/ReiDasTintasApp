@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
+import {connect, addContact} from '@database';
 import {Contact} from '@domain';
 import {RootState, setContact} from '@redux';
 import {useToast} from '@services';
@@ -26,6 +27,20 @@ export function CardContact({contact}: Props) {
     });
 
     dispatch(setContact(contactSelected));
+  }
+
+  useEffect(() => {
+    saveContactIntoDB();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contacts]);
+
+  async function saveContactIntoDB() {
+    try {
+      const db = await connect();
+      await addContact(db, contacts);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (

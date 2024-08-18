@@ -21,7 +21,7 @@ export async function fetchAllItems(db: SQLiteDatabase) {
     return filteredItems;
   } catch (error) {
     // console.error(error);
-    throw Error('Failed to get Items !!!');
+    throw Error('Failed to load items.');
   }
 }
 
@@ -29,7 +29,6 @@ export async function addItem(db: SQLiteDatabase, item: Item) {
   const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, category, quantity, name, brand, specification, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
   const values = [
     item.id,
-    item.category,
     item.quantity,
     item.name,
     item.brand,

@@ -1,60 +1,60 @@
 import React, {useEffect} from 'react';
 
-import {
-  connect,
-  create,
-  disconnect,
-  fetchContacts,
-  insertOrUpdateContact,
-} from '@database';
+import {connect, create, fetchAllContacts} from '@database';
 import {Contact} from '@domain';
-import {RootState} from '@redux';
-import {useSelector} from 'react-redux';
+import {RootState, setContact} from '@redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, CardCategory, CardItem} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
-  async function connectToDatabase() {
-    const db = await connect();
-    create(db);
-    disconnect(db);
-  }
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    connectToDatabase();
-  }, []);
+  const contacts = useSelector((state: RootState) => state.contact.contact);
 
-  async function addContact() {
-    const db = await connect();
-    let data: Contact = {
-      city: 'test',
-      district: 'test',
-      phone: 'test',
-      address: 'test',
-    };
-
-    insertOrUpdateContact(db, data);
-    disconnect(db);
-  }
-
-  fetchContact;
-
-  async function fetchContact() {
+  async function initDatabase() {
     try {
       const db = await connect();
-      if (db) {
-        console.log('Conexão bem-sucedida:', db);
-
-        let data = fetchContacts(await db);
-        console.log('Dados:', data);
-      } else {
-        console.error('Erro ao conectar ao banco de dados');
-      }
+      await create(db);
     } catch (error) {
-      console.error('Erro na conexão ao banco de dados:', error);
+      console.error(error);
     }
   }
+
+  async function syncContactWithDatabase() {
+    try {
+      const db = await connect();
+      const [firstContact] = await fetchAllContacts(db); // Desestruturação direta para obter o primeiro contato
+
+      if (!firstContact) {
+        console.warn('No contact found in the database.');
+        return;
+      }
+
+      if (firstContact.phone === contacts.phone) {
+        console.log('Contact already exists:', firstContact);
+      } else {
+        const {address, city, phone, district} = firstContact;
+
+        const newContact: Contact = {
+          address,
+          city,
+          phone,
+          district,
+        };
+
+        dispatch(setContact(newContact));
+      }
+    } catch (error) {
+      console.error('Error updating the contact in the database:', error);
+    }
+  }
+  useEffect(() => {
+    initDatabase();
+    syncContactWithDatabase();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const categoriesList = useSelector(
     (state: RootState) => state.category.categories,
@@ -85,13 +85,9 @@ export function HomeScreen() {
           alignItems="flex-start"
           flex={1}
           columnGap="s12">
+          <Button preset="primary" title="AddContact" />
+          <Button preset="primary" title="FetchContact" />
           {renderCardCategory}
-          <Button onPress={addContact} preset="primary" title="AddContact" />
-          <Button
-            onPress={fetchContact}
-            preset="primary"
-            title="FetchContact"
-          />
         </Box>
       ) : (
         <Box>
