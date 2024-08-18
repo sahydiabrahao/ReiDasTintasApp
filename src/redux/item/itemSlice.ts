@@ -1,10 +1,26 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import {Item, itemsMock} from '@domain';
+import {CategoryName, floorMock, Item, itemsMock, wallMock} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
 interface ItemState {
   items: Item[];
   itemsDatabase: Item[];
+  Init: Item[];
+  Wall: Item[];
+  Wood: Item[];
+  Metal: Item[];
+  Protection: Item[];
+  Floor: Item[];
+  Spray: Item[];
+  Sealer: Item[];
+  Putty: Item[];
+  Texture: Item[];
+  Effect: Item[];
+  PaintRoll: Item[];
+  Trowel: Item[];
+  Spatula: Item[];
+  PaintBrush: Item[];
+  SandPapper: Item[];
+  Solvent: Item[];
   filteredItems: Item[];
   searchItems: Item[];
 }
@@ -12,6 +28,23 @@ interface ItemState {
 const initialState: ItemState = {
   items: [],
   itemsDatabase: itemsMock,
+  Init: [],
+  Wall: wallMock,
+  Wood: wallMock,
+  Metal: wallMock,
+  Protection: wallMock,
+  Floor: floorMock,
+  Spray: wallMock,
+  Sealer: wallMock,
+  Putty: wallMock,
+  Texture: wallMock,
+  Effect: wallMock,
+  PaintRoll: wallMock,
+  Trowel: wallMock,
+  Spatula: wallMock,
+  PaintBrush: wallMock,
+  SandPapper: wallMock,
+  Solvent: wallMock,
   filteredItems: [],
   searchItems: [],
 };
@@ -38,11 +71,10 @@ const itemSlice = createSlice({
         item.quantity -= 1;
       }
     },
-    filterItemsByCategory: (state, action: PayloadAction<string>) => {
-      const categoryName = action.payload;
-      state.filteredItems = state.itemsDatabase.filter(
-        itemsDatabase => itemsDatabase.category === categoryName,
-      );
+
+    filterItemsByCategory: (state, action: PayloadAction<CategoryName>) => {
+      const categoryName: CategoryName = action.payload;
+      state.filteredItems = initialState[categoryName];
     },
     filterItemsBySearch: (state, action: PayloadAction<string>) => {
       const searchText = action.payload.toLowerCase();

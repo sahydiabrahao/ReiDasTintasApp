@@ -1,8 +1,8 @@
-import {categoryListMock} from './categoryListMock';
+import {categoriesMock} from './categoriesMock';
 import {Category} from './type';
 
 async function getList(): Promise<Category[]> {
-  return categoryListMock;
+  return categoriesMock;
 }
 
 export const categoryApi = {

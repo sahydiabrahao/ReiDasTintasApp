@@ -5,8 +5,8 @@ import {categoryApi} from './categoryApi';
 import {Category} from './type';
 
 async function getCategories(): Promise<Category[]> {
-  const categoryList = await categoryApi.getList();
-  return categoryList;
+  const categories = await categoryApi.getList();
+  return categories;
 }
 
 function matchesSearchTerm(category: string, searchTerm: string) {

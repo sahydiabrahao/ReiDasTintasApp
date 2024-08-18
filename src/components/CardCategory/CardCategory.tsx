@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Category} from '@domain';
+import {Category, CategoryName} from '@domain';
 import {filterItemsByCategory, selectCategory} from '@redux';
 import {useDispatch} from 'react-redux';
 
@@ -13,7 +13,7 @@ interface Props {
 export function CardCategory({category}: Props) {
   const dispatch = useDispatch();
 
-  function onSelect(categoryName: string) {
+  function onSelect(categoryName: CategoryName) {
     dispatch(selectCategory(categoryName));
     dispatch(filterItemsByCategory(categoryName));
   }
@@ -46,7 +46,7 @@ export function CardCategory({category}: Props) {
         borderBottomRightRadius="s12"
         borderTopRightRadius="s12">
         <Text preset="headingMedium" color="grayBlack">
-          {category.name}
+          {category.title}
         </Text>
       </Box>
     </TouchableOpacityBox>

@@ -1,13 +1,13 @@
-import {Category, categoryListMock} from '@domain';
+import {Category, CategoryName, categoriesMock} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface CategoryState {
   categories: Category[];
-  selectedCategory: string;
+  selectedCategory: CategoryName;
 }
 
 const initialState: CategoryState = {
-  categories: categoryListMock,
+  categories: categoriesMock,
   selectedCategory: 'Init',
 };
 
@@ -18,11 +18,11 @@ const categorySlice = createSlice({
     setCategory: (state, action: PayloadAction<Category[]>) => {
       state.categories = action.payload;
     },
-    selectCategory: (state, action: PayloadAction<string>) => {
+    selectCategory: (state, action: PayloadAction<CategoryName>) => {
       state.selectedCategory = action.payload;
     },
     clearSelectedCategory: state => {
-      state.selectedCategory = 'init';
+      state.selectedCategory = 'Init';
     },
   },
 });
