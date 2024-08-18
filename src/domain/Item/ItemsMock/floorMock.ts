@@ -5,7 +5,6 @@ import {Item} from '../type';
 export const floorMock: Item[] = [
   {
     id: 'F0000',
-    category: 'Parede',
     name: 'Pisos',
     brand: 'Renner ',
     specification: 'Fosco',
@@ -16,7 +15,6 @@ export const floorMock: Item[] = [
   },
   {
     id: 'F0001',
-    category: 'Parede',
     name: 'Pisos',
     brand: 'Renner ',
     specification: 'Fosco',

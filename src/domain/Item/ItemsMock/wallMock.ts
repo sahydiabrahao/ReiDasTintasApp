@@ -5,7 +5,6 @@ import {Item} from '../type';
 export const wallMock: Item[] = [
   {
     id: 'W0000',
-    category: 'Parede',
     name: 'Toque de Luz',
     brand: 'Suvinil',
     specification: 'Semibrilho',
@@ -16,7 +15,6 @@ export const wallMock: Item[] = [
   },
   {
     id: 'W0001',
-    category: 'Parede',
     name: 'Toque de Seda',
     brand: 'Suvinil',
     specification: 'Acetinado',

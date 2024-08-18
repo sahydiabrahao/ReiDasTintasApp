@@ -1,1 +1,1 @@
-export const SayerlackSayermar36 = '';
+export const SuvinilStainProtetor = '';
