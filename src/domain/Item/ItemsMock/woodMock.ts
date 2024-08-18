@@ -14,7 +14,7 @@ export const woodMock: Item[] = [
     image: SuvinilTingeEProtege36,
   },
   {
-    id: 'WO0000',
+    id: 'WO0001',
     name: 'Tripla Proteção',
     brand: 'Suvinil',
     specification: 'Brilhante',

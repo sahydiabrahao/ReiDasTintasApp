@@ -5,7 +5,7 @@ import {Contact} from '@domain';
 import {RootState, setContact} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, Button, CardCategory, CardItem} from '@components';
+import {Box, CardCategory, CardItem} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -50,6 +50,7 @@ export function HomeScreen() {
       console.error('Error updating the contact in the database:', error);
     }
   }
+
   useEffect(() => {
     initDatabase();
     syncContactWithDatabase();
@@ -85,8 +86,6 @@ export function HomeScreen() {
           alignItems="flex-start"
           flex={1}
           columnGap="s12">
-          <Button preset="primary" title="AddContact" />
-          <Button preset="primary" title="FetchContact" />
           {renderCardCategory}
         </Box>
       ) : (
