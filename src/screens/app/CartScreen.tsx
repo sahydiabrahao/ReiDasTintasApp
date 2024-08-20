@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Linking} from 'react-native';
 
 import {deleteItemIntoDB, saveItemIntoDB} from '@database';
 import {
@@ -47,6 +48,27 @@ export function CartScreen() {
     />
   ));
 
+  function openWhatsApp() {
+    const phone = '5565996009889'; // Número de telefone no formato internacional
+    let message =
+      'Olá! Por gentileza, gostaria de receber uma cotação para os seguintes itens:\n'; // Mensagem a ser enviada
+
+    items.forEach(item => {
+      message += `${item.quantity}-${item.brand} ${item.name} ${item.specification} ${item.unit}\n`;
+    });
+
+    // Codifica a mensagem para a URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Cria o URL com a mensagem incluída
+    const url = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+    // Tenta abrir a URL
+    Linking.openURL(url)
+      .then(() => console.log('WhatsApp aberto com a mensagem'))
+      .catch(err => console.error('Erro ao abrir o WhatsApp', err));
+  }
+
   return (
     <Screen scrollable>
       {items.length > 0 ? (
@@ -56,6 +78,7 @@ export function CartScreen() {
             backgroundColor="bluePrimary"
             title="Solicitar orçamento gratuíto"
             preset="primary"
+            onPress={openWhatsApp}
           />
           {renderCartItems}
         </Box>
