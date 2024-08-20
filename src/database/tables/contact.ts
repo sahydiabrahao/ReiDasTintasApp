@@ -1,3 +1,4 @@
+import {connect} from '@database';
 import {Contact} from '@domain';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
@@ -37,5 +38,33 @@ export async function fetchAllContacts(db: SQLiteDatabase) {
   } catch (error) {
     // console.error(error);
     throw Error('Failed to load contacts.');
+  }
+}
+
+export async function syncContactWithDatabase(contacts: Contact) {
+  try {
+    const db = await connect();
+    const [firstContact] = await fetchAllContacts(db);
+
+    if (!firstContact) {
+      return;
+    }
+
+    if (firstContact.phone === contacts.phone) {
+      console.log('Contact already exists:', firstContact);
+      return null;
+    } else {
+      const {address, city, phone, district} = firstContact;
+
+      const newContact: Contact = {
+        address,
+        city,
+        phone,
+        district,
+      };
+      return newContact;
+    }
+  } catch (error) {
+    console.error('Error updating the contact in the database:', error);
   }
 }

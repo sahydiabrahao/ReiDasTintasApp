@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
+import {deleteItemIntoDB, saveItemIntoDB} from '@database';
 import {
   decrementItemQuantity,
   incrementItemQuantity,
@@ -12,11 +13,22 @@ import {Box, Button, CardCart, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CartScreen() {
-  const itemList = useSelector((state: RootState) => state.item.items);
   const dispatch = useDispatch();
+  const items = useSelector((state: RootState) => state.item.items);
+  const [deletedItemIds, setDeletedItemIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    saveItemIntoDB(items);
+    if (deletedItemIds.length > 0) {
+      deleteItemIntoDB(deletedItemIds);
+      setDeletedItemIds([]); // Reseta a lista de itens deletados após a atualização do banco de dados
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
 
   function onDelete(id: string) {
     dispatch(removeItemById(id));
+    setDeletedItemIds(prev => [...prev, id]);
   }
   function onIncrement(id: string) {
     dispatch(incrementItemQuantity(id));
@@ -25,7 +37,7 @@ export function CartScreen() {
     dispatch(decrementItemQuantity(id));
   }
 
-  const renderCartItems = itemList.map(item => (
+  const renderCartItems = items.map(item => (
     <CardCart
       key={item.id}
       item={item}
@@ -37,7 +49,7 @@ export function CartScreen() {
 
   return (
     <Screen scrollable>
-      {itemList.length > 0 ? (
+      {items.length > 0 ? (
         <Box backgroundColor="grayWhite">
           <Button
             mb="s12"

@@ -1,38 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image} from 'react-native';
 
+import {saveItemIntoDB} from '@database';
 import {Item} from '@domain';
-import {pushItem} from '@redux';
+import {pushItem, RootState} from '@redux';
 import {useToast} from '@services';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
-
 interface Props {
   item: Item;
 }
 
 export function CardItem({item}: Props) {
+  const dispatch = useDispatch();
+  const items = useSelector((state: RootState) => state.item.items);
+
+  useEffect(() => {
+    saveItemIntoDB(items);
+  }, [items]);
+
   const {showToast} = useToast();
 
-  const dispatch = useDispatch();
-
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  async function addItem(item: Item) {
+  async function selectItem(itemSelected: Item) {
     showToast({
       message: 'Item adicionado',
       position: 'bottom',
       type: 'success',
     });
 
-    dispatch(pushItem(item));
+    dispatch(pushItem(itemSelected));
   }
 
   return (
     <Box borderRadius="s12">
       <Box flexDirection="row">
         <TouchableOpacityBox
-          onPress={() => addItem(item)}
+          onPress={() => selectItem(item)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"
@@ -68,7 +72,7 @@ export function CardItem({item}: Props) {
           </Box>
         </Box>
         <TouchableOpacityBox
-          onPress={() => addItem(item)}
+          onPress={() => selectItem(item)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"

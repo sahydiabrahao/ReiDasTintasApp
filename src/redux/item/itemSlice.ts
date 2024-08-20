@@ -74,6 +74,9 @@ const itemSlice = createSlice({
   name: 'item',
   initialState,
   reducers: {
+    setItems: (state, action: PayloadAction<Item[]>) => {
+      state.items = action.payload;
+    },
     pushItem: (state, action: PayloadAction<Item>) => {
       state.items.push(action.payload);
     },
@@ -114,6 +117,7 @@ const itemSlice = createSlice({
 });
 
 export const {
+  setItems,
   pushItem,
   removeItemById,
   incrementItemQuantity,

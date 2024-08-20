@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
 
-import {connect, create, fetchAllContacts} from '@database';
-import {Contact} from '@domain';
-import {RootState, setContact} from '@redux';
+import {
+  initDatabase,
+  syncContactWithDatabase,
+  syncItemWithDatabase,
+} from '@database';
+import {RootState, setContact, setItems} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardCategory, CardItem} from '@components';
@@ -11,51 +14,25 @@ import {Screen} from '@screens';
 export function HomeScreen() {
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state: RootState) => state.contact.contact);
-
-  async function initDatabase() {
-    try {
-      const db = await connect();
-      await create(db);
-    } catch (error) {
-      console.error(error);
+  async function syncDatabase() {
+    const updatedContact: any = await syncContactWithDatabase(contacts);
+    if (updatedContact) {
+      dispatch(setContact(updatedContact));
     }
-  }
-
-  async function syncContactWithDatabase() {
-    try {
-      const db = await connect();
-      const [firstContact] = await fetchAllContacts(db); // Desestruturação direta para obter o primeiro contato
-
-      if (!firstContact) {
-        console.warn('No contact found in the database.');
-        return;
-      }
-
-      if (firstContact.phone === contacts.phone) {
-        console.log('Contact already exists:', firstContact);
-      } else {
-        const {address, city, phone, district} = firstContact;
-
-        const newContact: Contact = {
-          address,
-          city,
-          phone,
-          district,
-        };
-
-        dispatch(setContact(newContact));
-      }
-    } catch (error) {
-      console.error('Error updating the contact in the database:', error);
+    const updatedItem: any = await syncItemWithDatabase();
+    if (updatedItem) {
+      dispatch(setItems(updatedItem));
     }
   }
 
   useEffect(() => {
     initDatabase();
-    syncContactWithDatabase();
+    syncDatabase();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const contacts = useSelector((state: RootState) => state.contact.contact);
 
   const categoriesList = useSelector(
     (state: RootState) => state.category.categories,
