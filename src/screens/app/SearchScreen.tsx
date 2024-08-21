@@ -4,7 +4,7 @@ import {Item} from '@domain';
 import {filterItemsBySearch} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, CardItem, Icon, TextInput} from '@components';
+import {Box, CardItem, Icon, Text, TextInput} from '@components';
 import {Screen} from '@screens';
 
 export function SearchScreen() {
@@ -33,13 +33,21 @@ export function SearchScreen() {
           value={searchText}
           onChangeText={handleSearchChange}
           boxProps={{marginBottom: 's12'}}
-          placeholder="Pesquisa..."
+          placeholder="Insira sua busca aqui..."
           RightComponent={<Icon name="search" color="gray3" />}
         />
       </Box>
-      <Box justifyContent="flex-start" flex={1} gap="s12">
-        {renderCardItems}
-      </Box>
+      {searchItems.length === 0 ? (
+        <Box mb="s12" alignItems="center" justifyContent="center">
+          <Text preset="headingSmall" color="gray3">
+            Faça uma busca para ver os resultados
+          </Text>
+        </Box>
+      ) : (
+        <Box justifyContent="flex-start" flex={1} gap="s12">
+          {renderCardItems}
+        </Box>
+      )}
       <Box />
     </Screen>
   );
