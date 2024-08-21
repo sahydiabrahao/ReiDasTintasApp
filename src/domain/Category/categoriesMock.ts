@@ -12,7 +12,7 @@ export const categoriesMock: Category[] = [
   {name: 'Wood', title: 'Pintura de Madeira', icon: 'wood'},
   {name: 'Metal', title: 'Pintura de Metal', icon: 'metal'},
   {name: 'Floor', title: 'Pintura de Piso', icon: 'floor'},
-  {name: 'Texture', title: 'Textura para Paredes', icon: 'texture'},
+  {name: 'Texture', title: 'Texturas e Pedras Naturais', icon: 'texture'},
   {name: 'Effect', title: 'Efeitos e Marmoratos', icon: 'effect'},
   {name: 'Spray', title: 'Pintura em Spray', icon: 'spray'},
   {name: 'PaintRoll', title: 'Rolos e Suportes de Pintura', icon: 'paintRoll'},
