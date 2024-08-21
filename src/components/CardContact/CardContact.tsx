@@ -56,7 +56,7 @@ export function CardContact({contact}: Props) {
         alignItems="center"
         justifyContent="center"
         backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'grayWhite'
+          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
         }
         padding="s10"
         style={{
@@ -66,7 +66,7 @@ export function CardContact({contact}: Props) {
         {contacts.phone === contact.phone ? (
           <Icon name="delivery" color="grayWhite" size={24} />
         ) : (
-          <Box padding="s12" />
+          <Icon name="delivery" color="gray3" size={24} />
         )}
       </Box>
       <Box
@@ -91,7 +91,7 @@ export function CardContact({contact}: Props) {
         alignItems="center"
         justifyContent="center"
         backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'grayWhite'
+          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
         }
         padding="s10"
         style={{
@@ -101,7 +101,7 @@ export function CardContact({contact}: Props) {
         {contacts.phone === contact.phone ? (
           <Icon name="delivery" color="grayWhite" size={24} />
         ) : (
-          <Box padding="s12" />
+          <Icon name="delivery" color="gray3" size={24} />
         )}
       </Box>
     </TouchableOpacityBox>
