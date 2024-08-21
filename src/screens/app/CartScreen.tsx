@@ -82,7 +82,7 @@ export function CartScreen() {
         <Box backgroundColor="grayWhite">
           <Button
             mb="s12"
-            backgroundColor="bluePrimary"
+            backgroundColor="grayBlack"
             title="Solicitar orçamento gratuíto"
             preset="primary"
             onPress={openWhatsApp}

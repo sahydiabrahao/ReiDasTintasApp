@@ -34,7 +34,7 @@ export function HeaderScreen() {
       justifyContent="center"
       padding="s12"
       backgroundColor="bluePrimary"
-      elevation={2}>
+      elevation={7}>
       {isBackButtonVisible && route.name === 'ContactScreen' ? (
         <Box
           flexDirection="row"
