@@ -17,6 +17,7 @@ import {Screen} from '@screens';
 export function CartScreen() {
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.item.items);
+  const contacts = useSelector((state: RootState) => state.contact.contact);
   const [deletedItemIds, setDeletedItemIds] = useState<string[]>([]);
   const {showToast} = useToast();
 
@@ -55,20 +56,24 @@ export function CartScreen() {
     />
   ));
 
+  const formatPhoneForWhatsApp = (phone: string, countryCode = '55') => {
+    const cleanedPhone = phone.replace(/\D/g, '');
+    return `${countryCode}${cleanedPhone}`;
+  };
   function openWhatsApp() {
-    const phone = '5565996009889'; // Número de telefone no formato internacional
-    let message =
-      'Olá! Por gentileza, gostaria de receber uma cotação para os seguintes itens:\n'; // Mensagem a ser enviada
+    const phone = `${contacts.phone}`;
+
+    const formatedPhone = formatPhoneForWhatsApp(phone);
+
+    let message = 'Olá! Pode enviar a cotação para estes itens:\n';
 
     items.forEach(item => {
       message += `${item.quantity}-${item.brand} ${item.name} ${item.specification} ${item.unit}\n`;
     });
 
-    // Codifica a mensagem para a URL
     const encodedMessage = encodeURIComponent(message);
 
-    // Cria o URL com a mensagem incluída
-    const url = `https://wa.me/${phone}?text=${encodedMessage}`;
+    const url = `https://wa.me/${formatedPhone}?text=${encodedMessage}`;
 
     // Tenta abrir a URL
     Linking.openURL(url)
