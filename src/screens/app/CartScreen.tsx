@@ -25,7 +25,7 @@ export function CartScreen() {
     saveItemIntoDB(items);
     if (deletedItemIds.length > 0) {
       deleteItemIntoDB(deletedItemIds);
-      setDeletedItemIds([]); // Reseta a lista de itens deletados após a atualização do banco de dados
+      setDeletedItemIds([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
