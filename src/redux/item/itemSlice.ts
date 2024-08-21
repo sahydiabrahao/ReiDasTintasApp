@@ -77,12 +77,20 @@ const itemSlice = createSlice({
     setItems: (state, action: PayloadAction<Item[]>) => {
       state.items = action.payload;
     },
+
     pushItem: (state, action: PayloadAction<Item>) => {
-      state.items.push(action.payload);
+      const itemExists = state.items.some(
+        item => item.id === action.payload.id,
+      );
+      if (!itemExists) {
+        state.items.push(action.payload);
+      }
     },
+
     removeItemById: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
     },
+
     incrementItemQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.id === action.payload);
       if (item) {
@@ -100,6 +108,7 @@ const itemSlice = createSlice({
       const categoryName: CategoryName = action.payload;
       state.filteredItems = initialState[categoryName];
     },
+
     filterItemsBySearch: (state, action: PayloadAction<string>) => {
       const searchText = action.payload.toLowerCase();
       if (searchText.trim() === '' || searchText.trim().length < 2) {

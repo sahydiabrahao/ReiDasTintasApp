@@ -92,7 +92,6 @@ export async function deleteItemIntoDB(deletedItemIds: string[]) {
     const db = await connect();
     for (const id of deletedItemIds) {
       await removeItem(db, id);
-      console.log(id);
     }
   } catch (error) {
     console.error('Error updating the database:', error);
