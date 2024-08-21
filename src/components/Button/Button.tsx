@@ -28,7 +28,7 @@ export function Button({
       height={50}
       alignItems="center"
       justifyContent="center"
-      borderRadius="s12"
+      borderRadius="s8"
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       <Text

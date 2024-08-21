@@ -33,7 +33,7 @@ export function CardItem({item}: Props) {
   }
 
   return (
-    <Box borderRadius="s12">
+    <Box borderRadius="s8">
       <Box flexDirection="row">
         <TouchableOpacityBox
           onPress={() => selectItem(item)}
@@ -42,8 +42,8 @@ export function CardItem({item}: Props) {
           backgroundColor="bluePrimary"
           padding="s10"
           style={{
-            borderBottomLeftRadius: 12,
-            borderTopLeftRadius: 12,
+            borderBottomLeftRadius: 8,
+            borderTopLeftRadius: 8,
           }}>
           <Icon name="cart" color="grayWhite" />
         </TouchableOpacityBox>
@@ -78,8 +78,8 @@ export function CardItem({item}: Props) {
           backgroundColor="bluePrimary"
           padding="s10"
           style={{
-            borderBottomRightRadius: 12,
-            borderTopRightRadius: 12,
+            borderBottomRightRadius: 8,
+            borderTopRightRadius: 8,
           }}>
           <Icon name="cart" color="grayWhite" />
         </TouchableOpacityBox>

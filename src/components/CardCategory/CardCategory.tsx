@@ -4,7 +4,7 @@ import {Category, CategoryName} from '@domain';
 import {filterItemsByCategory, selectCategory} from '@redux';
 import {useDispatch} from 'react-redux';
 
-import {Box, Icon, Text, TouchableOpacityBox} from '@components';
+import {Box, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   category: Category;
@@ -29,12 +29,12 @@ export function CardCategory({category}: Props) {
       <Box
         alignItems="center"
         justifyContent="center"
-        backgroundColor="gray5"
-        borderBottomLeftRadius="s12"
-        borderTopLeftRadius="s12"
-        width={64}
+        backgroundColor="bluePrimary"
+        borderBottomLeftRadius="s8"
+        borderTopLeftRadius="s8"
+        width={32}
         height={64}>
-        <Icon name={category.icon} color="grayBlack" size={32} />
+        {/* <Icon name={category.icon} color="bluePrimary" size={32} /> */}
       </Box>
       <Box
         height={64}
@@ -42,12 +42,20 @@ export function CardCategory({category}: Props) {
         alignItems="center"
         justifyContent="center"
         borderWidth={1}
-        borderColor="gray5"
-        borderBottomRightRadius="s12"
-        borderTopRightRadius="s12">
-        <Text preset="headingMedium" color="grayBlack">
+        borderColor="gray4">
+        <Text preset="headingSmall" color="grayBlack">
           {category.title}
         </Text>
+      </Box>
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor="bluePrimary"
+        borderBottomRightRadius="s8"
+        borderTopRightRadius="s8"
+        width={32}
+        height={64}>
+        {/* <Icon name={category.icon} color="bluePrimary" size={32} /> */}
       </Box>
     </TouchableOpacityBox>
   );

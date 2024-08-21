@@ -22,8 +22,8 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           backgroundColor="bluePrimary"
           padding="s10"
           style={{
-            borderBottomLeftRadius: 12,
-            borderTopLeftRadius: 12,
+            borderBottomLeftRadius: 8,
+            borderTopLeftRadius: 8,
           }}>
           <Icon name="delete" color="grayWhite" />
         </TouchableOpacityBox>
@@ -37,7 +37,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             width={120}
             height={120}
             style={{
-              borderRadius: 12,
+              borderRadius: 8,
             }}>
             <Image
               style={{
@@ -66,7 +66,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             backgroundColor="bluePrimary"
             padding="s10"
             style={{
-              borderTopRightRadius: 12,
+              borderTopRightRadius: 8,
             }}>
             <Icon name="plus" color="grayWhite" />
           </TouchableOpacityBox>
@@ -78,7 +78,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             backgroundColor="bluePrimary"
             padding="s10"
             style={{
-              borderBottomRightRadius: 12,
+              borderBottomRightRadius: 8,
             }}>
             <Icon name="minus" color="grayWhite" />
           </TouchableOpacityBox>

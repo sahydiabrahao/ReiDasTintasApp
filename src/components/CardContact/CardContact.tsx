@@ -49,7 +49,7 @@ export function CardContact({contact}: Props) {
       borderWidth={1}
       onPress={() => [selectContact(contact)]}
       mb="s32"
-      borderRadius="s12"
+      borderRadius="s8"
       flexDirection="row"
       justifyContent="space-evenly">
       <Box
@@ -60,8 +60,8 @@ export function CardContact({contact}: Props) {
         }
         padding="s10"
         style={{
-          borderBottomLeftRadius: 12,
-          borderTopLeftRadius: 12,
+          borderBottomLeftRadius: 8,
+          borderTopLeftRadius: 8,
         }}>
         {contacts.phone === contact.phone ? (
           <Icon name="delivery" color="grayWhite" size={24} />
@@ -95,8 +95,8 @@ export function CardContact({contact}: Props) {
         }
         padding="s10"
         style={{
-          borderBottomRightRadius: 12,
-          borderTopRightRadius: 12,
+          borderBottomRightRadius: 8,
+          borderTopRightRadius: 8,
         }}>
         {contacts.phone === contact.phone ? (
           <Icon name="delivery" color="grayWhite" size={24} />
