@@ -4,11 +4,13 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 interface CategoryState {
   categories: Category[];
   selectedCategory: CategoryName;
+  selectedCategoryTitle?: string;
 }
 
 const initialState: CategoryState = {
   categories: categoriesMock,
   selectedCategory: 'Init',
+  selectedCategoryTitle: '',
 };
 
 const categorySlice = createSlice({
@@ -21,12 +23,22 @@ const categorySlice = createSlice({
     selectCategory: (state, action: PayloadAction<CategoryName>) => {
       state.selectedCategory = action.payload;
     },
+    setCategoryTitleByName: (state, action: PayloadAction<string>) => {
+      const category = state.categories.find(
+        cat => cat.name === action.payload,
+      );
+      state.selectedCategoryTitle = category?.title;
+    },
     clearSelectedCategory: state => {
       state.selectedCategory = 'Init';
     },
   },
 });
 
-export const {setCategory, selectCategory, clearSelectedCategory} =
-  categorySlice.actions;
+export const {
+  setCategory,
+  selectCategory,
+  setCategoryTitleByName,
+  clearSelectedCategory,
+} = categorySlice.actions;
 export default categorySlice.reducer;

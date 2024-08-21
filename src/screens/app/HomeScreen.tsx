@@ -8,11 +8,15 @@ import {
 import {RootState, setContact, setItems} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, CardCategory, CardItem} from '@components';
+import {Box, CardCategory, CardItem, Text} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
   const dispatch = useDispatch();
+
+  const selectedCategoryTitle = useSelector(
+    (state: RootState) => state.category.selectedCategoryTitle,
+  );
 
   async function syncDatabase() {
     const updatedContact: any = await syncContactWithDatabase(contacts);
@@ -67,6 +71,11 @@ export function HomeScreen() {
         </Box>
       ) : (
         <Box>
+          <Box mb="s12" alignItems="center" justifyContent="center">
+            <Text preset="headingSmall" color="gray3">
+              {selectedCategoryTitle}
+            </Text>
+          </Box>
           <Box flexGrow={1} justifyContent="flex-start" flex={1} gap="s12">
             {renderCardItems}
           </Box>

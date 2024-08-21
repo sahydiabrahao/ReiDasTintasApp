@@ -1,7 +1,11 @@
 import React from 'react';
 
 import {Category, CategoryName} from '@domain';
-import {filterItemsByCategory, selectCategory} from '@redux';
+import {
+  filterItemsByCategory,
+  selectCategory,
+  setCategoryTitleByName,
+} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
@@ -15,6 +19,7 @@ export function CardCategory({category}: Props) {
 
   function onSelect(categoryName: CategoryName) {
     dispatch(selectCategory(categoryName));
+    dispatch(setCategoryTitleByName(categoryName));
     dispatch(filterItemsByCategory(categoryName));
   }
 

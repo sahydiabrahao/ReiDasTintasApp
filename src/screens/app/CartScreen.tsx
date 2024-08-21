@@ -75,7 +75,6 @@ export function CartScreen() {
 
     const url = `https://wa.me/${formatedPhone}?text=${encodedMessage}`;
 
-    // Tenta abrir a URL
     Linking.openURL(url)
       .then(() => console.log('WhatsApp aberto com a mensagem'))
       .catch(err => console.error('Erro ao abrir o WhatsApp', err));
