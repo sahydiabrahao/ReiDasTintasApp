@@ -8,6 +8,7 @@ import {
   removeItemById,
   RootState,
 } from '@redux';
+import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, CardCart, Text} from '@components';
@@ -17,6 +18,7 @@ export function CartScreen() {
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.item.items);
   const [deletedItemIds, setDeletedItemIds] = useState<string[]>([]);
+  const {showToast} = useToast();
 
   useEffect(() => {
     saveItemIntoDB(items);
@@ -30,6 +32,11 @@ export function CartScreen() {
   function onDelete(id: string) {
     dispatch(removeItemById(id));
     setDeletedItemIds(prev => [...prev, id]);
+    showToast({
+      message: 'Item removido',
+      position: 'bottom',
+      type: 'success',
+    });
   }
   function onIncrement(id: string) {
     dispatch(incrementItemQuantity(id));
