@@ -10,3 +10,4 @@ export * from './CardCategory/CardCategory';
 export * from './HeaderScreen/HeaderScreen';
 export * from './Toast/Toast';
 export * from './CardColor/CardColor';
+export * from './GridColor/GridColor';
