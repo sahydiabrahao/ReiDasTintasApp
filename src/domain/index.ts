@@ -25,3 +25,16 @@ export * from './Contact/contactsMock';
 export * from './Category/type';
 export * from './Category/categoryService';
 export * from './Category/categoriesMock';
+
+export * from './Color/type';
+export * from './Color/colorsMock';
+export * from './Color/palette/beigesAndBrownsMock';
+export * from './Color/palette/blueGreensMock';
+export * from './Color/palette/bluesMock';
+export * from './Color/palette/graysMock';
+export * from './Color/palette/greensMock';
+export * from './Color/palette/orangesMock';
+export * from './Color/palette/redAndPinksMock';
+export * from './Color/palette/violetsMock';
+export * from './Color/palette/yellowGreensMock';
+export * from './Color/palette/yellowsMock';

@@ -9,3 +9,4 @@ export * from './CardCart/CardCart';
 export * from './CardCategory/CardCategory';
 export * from './HeaderScreen/HeaderScreen';
 export * from './Toast/Toast';
+export * from './CardColor/CardColor';

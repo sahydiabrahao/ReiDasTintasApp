@@ -25,6 +25,13 @@ export const mapScreenToProps: Record<
       unfocused: 'cart',
     },
   },
+  ColorScreen: {
+    label: 'Cores',
+    icon: {
+      focused: 'color',
+      unfocused: 'color',
+    },
+  },
   SearchScreen: {
     label: 'Busca',
     icon: {

@@ -13,6 +13,7 @@ export * from './icons/utils/EditIcon';
 export * from './icons/utils/DeliveryIcon';
 export * from './icons/utils/CheckedBoxcon';
 export * from './icons/utils/UncheckedBoxIcon';
+export * from './icons/utils/ColorIcon';
 
 export * from './icons/category/WallIcon';
 export * from './icons/category/PaintForkIcon';

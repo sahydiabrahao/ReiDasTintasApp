@@ -34,6 +34,7 @@ import {
   SpatulaIcon,
   TrowelIcon,
   PaintRollIcon,
+  ColorIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -61,9 +62,10 @@ const iconRegistry = {
   home: HomeIcon,
   cart: CartIcon,
   contact: ContactIcon,
+  search: SearchIcon,
+  color: ColorIcon,
   settings: SettingsIcon,
 
-  search: SearchIcon,
   plus: PlusIcon,
   minus: MinusIcon,
   up: UpIcon,

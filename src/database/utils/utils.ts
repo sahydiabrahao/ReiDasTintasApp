@@ -1,4 +1,4 @@
-import {TABLE_ITEM, TABLE_CONTACT, connect} from '@database';
+import {TABLE_ITEM, TABLE_CONTACT, connect, disconnect} from '@database';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
 enablePromise(true);
@@ -30,6 +30,7 @@ export async function initDatabase() {
     const db = await connect();
     // await drop(db);
     await create(db);
+    await disconnect(db);
   } catch (error) {
     console.error(error);
   }
