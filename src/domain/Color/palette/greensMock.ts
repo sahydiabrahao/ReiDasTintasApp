@@ -1,9 +1,9 @@
 import {Color} from '@domain';
 
 export const greensMock: Color[] = [
-  {name: 'Verde Esmeralda', color: '#006400', textColor: '#FFFFFF'},
-  {name: 'Verde Oliva', color: '#556B2F', textColor: '#FFFFFF'},
-  {name: 'Verde Musgo', color: '#4A5D23', textColor: '#FFFFFF'},
-  {name: 'Verde Água', color: '#00FF7F', textColor: '#000000'},
-  {name: 'Verde Floresta', color: '#228B22', textColor: '#FFFFFF'},
+  {name: 'Verde Esmeralda', hexValue: '#006400', contrastColor: '#FFFFFF'},
+  {name: 'Verde Oliva', hexValue: '#556B2F', contrastColor: '#FFFFFF'},
+  {name: 'Verde Musgo', hexValue: '#4A5D23', contrastColor: '#FFFFFF'},
+  {name: 'Verde Água', hexValue: '#00FF7F', contrastColor: '#000000'},
+  {name: 'Verde Floresta', hexValue: '#228B22', contrastColor: '#FFFFFF'},
 ];

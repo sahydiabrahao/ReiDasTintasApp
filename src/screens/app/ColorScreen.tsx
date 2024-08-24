@@ -20,7 +20,9 @@ import {Screen} from '@screens';
 
 export function ColorScreen() {
   const selectedColor = useSelector((state: RootState) => state.color.color);
-  const favoriteColors = useSelector((state: RootState) => state.color.colors);
+  const favoriteColors = useSelector(
+    (state: RootState) => state.color.favoriteColors,
+  );
 
   return (
     <Screen scrollable>

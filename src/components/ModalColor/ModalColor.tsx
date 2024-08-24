@@ -25,6 +25,7 @@ export function ModalColor({color}: Props) {
   };
   const removeFromFavorites = (selectedColor: string) => {
     dispatch(removeColorByName(selectedColor));
+    dispatch(closeModal());
   };
 
   return (
@@ -41,7 +42,7 @@ export function ModalColor({color}: Props) {
             </Text>
           </Pressable>
 
-          <Box style={[styles.modalColor, {backgroundColor: color.color}]} />
+          <Box style={[styles.modalColor, {backgroundColor: color.hexValue}]} />
           <Text preset="paragraphMedium" mb="s12">
             {color.name}
           </Text>

@@ -1,18 +1,15 @@
-import {Color} from '@domain';
+import {Color, favoriteColorsMock} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface CategoryState {
-  colors: Color[];
+  favoriteColors: Color[];
   color: Color;
   isVisible: boolean;
 }
 
 const initialState: CategoryState = {
-  colors: [
-    {name: 'Branco', color: '#F5F5F5', textColor: '#000000'},
-    {name: 'Gelo', color: '#E8E8E8', textColor: '#000000'},
-  ],
-  color: {name: '', color: '', textColor: ''},
+  favoriteColors: favoriteColorsMock,
+  color: {name: '', hexValue: '', contrastColor: ''},
   isVisible: false,
 };
 
@@ -21,15 +18,15 @@ const colorSlice = createSlice({
   initialState,
   reducers: {
     favoriteColors: (state, action: PayloadAction<Color>) => {
-      const colorExists = state.colors.some(
+      const colorExists = state.favoriteColors.some(
         color => color.name === action.payload.name,
       );
       if (!colorExists) {
-        state.colors.push(action.payload);
+        state.favoriteColors.push(action.payload);
       }
     },
     removeColorByName: (state, action: PayloadAction<string>) => {
-      state.colors = state.colors.filter(
+      state.favoriteColors = state.favoriteColors.filter(
         color => color.name !== action.payload,
       );
     },

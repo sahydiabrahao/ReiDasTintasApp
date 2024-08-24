@@ -33,12 +33,12 @@ export function CardColor({color}: Props) {
         style={{
           borderTopLeftRadius: 8,
           borderBottomRightRadius: 8,
-          backgroundColor: color.color,
+          backgroundColor: color.hexValue,
         }}>
         <Text
           preset="paragraphCaption"
           style={{
-            color: color.textColor,
+            color: color.contrastColor,
           }}>
           {color.name}
         </Text>
