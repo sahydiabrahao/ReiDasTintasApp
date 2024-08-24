@@ -5,7 +5,13 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 
-import {SearchScreen, CartScreen, ColorScreen, HomeScreen} from '@screens';
+import {
+  SearchScreen,
+  CartScreen,
+  ColorScreen,
+  HomeScreen,
+  ContactScreen,
+} from '@screens';
 
 import {AppTabBar} from './AppTabBar';
 
@@ -14,6 +20,7 @@ export type AppTabBottomParamList = {
   CartScreen: undefined;
   ColorScreen: undefined;
   SearchScreen: undefined;
+  ContactScreen: undefined;
 };
 
 const Tab = createBottomTabNavigator<AppTabBottomParamList>();
@@ -31,9 +38,10 @@ export function AppTabNavigator() {
         tabBarStyle: {},
       }}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="CartScreen" component={CartScreen} />
       <Tab.Screen name="ColorScreen" component={ColorScreen} />
+      <Tab.Screen name="CartScreen" component={CartScreen} />
       <Tab.Screen name="SearchScreen" component={SearchScreen} />
+      <Tab.Screen name="ContactScreen" component={ContactScreen} />
     </Tab.Navigator>
   );
 }
