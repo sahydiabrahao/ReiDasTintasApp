@@ -64,5 +64,5 @@ export const $fontSizes: Record<TextVariants, TextStyle> = {
 
 export const $fontFamily = {
   bold: 'Satoshi-Bold',
-  medium: 'Satoshi-Medium',
+  medium: 'Satoshi-Regular',
 };
