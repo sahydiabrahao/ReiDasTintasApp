@@ -13,7 +13,7 @@ type GridColor = {
 export const GridColor: React.FC<GridColor> = ({title, colors}) => {
   const calculateNumColumns = () => {
     const columns = Math.floor(colors.length / 4);
-    return columns > 1 ? columns : 2;
+    return columns > 1 ? columns : 4;
   };
   const [numColumns] = useState(calculateNumColumns());
 
