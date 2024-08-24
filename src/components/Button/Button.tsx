@@ -4,7 +4,7 @@ import {TouchableOpacityBox, TouchableOpacityBoxProps, Text} from '@components';
 
 import {buttonPresets} from './buttonPresets';
 
-export type ButtonPreset = 'primary';
+export type ButtonPreset = 'primary' | 'outiline';
 
 export interface ButtonProps extends TouchableOpacityBoxProps {
   title: string;
@@ -15,7 +15,7 @@ export interface ButtonProps extends TouchableOpacityBoxProps {
 
 export function Button({
   title,
-  preset = 'primary',
+  preset = 'primary' || 'outiline',
   disabled,
   ...touchableOpacityBoxProps
 }: ButtonProps) {

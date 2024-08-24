@@ -8,7 +8,10 @@ interface CategoryState {
 }
 
 const initialState: CategoryState = {
-  colors: [],
+  colors: [
+    {name: 'Branco', color: '#F5F5F5', textColor: '#000000'},
+    {name: 'Gelo', color: '#E8E8E8', textColor: '#000000'},
+  ],
   color: {name: '', color: '', textColor: ''},
   isVisible: false,
 };
@@ -18,8 +21,19 @@ const colorSlice = createSlice({
   initialState,
   reducers: {
     favoriteColors: (state, action: PayloadAction<Color>) => {
-      state.colors.push(action.payload);
+      const colorExists = state.colors.some(
+        color => color.name === action.payload.name,
+      );
+      if (!colorExists) {
+        state.colors.push(action.payload);
+      }
     },
+    removeColorByName: (state, action: PayloadAction<string>) => {
+      state.colors = state.colors.filter(
+        color => color.name !== action.payload,
+      );
+    },
+
     setColor: (state, action: PayloadAction<Color>) => {
       state.color = action.payload;
     },
@@ -32,6 +46,11 @@ const colorSlice = createSlice({
   },
 });
 
-export const {favoriteColors, setColor, openModal, closeModal} =
-  colorSlice.actions;
+export const {
+  favoriteColors,
+  removeColorByName,
+  setColor,
+  openModal,
+  closeModal,
+} = colorSlice.actions;
 export default colorSlice.reducer;

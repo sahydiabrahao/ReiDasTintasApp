@@ -30,4 +30,20 @@ export const buttonPresets: Record<
       content: {color: 'gray2'},
     },
   },
+  outiline: {
+    default: {
+      container: {
+        backgroundColor: 'grayWhite',
+        borderColor: 'bluePrimary',
+        borderWidth: 2,
+      },
+      content: {color: 'bluePrimary'},
+    },
+    disabled: {
+      container: {
+        backgroundColor: 'gray4',
+      },
+      content: {color: 'gray2'},
+    },
+  },
 };

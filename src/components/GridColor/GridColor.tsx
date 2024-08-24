@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList, Text, View, ScrollView} from 'react-native';
 
 import {Color} from '@domain';
@@ -11,6 +11,12 @@ type GridColor = {
 };
 
 export const GridColor: React.FC<GridColor> = ({title, colors}) => {
+  const calculateNumColumns = () => {
+    const columns = Math.floor(colors.length / 4);
+    return columns > 1 ? columns : 2;
+  };
+  const [numColumns] = useState(calculateNumColumns());
+
   const renderColors = ({item}: {item: Color}) => (
     <CardColor key={item.name} color={item} />
   );
@@ -24,7 +30,7 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
         directionalLockEnabled={true}
         alwaysBounceVertical={false}>
         <FlatList
-          numColumns={Math.ceil(colors.length / 4)}
+          numColumns={numColumns}
           data={colors}
           renderItem={renderColors}
           keyExtractor={item => item.name}

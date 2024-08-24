@@ -20,9 +20,11 @@ import {Screen} from '@screens';
 
 export function ColorScreen() {
   const selectedColor = useSelector((state: RootState) => state.color.color);
+  const favoriteColors = useSelector((state: RootState) => state.color.colors);
 
   return (
     <Screen scrollable>
+      <GridColor title="Favoritas" colors={favoriteColors} />
       <GridColor title="Amarelos" colors={yellowsMock} />
       <GridColor title="Amarelos Esverdeados" colors={yellowGreensMock} />
       <GridColor title="Violetas" colors={violetsMock} />

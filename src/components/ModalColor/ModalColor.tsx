@@ -1,8 +1,8 @@
 import React from 'react';
-import {Modal, StyleSheet} from 'react-native';
+import {Modal, Pressable, StyleSheet} from 'react-native';
 
 import {Color} from '@domain';
-import {closeModal, favoriteColors, RootState} from '@redux';
+import {closeModal, favoriteColors, removeColorByName, RootState} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, Text} from '@components';
@@ -23,6 +23,9 @@ export function ModalColor({color}: Props) {
   const addToFavorites = (selectedColor: Color) => {
     dispatch(favoriteColors(selectedColor));
   };
+  const removeFromFavorites = (selectedColor: string) => {
+    dispatch(removeColorByName(selectedColor));
+  };
 
   return (
     <Modal
@@ -32,15 +35,33 @@ export function ModalColor({color}: Props) {
       onRequestClose={handleClose}>
       <Box style={styles.modalBackground}>
         <Box style={styles.modalContent}>
+          <Pressable onPress={() => removeFromFavorites(color.name)}>
+            <Text preset="paragraphCaption" color="error" mb="s12">
+              Desfavoritar
+            </Text>
+          </Pressable>
+
           <Box style={[styles.modalColor, {backgroundColor: color.color}]} />
-          <Text style={styles.modalText}>{color.name}</Text>
-          <Text style={styles.modalText}>Incluir nos favoritos?</Text>
+          <Text preset="paragraphMedium" mb="s12">
+            {color.name}
+          </Text>
+          <Text preset="paragraphMedium" mb="s24">
+            Incluir nos favoritos?
+          </Text>
           <Box
             columnGap="s8"
             flexDirection="row"
             justifyContent="space-between">
-            <Button flexGrow={1} title="Não" onPress={handleClose} />
             <Button
+              preset="outiline"
+              flexGrow={1}
+              title="Não"
+              onPress={handleClose}
+              backgroundColor="grayWhite"
+              borderColor="bluePrimary"
+            />
+            <Button
+              preset="primary"
               flexGrow={1}
               title="Sim"
               onPress={() => addToFavorites(color)}
@@ -71,9 +92,5 @@ const styles = StyleSheet.create({
 
     borderRadius: 10,
     alignItems: 'center',
-  },
-  modalText: {
-    fontSize: 18,
-    marginBottom: 20,
   },
 });

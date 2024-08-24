@@ -7,7 +7,7 @@ const palette = {
 
   yellowSecondary: '#FFDE00',
 
-  redError: '#EA3737',
+  redError: '#E57373',
   greenSuccess: '#4ABC86',
 
   grayBlack: '#07081D',
