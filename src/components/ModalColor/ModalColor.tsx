@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Modal, Pressable, StyleSheet} from 'react-native';
 
+import {addColor, connect} from '@database';
 import {Color} from '@domain';
 import {closeModal, favoriteColors, removeColorByName, RootState} from '@redux';
+import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, Text} from '@components';
@@ -14,6 +16,8 @@ interface Props {
 export function ModalColor({color}: Props) {
   const dispatch = useDispatch();
 
+  const {showToast} = useToast();
+
   const isVisible = useSelector((state: RootState) => state.color.isVisible);
 
   const handleClose = () => {
@@ -22,11 +26,39 @@ export function ModalColor({color}: Props) {
 
   const addToFavorites = (selectedColor: Color) => {
     dispatch(favoriteColors(selectedColor));
+    dispatch(closeModal());
+    showToast({
+      message: 'Cor favoritada!',
+      position: 'bottom',
+      type: 'success',
+    });
   };
   const removeFromFavorites = (selectedColor: string) => {
     dispatch(removeColorByName(selectedColor));
     dispatch(closeModal());
+
+    showToast({
+      message: 'Cor desfavoritada!',
+      position: 'bottom',
+      type: 'success',
+    });
   };
+
+  const selectedColor = useSelector((state: RootState) => state.color.color);
+
+  useEffect(() => {
+    saveFavoriteColorsIntoDB();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedColor]);
+
+  async function saveFavoriteColorsIntoDB() {
+    try {
+      const db = await connect();
+      await addColor(db, selectedColor);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <Modal

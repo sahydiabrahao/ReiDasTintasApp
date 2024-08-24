@@ -21,7 +21,7 @@ export function CardContact({contact}: Props) {
 
   function selectContact(contactSelected: Contact) {
     showToast({
-      message: 'Ótima escolha! ',
+      message: 'Ótima escolha!',
       position: 'bottom',
       type: 'success',
     });

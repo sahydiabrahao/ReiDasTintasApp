@@ -24,3 +24,9 @@ export interface ContactDB {
   district: string;
   phone: string;
 }
+export interface ColorDB {
+  id: string;
+  colorName: string;
+  hexValue: string;
+  contrastColor: string;
+}

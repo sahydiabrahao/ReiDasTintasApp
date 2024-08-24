@@ -8,7 +8,7 @@ import {Box, BoxProps, Icon, IconProps, Text} from '@components';
 import {$shadowProps} from '@theme';
 
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
-const DEFAULT_DURATION = 300;
+const DEFAULT_DURATION = 800;
 
 export function Toast() {
   const {toast, hideToast} = useToast();

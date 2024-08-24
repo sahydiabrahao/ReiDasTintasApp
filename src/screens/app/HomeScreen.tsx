@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 
 import {
   initDatabase,
+  syncColorWithDatabase,
   syncContactWithDatabase,
   syncItemWithDatabase,
 } from '@database';
-import {RootState, setContact, setItems} from '@redux';
+import {favoriteColors, RootState, setContact, setItems} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardCategory, CardItem, Text} from '@components';
@@ -26,6 +27,10 @@ export function HomeScreen() {
     const updatedItem: any = await syncItemWithDatabase();
     if (updatedItem) {
       dispatch(setItems(updatedItem));
+    }
+    const updatedColor: any = await syncColorWithDatabase();
+    if (updatedItem) {
+      dispatch(favoriteColors(updatedColor));
     }
   }
 

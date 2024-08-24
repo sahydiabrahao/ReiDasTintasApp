@@ -1,27 +1,22 @@
 import {connect} from '@database';
-import {Contact} from '@domain';
+import {Color} from '@domain';
+import {favoriteColors} from '@redux';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
-import {TABLE_CONTACT as TABLE_COLOR, ContactDB} from '../types';
+import {TABLE_COLOR, ColorDB} from '../types';
 
 enablePromise(true);
 
-export async function addContact(db: SQLiteDatabase, contact: Contact) {
-  const query = `INSERT OR REPLACE INTO ${TABLE_COLOR} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
-  const values = [
-    '0',
-    contact.phone,
-    contact.city,
-    contact.address,
-    contact.district,
-  ];
-  console.log('Contact successfully updated.');
+export async function addColor(db: SQLiteDatabase, color: Color) {
+  const query = `INSERT OR REPLACE INTO ${TABLE_COLOR} (name, hexValue, contrastColor) VALUES (?, ?, ?)`;
+  const values = [color.name, color.hexValue, color.contrastColor];
+  console.log('Color successfully updated.');
   await db.executeSql(query, values);
 }
 
-export async function fetchAllContacts(db: SQLiteDatabase) {
+export async function fetchAllColors(db: SQLiteDatabase) {
   try {
-    const databaseList: ContactDB[] = [];
+    const databaseList: ColorDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_COLOR}`);
 
     results.forEach(result => {
@@ -29,42 +24,29 @@ export async function fetchAllContacts(db: SQLiteDatabase) {
         databaseList.push(result.rows.item(index));
       }
     });
-    const filteredItems = (await databaseList).filter(
+    const filteredColors = (await databaseList).filter(
       item => item !== undefined,
     );
 
     // console.log('Database List:', databaseList);
-    return filteredItems;
+    return filteredColors;
   } catch (error) {
     // console.error(error);
-    throw Error('Failed to load contacts.');
+    throw Error('Failed to load colors.');
   }
 }
 
-export async function syncContactWithDatabase(contacts: Contact) {
+export async function syncColorWithDatabase() {
   try {
     const db = await connect();
-    const [firstContact] = await fetchAllContacts(db);
+    const firstItem = await fetchAllColors(db);
 
-    if (!firstContact) {
-      return;
-    }
-
-    if (firstContact.phone === contacts.phone) {
-      console.log('Contact already exists:', firstContact);
-      return null;
+    if (!firstItem) {
+      return favoriteColors;
     } else {
-      const {address, city, phone, district} = firstContact;
-
-      const newContact: Contact = {
-        address,
-        city,
-        phone,
-        district,
-      };
-      return newContact;
+      return firstItem;
     }
   } catch (error) {
-    console.error('Error updating the contact in the database:', error);
+    console.error('Error updating the color in the database:', error);
   }
 }
