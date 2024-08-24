@@ -43,7 +43,7 @@ export const mapScreenToProps: Record<
     label: 'Contato',
     icon: {
       focused: 'contact',
-      unfocused: 'search',
+      unfocused: 'contact',
     },
   },
 };

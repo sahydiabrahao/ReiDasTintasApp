@@ -12,23 +12,28 @@ import {
   yellowGreensMock,
   yellowsMock,
 } from '@domain';
+import {RootState} from '@redux';
+import {useSelector} from 'react-redux';
 
-import {GridColor} from '@components';
+import {GridColor, ModalColor} from '@components';
 import {Screen} from '@screens';
 
 export function ColorScreen() {
+  const selectedColor = useSelector((state: RootState) => state.color.color);
+
   return (
     <Screen scrollable>
-      <GridColor title="Azuis" colors={yellowsMock} />
-      <GridColor title="Azuis" colors={yellowGreensMock} />
-      <GridColor title="Azuis" colors={violetsMock} />
-      <GridColor title="Azuis" colors={redAndPinksMock} />
-      <GridColor title="Azuis" colors={orangesMock} />
-      <GridColor title="Azuis" colors={greensMock} />
-      <GridColor title="Azuis" colors={graysMock} />
+      <GridColor title="Amarelos" colors={yellowsMock} />
+      <GridColor title="Amarelos Esverdeados" colors={yellowGreensMock} />
+      <GridColor title="Violetas" colors={violetsMock} />
+      <GridColor title="Vermelhos e Rosas" colors={redAndPinksMock} />
+      <GridColor title="Laranjas" colors={orangesMock} />
+      <GridColor title="Verdes" colors={greensMock} />
+      <GridColor title="Cinzas" colors={graysMock} />
       <GridColor title="Azuis" colors={bluesMock} />
-      <GridColor title="Azuis" colors={blueGreensMock} />
-      <GridColor title="Azuis" colors={beigesAnBrownsMock} />
+      <GridColor title="Azuis Esverdeados" colors={blueGreensMock} />
+      <GridColor title="Beiges e Marrons" colors={beigesAnBrownsMock} />
+      <ModalColor color={selectedColor} />
     </Screen>
   );
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {Color} from '@domain';
+import {openModal, setColor} from '@redux';
+import {useDispatch} from 'react-redux';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
 
@@ -9,8 +11,18 @@ interface Props {
 }
 
 export function CardColor({color}: Props) {
+  const dispatch = useDispatch();
+
+  const handlePress = (color: Color) => {
+    dispatch(openModal());
+    dispatch(setColor(color));
+  };
+
   return (
-    <TouchableOpacityBox flexDirection="row" gap="s8">
+    <TouchableOpacityBox
+      onPress={() => handlePress(color)}
+      flexDirection="row"
+      gap="s8">
       <Box
         mb="s12"
         width={150}
