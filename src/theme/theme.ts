@@ -3,7 +3,7 @@ import {ViewStyle} from 'react-native';
 import {createTheme} from '@shopify/restyle';
 
 const palette = {
-  bluePrimary: '#32A5BB',
+  bluePrimary: '#1E99C5',
 
   yellowSecondary: '#FFDE00',
 
