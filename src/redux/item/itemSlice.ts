@@ -24,6 +24,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface ItemState {
   items: Item[];
+  itemId: string;
   itemsDatabase: Item[];
   Init: Item[];
   Wall: Item[];
@@ -49,6 +50,7 @@ interface ItemState {
 
 const initialState: ItemState = {
   items: [],
+  itemId: '',
   itemsDatabase: itemsMock,
   Init: [],
   Wall: wallMock,
@@ -78,6 +80,9 @@ const itemSlice = createSlice({
   reducers: {
     setItems: (state, action: PayloadAction<Item[]>) => {
       state.items = action.payload;
+    },
+    setItemId: (state, action: PayloadAction<string>) => {
+      state.itemId = action.payload;
     },
 
     pushItem: (state, action: PayloadAction<Item>) => {
@@ -124,6 +129,14 @@ const itemSlice = createSlice({
         ),
       );
     },
+
+    updateItemColor(state, action: PayloadAction<{id: string; color: string}>) {
+      const {id, color} = action.payload;
+      const item = state.items.find(item => item.id === id);
+      if (item) {
+        item.color = color;
+      }
+    },
     openModalCart(state) {
       state.isVisible = true;
     },
@@ -135,12 +148,14 @@ const itemSlice = createSlice({
 
 export const {
   setItems,
+  setItemId,
   pushItem,
   removeItemById,
   incrementItemQuantity,
   decrementItemQuantity,
   filterItemsByCategory,
   filterItemsBySearch,
+  updateItemColor,
   openModalCart,
   closeModalCart,
 } = itemSlice.actions;

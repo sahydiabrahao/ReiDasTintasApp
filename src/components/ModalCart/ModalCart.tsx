@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {Modal, ScrollView, StyleSheet} from 'react-native';
 
-import {closeModalCart, RootState} from '@redux';
+import {connect, setColorForItem} from '@database';
+import {closeModalCart, RootState, updateItemColor} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, Text, TouchableOpacityBox} from '@components';
@@ -9,6 +10,7 @@ import {Box, Button, Text, TouchableOpacityBox} from '@components';
 export function ModalCart() {
   const dispatch = useDispatch();
   const isVisible = useSelector((state: RootState) => state.item.isVisible);
+  const itemId = useSelector((state: RootState) => state.item.itemId);
   const listFavoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,
   );
@@ -17,10 +19,28 @@ export function ModalCart() {
     dispatch(closeModalCart());
   };
 
+  const setColor = (id: string, colorName: string) => {
+    dispatch(updateItemColor({id, color: colorName}));
+    dispatch(closeModalCart());
+    updateColorIntoDB(id, colorName);
+  };
+
+  async function updateColorIntoDB(id: string, name: string) {
+    try {
+      const db = await connect();
+      await setColorForItem(db, id, name);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {}, []);
 
   const renderFavoriteColors = listFavoriteColors.map(color => (
-    <TouchableOpacityBox flexDirection="row" gap="s8">
+    <TouchableOpacityBox
+      onPress={() => setColor(itemId, color.name)}
+      flexDirection="row"
+      gap="s8">
       <Box
         mb="s12"
         width={150}

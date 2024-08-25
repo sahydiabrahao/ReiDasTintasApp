@@ -14,6 +14,7 @@ export interface ItemDB {
   name: string;
   brand: string;
   specification?: string;
+  color?: string;
   unit: string;
   image: string;
 }

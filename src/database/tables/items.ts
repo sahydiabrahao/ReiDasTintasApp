@@ -29,13 +29,14 @@ export async function fetchAllItems(db: SQLiteDatabase) {
 }
 
 export async function addItem(db: SQLiteDatabase, item: Item) {
-  const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, quantity, name, brand, specification, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, quantity, name, brand, specification, color, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
   const values = [
     item.id,
     item.quantity,
     item.name,
     item.brand,
     item.specification,
+    item.color,
     item.unit,
     item.image,
   ];
@@ -59,6 +60,16 @@ export async function removeItem(db: SQLiteDatabase, id: string) {
   const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ?`;
   const value = [id];
   await db.executeSql(query, value);
+}
+
+export async function setColorForItem(
+  db: SQLiteDatabase,
+  id: string,
+  color: string,
+) {
+  const query = `UPDATE ${TABLE_ITEM} SET color = ? WHERE id = ?`;
+  const values = [color, id];
+  await db.executeSql(query, values);
 }
 
 export async function syncItemWithDatabase() {

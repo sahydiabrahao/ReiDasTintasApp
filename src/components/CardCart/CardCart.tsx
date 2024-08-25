@@ -2,7 +2,7 @@ import React from 'react';
 import {Image} from 'react-native';
 
 import {Item} from '@domain';
-import {openModalCart} from '@redux';
+import {openModalCart, setItemId} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
@@ -18,6 +18,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
 
   const handleOpen = () => {
     dispatch(openModalCart());
+    dispatch(setItemId(item.id));
   };
 
   return (
