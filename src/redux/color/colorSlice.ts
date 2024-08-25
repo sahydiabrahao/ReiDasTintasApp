@@ -1,4 +1,4 @@
-import {Color, favoriteColorsMock} from '@domain';
+import {Color} from '@domain';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface CategoryState {
@@ -8,8 +8,8 @@ interface CategoryState {
 }
 
 const initialState: CategoryState = {
-  favoriteColors: favoriteColorsMock,
-  color: {name: '', hexValue: '', contrastColor: ''},
+  favoriteColors: [],
+  color: {name: 'Gelo', hexValue: '#FAFAFA', contrastColor: '#000000'},
   isVisible: false,
 };
 
@@ -17,7 +17,11 @@ const colorSlice = createSlice({
   name: 'color',
   initialState,
   reducers: {
-    favoriteColors: (state, action: PayloadAction<Color>) => {
+    setFavoriteColors: (state, action: PayloadAction<Color[]>) => {
+      state.favoriteColors = action.payload;
+    },
+
+    pushFavoriteColors: (state, action: PayloadAction<Color>) => {
       const colorExists = state.favoriteColors.some(
         color => color.name === action.payload.name,
       );
@@ -44,7 +48,8 @@ const colorSlice = createSlice({
 });
 
 export const {
-  favoriteColors,
+  setFavoriteColors,
+  pushFavoriteColors,
   removeColorByName,
   setColor,
   openModal,

@@ -6,7 +6,7 @@ import {
   syncContactWithDatabase,
   syncItemWithDatabase,
 } from '@database';
-import {favoriteColors, RootState, setContact, setItems} from '@redux';
+import {RootState, setContact, setFavoriteColors, setItems} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardCategory, CardItem, Text} from '@components';
@@ -29,8 +29,8 @@ export function HomeScreen() {
       dispatch(setItems(updatedItem));
     }
     const updatedColor: any = await syncColorWithDatabase();
-    if (updatedItem) {
-      dispatch(favoriteColors(updatedColor));
+    if (updatedColor) {
+      dispatch(setFavoriteColors(updatedColor));
     }
   }
 

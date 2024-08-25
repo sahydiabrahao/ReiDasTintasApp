@@ -87,10 +87,10 @@ export async function saveItemIntoDB(items: Item[]) {
   }
 }
 
-export async function deleteItemIntoDB(deletedItemIds: string[]) {
+export async function deleteItemIntoDB(itemId: string[]) {
   try {
     const db = await connect();
-    for (const id of deletedItemIds) {
+    for (const id of itemId) {
       await removeItem(db, id);
     }
   } catch (error) {

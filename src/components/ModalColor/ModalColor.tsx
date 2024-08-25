@@ -1,9 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Modal, Pressable, StyleSheet} from 'react-native';
 
-import {addColor, connect} from '@database';
+import {deleteFavoriteColorsIntoDB, saveFavoriteColorsIntoDB} from '@database';
 import {Color} from '@domain';
-import {closeModal, favoriteColors, removeColorByName, RootState} from '@redux';
+import {
+  closeModal,
+  pushFavoriteColors,
+  removeColorByName,
+  RootState,
+} from '@redux';
 import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -15,17 +20,19 @@ interface Props {
 
 export function ModalColor({color}: Props) {
   const dispatch = useDispatch();
-
   const {showToast} = useToast();
-
   const isVisible = useSelector((state: RootState) => state.color.isVisible);
+  const [deletedColorNames, setDeletedColorNames] = useState<string[]>([]);
+  const listFavoriteColors = useSelector(
+    (state: RootState) => state.color.favoriteColors,
+  );
 
   const handleClose = () => {
     dispatch(closeModal());
   };
 
   const addToFavorites = (selectedColor: Color) => {
-    dispatch(favoriteColors(selectedColor));
+    dispatch(pushFavoriteColors(selectedColor));
     dispatch(closeModal());
     showToast({
       message: 'Cor favoritada!',
@@ -36,6 +43,7 @@ export function ModalColor({color}: Props) {
   const removeFromFavorites = (selectedColor: string) => {
     dispatch(removeColorByName(selectedColor));
     dispatch(closeModal());
+    setDeletedColorNames(prev => [...prev, selectedColor]);
 
     showToast({
       message: 'Cor desfavoritada!',
@@ -44,21 +52,14 @@ export function ModalColor({color}: Props) {
     });
   };
 
-  const selectedColor = useSelector((state: RootState) => state.color.color);
-
   useEffect(() => {
-    saveFavoriteColorsIntoDB();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedColor]);
-
-  async function saveFavoriteColorsIntoDB() {
-    try {
-      const db = await connect();
-      await addColor(db, selectedColor);
-    } catch (error) {
-      console.error(error);
+    saveFavoriteColorsIntoDB(listFavoriteColors);
+    if (deletedColorNames.length > 0) {
+      deleteFavoriteColorsIntoDB(deletedColorNames);
+      setDeletedColorNames([]);
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listFavoriteColors]);
 
   return (
     <Modal

@@ -26,7 +26,9 @@ export function ColorScreen() {
 
   return (
     <Screen scrollable>
-      <GridColor title="Favoritas" colors={favoriteColors} />
+      {favoriteColors.length > 0 && (
+        <GridColor title="Favoritas" colors={favoriteColors} />
+      )}
       <GridColor title="Amarelos" colors={yellowsMock} />
       <GridColor title="Amarelos Esverdeados" colors={yellowGreensMock} />
       <GridColor title="Violetas" colors={violetsMock} />

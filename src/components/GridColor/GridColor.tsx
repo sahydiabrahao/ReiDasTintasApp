@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {FlatList, Text, View, ScrollView} from 'react-native';
+import {FlatList, Text, ScrollView} from 'react-native';
 
 import {Color} from '@domain';
 
-import {CardColor} from '@components';
+import {Box, CardColor} from '@components';
 
 type GridColor = {
   title: string;
@@ -22,7 +22,7 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
   );
 
   return (
-    <View>
+    <Box>
       <Text>{title}</Text>
       <ScrollView
         horizontal
@@ -40,6 +40,6 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
           showsHorizontalScrollIndicator={false}
         />
       </ScrollView>
-    </View>
+    </Box>
   );
 };

@@ -1,6 +1,5 @@
 import {connect} from '@database';
 import {Color} from '@domain';
-import {favoriteColors} from '@redux';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
 import {TABLE_COLOR, ColorDB} from '../types';
@@ -36,17 +35,45 @@ export async function fetchAllColors(db: SQLiteDatabase) {
   }
 }
 
+export async function removeColor(db: SQLiteDatabase, name: string) {
+  const query = `DELETE FROM ${TABLE_COLOR} WHERE name = ?`;
+  const value = [name];
+  await db.executeSql(query, value);
+}
+
 export async function syncColorWithDatabase() {
   try {
     const db = await connect();
-    const firstItem = await fetchAllColors(db);
+    const firstColor = await fetchAllColors(db);
 
-    if (!firstItem) {
-      return favoriteColors;
+    if (!firstColor) {
+      return null;
     } else {
-      return firstItem;
+      return firstColor;
     }
   } catch (error) {
     console.error('Error updating the color in the database:', error);
+  }
+}
+
+export async function saveFavoriteColorsIntoDB(colors: Color[]) {
+  try {
+    const db = await connect();
+    for (const colorIndex of colors) {
+      await addColor(db, colorIndex);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteFavoriteColorsIntoDB(colorName: string[]) {
+  try {
+    const db = await connect();
+    for (const name of colorName) {
+      await removeColor(db, name);
+    }
+  } catch (error) {
+    console.error('Error updating the database:', error);
   }
 }
