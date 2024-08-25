@@ -2,6 +2,8 @@ import React from 'react';
 import {Image} from 'react-native';
 
 import {Item} from '@domain';
+import {openModalCart} from '@redux';
+import {useDispatch} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 interface Props {
@@ -12,6 +14,12 @@ interface Props {
 }
 
 export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
+  const dispatch = useDispatch();
+
+  const handleOpen = () => {
+    dispatch(openModalCart());
+  };
+
   return (
     <Box mb="s8">
       <Box flexDirection="row">
@@ -27,7 +35,8 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           }}>
           <Icon name="delete" color="grayWhite" />
         </TouchableOpacityBox>
-        <Box
+        <TouchableOpacityBox
+          onPress={handleOpen}
           flexDirection="row"
           flexGrow={1}
           justifyContent="flex-start"
@@ -54,9 +63,11 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             <Text preset="paragraphCaption">{item.brand}</Text>
             <Text preset="paragraphCaption">{item.specification}</Text>
             <Text preset="paragraphCaption">{item.unit}</Text>
+            {item.color && <Text preset="paragraphCaption">{item.color}</Text>}
+
             <Text preset="paragraphCaption">Quantidade: {item.quantity} </Text>
           </Box>
-        </Box>
+        </TouchableOpacityBox>
         <Box alignItems="center" justifyContent="center">
           <TouchableOpacityBox
             alignItems="center"

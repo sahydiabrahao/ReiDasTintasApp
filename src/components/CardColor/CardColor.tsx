@@ -13,9 +13,9 @@ interface Props {
 export function CardColor({color}: Props) {
   const dispatch = useDispatch();
 
-  const handlePress = (color: Color) => {
+  const handlePress = (selectedColor: Color) => {
     dispatch(openModal());
-    dispatch(setColor(color));
+    dispatch(setColor(selectedColor));
   };
 
   return (

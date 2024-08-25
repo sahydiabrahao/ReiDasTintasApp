@@ -1,12 +1,14 @@
 export interface Item {
   id: string;
 
+  image: string;
   name: string;
   brand: string;
   specification?: string;
-  quantity: number;
+  applicationArea?: string;
   base?: string;
   unit: string;
 
-  image: string;
+  color?: string;
+  quantity: number;
 }

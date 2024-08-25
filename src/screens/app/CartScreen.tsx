@@ -11,7 +11,7 @@ import {
 import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, Button, CardCart, Text} from '@components';
+import {Box, Button, CardCart, ModalCart, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CartScreen() {
@@ -92,6 +92,7 @@ export function CartScreen() {
             onPress={openWhatsApp}
           />
           {renderCartItems}
+          <ModalCart />
         </Box>
       ) : (
         <Box mb="s12" alignItems="center" justifyContent="center">

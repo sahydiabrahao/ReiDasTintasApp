@@ -66,8 +66,8 @@ export function CardItem({item}: Props) {
             <Text bold preset="paragraphMedium">
               {item.name}
             </Text>
-            <Text preset="paragraphCaption">{item.brand}</Text>
             <Text preset="paragraphCaption">{item.specification}</Text>
+            <Text preset="paragraphCaption">{item.brand}</Text>
             <Text preset="paragraphCaption">{item.unit}</Text>
           </Box>
         </Box>

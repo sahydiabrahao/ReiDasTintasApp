@@ -12,3 +12,4 @@ export * from './Toast/Toast';
 export * from './CardColor/CardColor';
 export * from './GridColor/GridColor';
 export * from './ModalColor/ModalColor';
+export * from './ModalCart/ModalCart';

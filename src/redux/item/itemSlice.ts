@@ -44,6 +44,7 @@ interface ItemState {
   Solvent: Item[];
   filteredItems: Item[];
   searchItems: Item[];
+  isVisible: boolean;
 }
 
 const initialState: ItemState = {
@@ -68,6 +69,7 @@ const initialState: ItemState = {
   Solvent: solventMock,
   filteredItems: [],
   searchItems: [],
+  isVisible: false,
 };
 
 const itemSlice = createSlice({
@@ -122,6 +124,12 @@ const itemSlice = createSlice({
         ),
       );
     },
+    openModalCart(state) {
+      state.isVisible = true;
+    },
+    closeModalCart(state) {
+      state.isVisible = false;
+    },
   },
 });
 
@@ -133,5 +141,7 @@ export const {
   decrementItemQuantity,
   filterItemsByCategory,
   filterItemsBySearch,
+  openModalCart,
+  closeModalCart,
 } = itemSlice.actions;
 export default itemSlice.reducer;

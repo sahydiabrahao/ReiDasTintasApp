@@ -5,13 +5,15 @@ import {Item} from '../type';
 export const wallMock: Item[] = [
   {
     id: 'W0000',
+    image: SuvinilToqueDeLuz18,
     name: 'Toque de Luz',
     brand: 'Suvinil',
     specification: 'Semibrilho',
-    quantity: 1,
+    applicationArea: 'I/E',
     base: 'Água',
     unit: '18 L',
-    image: SuvinilToqueDeLuz18,
+    color: 'Branco',
+    quantity: 1,
   },
   {
     id: 'W0001',
