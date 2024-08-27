@@ -20,15 +20,12 @@ import {GridColor, ModalColor} from '@components';
 import {Screen} from '@screens';
 
 export function ColorScreen() {
-  // Seleciona a cor atualmente selecionada do estado global
   const selectedColor = useSelector((state: RootState) => state.color.color);
 
-  // Seleciona as cores favoritas do estado global
   const favoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,
   );
 
-  // Define os grupos de cores a serem exibidos
   const colorGroups = [
     {title: 'Amarelos', colors: yellowsMock},
     {title: 'Amarelos Esverdeados', colors: yellowGreensMock},
@@ -52,7 +49,6 @@ export function ColorScreen() {
 
   return (
     <Screen scrollable>
-      {/* Renderiza o componente GridColor para as cores favoritas, se houver */}
       {favoriteColors.length > 0 && (
         <GridColor title="Favoritas" colors={favoriteColors} />
       )}
@@ -76,7 +72,6 @@ export function ColorScreen() {
           </View>
         )}
       </ScrollView>
-      {/* Renderiza o componente ModalColor para a cor selecionada */}
       <ModalColor color={selectedColor} />
     </Screen>
   );
