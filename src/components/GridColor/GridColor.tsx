@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {FlatList, Text, ScrollView} from 'react-native';
+import {FlatList, ScrollView} from 'react-native';
 
 import {Color} from '@domain';
 
-import {Box, CardColor} from '@components';
+import {Box, Text, CardColor} from '@components';
 
 type GridColor = {
   title: string;
@@ -12,7 +12,7 @@ type GridColor = {
 
 export const GridColor: React.FC<GridColor> = ({title, colors}) => {
   const calculateNumColumns = () => {
-    const columns = Math.floor(colors.length / 4);
+    const columns = Math.floor(colors.length / 2);
     return columns > 1 ? columns : 4;
   };
   const [numColumns] = useState(calculateNumColumns());
@@ -23,13 +23,16 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
 
   return (
     <Box>
-      <Text>{title}</Text>
+      <Text preset="paragraphCaption" color="gray2">
+        {title}
+      </Text>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         directionalLockEnabled={true}
         alwaysBounceVertical={false}>
         <FlatList
+          initialNumToRender={6}
           numColumns={numColumns}
           data={colors}
           renderItem={renderColors}

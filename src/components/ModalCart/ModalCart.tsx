@@ -77,7 +77,7 @@ export function ModalCart() {
             Selecione uma cor!
           </Text>
           <ScrollView
-            style={{height: 320}}
+            style={{maxHeight: 320}}
             showsHorizontalScrollIndicator={false}
             directionalLockEnabled={true}
             alwaysBounceVertical={false}>
