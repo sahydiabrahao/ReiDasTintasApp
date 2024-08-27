@@ -38,3 +38,5 @@ export * from './Color/palette/redAndPinksMock';
 export * from './Color/palette/violetsMock';
 export * from './Color/palette/yellowGreensMock';
 export * from './Color/palette/yellowsMock';
+
+export * from './Whatsapp/whatsapp';
