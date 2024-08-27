@@ -15,64 +15,54 @@ import {Screen} from '@screens';
 export function HomeScreen() {
   const dispatch = useDispatch();
 
-  const selectedCategoryTitle = useSelector(
-    (state: RootState) => state.category.selectedCategoryTitle,
-  );
+  // Desestruturação para melhor legibilidade
+  const {
+    contact: {contact: contacts},
+    category: {selectedCategoryTitle, selectedCategory, categories},
+    item: {filteredItems},
+  } = useSelector((state: RootState) => state);
 
-  async function syncDatabase() {
-    const updatedContact: any = await syncContactWithDatabase(contacts);
+  const syncDatabase = async () => {
+    const updatedContact = await syncContactWithDatabase(contacts);
     if (updatedContact) {
       dispatch(setContact(updatedContact));
     }
-    const updatedItem: any = await syncItemWithDatabase();
+
+    const updatedItem = await syncItemWithDatabase();
     if (updatedItem) {
       dispatch(setItems(updatedItem));
     }
+
     const updatedColor: any = await syncColorWithDatabase();
     if (updatedColor) {
       dispatch(setFavoriteColors(updatedColor));
     }
-  }
+  };
 
   useEffect(() => {
     initDatabase();
     syncDatabase();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const contacts = useSelector((state: RootState) => state.contact.contact);
+  const renderCategories = () =>
+    categories.map(category => (
+      <CardCategory key={category.name} category={category} />
+    ));
 
-  const categoriesList = useSelector(
-    (state: RootState) => state.category.categories,
-  );
-
-  const selectedCategoryName = useSelector(
-    (state: RootState) => state.category.selectedCategory,
-  );
-
-  const filterItemsByCategoryList = useSelector(
-    (state: RootState) => state.item.filteredItems,
-  );
-
-  const renderCardCategory = categoriesList.map(category => (
-    <CardCategory key={category.name} category={category} />
-  ));
-
-  const renderCardItems = filterItemsByCategoryList.map(item => (
-    <CardItem key={item.id} item={item} />
-  ));
+  const renderItems = () =>
+    filteredItems.map(item => <CardItem key={item.id} item={item} />);
 
   return (
     <Screen scrollable>
-      {selectedCategoryName === 'Init' ? (
+      {selectedCategory === 'Init' ? (
         <Box
           flexGrow={1}
           justifyContent="flex-start"
           alignItems="flex-start"
           flex={1}
           columnGap="s12">
-          {renderCardCategory}
+          {renderCategories()}
         </Box>
       ) : (
         <Box>
@@ -82,7 +72,7 @@ export function HomeScreen() {
             </Text>
           </Box>
           <Box flexGrow={1} justifyContent="flex-start" flex={1} gap="s12">
-            {renderCardItems}
+            {renderItems()}
           </Box>
         </Box>
       )}

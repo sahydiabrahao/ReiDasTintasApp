@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 
 import {RootState} from '@redux';
 import {useSelector} from 'react-redux';
@@ -7,11 +7,15 @@ import {Box, CardContact, Text} from '@components';
 import {Screen} from '@screens';
 
 export function ContactScreen() {
-  const getContacts = useSelector((state: RootState) => state.contact.contacts);
+  const contacts = useSelector((state: RootState) => state.contact.contacts);
 
-  const renderContacts = getContacts.map(contact => (
-    <CardContact key={contact.phone} contact={contact} />
-  ));
+  const renderContacts = useMemo(
+    () =>
+      contacts.map(contact => (
+        <CardContact key={contact.phone} contact={contact} />
+      )),
+    [contacts],
+  );
 
   return (
     <Screen flex={1}>

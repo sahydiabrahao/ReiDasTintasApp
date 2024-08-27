@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 
 import {deleteItemIntoDB, saveItemIntoDB} from '@database';
 import {openWhatsApp} from '@domain';
@@ -27,34 +27,34 @@ export function CartScreen() {
       deleteItemIntoDB(deletedItemIds);
       setDeletedItemIds([]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [items, deletedItemIds]);
 
-  function onDelete(id: string) {
-    dispatch(removeItemById(id));
-    setDeletedItemIds(prev => [...prev, id]);
-    showToast({
-      message: 'Item removido',
-      position: 'bottom',
-      type: 'success',
-    });
-  }
-  function onIncrement(id: string) {
-    dispatch(incrementItemQuantity(id));
-  }
-  function onDecrement(id: string) {
-    dispatch(decrementItemQuantity(id));
-  }
+  const onDelete = useCallback(
+    (id: string) => {
+      dispatch(removeItemById(id));
+      setDeletedItemIds(prev => [...prev, id]);
+      showToast({
+        message: 'Item removido',
+        position: 'bottom',
+        type: 'success',
+      });
+    },
+    [dispatch, showToast],
+  );
 
-  const renderCartItems = items.map(item => (
-    <CardCart
-      key={item.id}
-      item={item}
-      onDelete={onDelete}
-      onIncrement={onIncrement}
-      onDecrement={onDecrement}
-    />
-  ));
+  const onIncrement = useCallback(
+    (id: string) => {
+      dispatch(incrementItemQuantity(id));
+    },
+    [dispatch],
+  );
+
+  const onDecrement = useCallback(
+    (id: string) => {
+      dispatch(decrementItemQuantity(id));
+    },
+    [dispatch],
+  );
 
   return (
     <Screen scrollable>
@@ -63,11 +63,19 @@ export function CartScreen() {
           <Button
             mb="s12"
             backgroundColor="grayBlack"
-            title="Solicitar orçamento gratuíto"
+            title="Solicitar orçamento gratuito"
             preset="primary"
             onPress={() => openWhatsApp(contacts, items)}
           />
-          {renderCartItems}
+          {items.map(item => (
+            <CardCart
+              key={item.id}
+              item={item}
+              onDelete={onDelete}
+              onIncrement={onIncrement}
+              onDecrement={onDecrement}
+            />
+          ))}
           <ModalCart />
         </Box>
       ) : (

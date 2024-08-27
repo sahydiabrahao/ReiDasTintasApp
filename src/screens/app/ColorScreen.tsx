@@ -24,21 +24,31 @@ export function ColorScreen() {
     (state: RootState) => state.color.favoriteColors,
   );
 
+  const colorGroups = [
+    {title: 'Amarelos', colors: yellowsMock},
+    {title: 'Amarelos Esverdeados', colors: yellowGreensMock},
+    {title: 'Violetas', colors: violetsMock},
+    {title: 'Vermelhos e Rosas', colors: redAndPinksMock},
+    {title: 'Laranjas', colors: orangesMock},
+    {title: 'Verdes', colors: greensMock},
+    {title: 'Cinzas', colors: graysMock},
+    {title: 'Azuis', colors: bluesMock},
+    {title: 'Azuis Esverdeados', colors: blueGreensMock},
+    {title: 'Beiges e Marrons', colors: beigesAnBrownsMock},
+  ];
+
   return (
     <Screen scrollable>
       {favoriteColors.length > 0 && (
         <GridColor title="Favoritas" colors={favoriteColors} />
       )}
-      <GridColor title="Amarelos" colors={yellowsMock} />
-      <GridColor title="Amarelos Esverdeados" colors={yellowGreensMock} />
-      <GridColor title="Violetas" colors={violetsMock} />
-      <GridColor title="Vermelhos e Rosas" colors={redAndPinksMock} />
-      <GridColor title="Laranjas" colors={orangesMock} />
-      <GridColor title="Verdes" colors={greensMock} />
-      <GridColor title="Cinzas" colors={graysMock} />
-      <GridColor title="Azuis" colors={bluesMock} />
-      <GridColor title="Azuis Esverdeados" colors={blueGreensMock} />
-      <GridColor title="Beiges e Marrons" colors={beigesAnBrownsMock} />
+      {colorGroups.map(group => (
+        <GridColor
+          key={group.title}
+          title={group.title}
+          colors={group.colors}
+        />
+      ))}
       <ModalColor color={selectedColor} />
     </Screen>
   );
