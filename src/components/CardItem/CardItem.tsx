@@ -41,10 +41,7 @@ export function CardItem({item}: Props) {
           justifyContent="center"
           backgroundColor="bluePrimary"
           padding="s10"
-          style={{
-            borderBottomLeftRadius: 8,
-            borderTopLeftRadius: 8,
-          }}>
+          borderTopLeftRadius="s8">
           <Icon name="cart" color="grayWhite" />
         </TouchableOpacityBox>
         <Box
@@ -77,10 +74,7 @@ export function CardItem({item}: Props) {
           justifyContent="center"
           backgroundColor="bluePrimary"
           padding="s10"
-          style={{
-            borderBottomRightRadius: 8,
-            borderTopRightRadius: 8,
-          }}>
+          borderBottomRightRadius="s8">
           <Icon name="cart" color="grayWhite" />
         </TouchableOpacityBox>
       </Box>

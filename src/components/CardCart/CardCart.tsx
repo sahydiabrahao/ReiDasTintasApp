@@ -30,10 +30,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           justifyContent="center"
           backgroundColor="bluePrimary"
           padding="s10"
-          style={{
-            borderBottomLeftRadius: 8,
-            borderTopLeftRadius: 8,
-          }}>
+          borderTopLeftRadius="s8">
           <Icon name="delete" color="grayWhite" />
         </TouchableOpacityBox>
         <TouchableOpacityBox
@@ -43,12 +40,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           justifyContent="flex-start"
           borderColor="gray5"
           borderWidth={1}>
-          <Box
-            width={120}
-            height={120}
-            style={{
-              borderRadius: 8,
-            }}>
+          <Box width={120} height={120}>
             <Image
               style={{
                 flex: 1,
@@ -76,10 +68,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             flexGrow={1}
             onPress={() => onIncrement(item.id)}
             backgroundColor="bluePrimary"
-            padding="s10"
-            style={{
-              borderTopRightRadius: 8,
-            }}>
+            padding="s10">
             <Icon name="plus" color="grayWhite" />
           </TouchableOpacityBox>
           <TouchableOpacityBox
@@ -89,9 +78,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             onPress={() => onDecrement(item.id)}
             backgroundColor="bluePrimary"
             padding="s10"
-            style={{
-              borderBottomRightRadius: 8,
-            }}>
+            borderBottomRightRadius="s8">
             <Icon name="minus" color="grayWhite" />
           </TouchableOpacityBox>
         </Box>

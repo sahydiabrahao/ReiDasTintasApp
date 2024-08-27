@@ -6,7 +6,7 @@ import {RootState, setContact} from '@redux';
 import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, Icon, Text, TouchableOpacityBox} from '@components';
+import {Box, Text, TouchableOpacityBox} from '@components';
 
 interface Props {
   contact: Contact;
@@ -59,16 +59,8 @@ export function CardContact({contact}: Props) {
           contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
         }
         padding="s10"
-        style={{
-          borderBottomLeftRadius: 8,
-          borderTopLeftRadius: 8,
-        }}>
-        {contacts.phone === contact.phone ? (
-          <Icon name="delivery" color="grayWhite" size={24} />
-        ) : (
-          <Icon name="delivery" color="gray3" size={24} />
-        )}
-      </Box>
+        borderTopLeftRadius="s8"
+      />
       <Box
         flexGrow={1}
         justifyContent="center"
@@ -94,16 +86,8 @@ export function CardContact({contact}: Props) {
           contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
         }
         padding="s10"
-        style={{
-          borderBottomRightRadius: 8,
-          borderTopRightRadius: 8,
-        }}>
-        {contacts.phone === contact.phone ? (
-          <Icon name="delivery" color="grayWhite" size={24} />
-        ) : (
-          <Icon name="delivery" color="gray3" size={24} />
-        )}
-      </Box>
+        borderBottomRightRadius="s8"
+      />
     </TouchableOpacityBox>
   );
 }

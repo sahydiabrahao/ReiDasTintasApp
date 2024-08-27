@@ -35,12 +35,10 @@ export function CardCategory({category}: Props) {
         alignItems="center"
         justifyContent="center"
         backgroundColor="bluePrimary"
-        borderBottomLeftRadius="s8"
         borderTopLeftRadius="s8"
-        width={32}
-        height={64}>
-        {/* <Icon name={category.icon} color="bluePrimary" size={32} /> */}
-      </Box>
+        padding="s10"
+        height={64}
+      />
       <Box
         height={64}
         flexGrow={1}
@@ -57,11 +55,9 @@ export function CardCategory({category}: Props) {
         justifyContent="center"
         backgroundColor="bluePrimary"
         borderBottomRightRadius="s8"
-        borderTopRightRadius="s8"
-        width={32}
-        height={64}>
-        {/* <Icon name={category.icon} color="bluePrimary" size={32} /> */}
-      </Box>
+        padding="s10"
+        height={64}
+      />
     </TouchableOpacityBox>
   );
 }
