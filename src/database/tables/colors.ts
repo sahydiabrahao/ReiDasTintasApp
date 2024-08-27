@@ -41,9 +41,8 @@ export async function removeColor(db: SQLiteDatabase, name: string) {
   await db.executeSql(query, value);
 }
 
-export async function syncColorWithDatabase() {
+export async function syncColorWithDatabase(db: SQLiteDatabase) {
   try {
-    const db = await connect();
     const firstColor = await fetchAllColors(db);
 
     if (!firstColor) {

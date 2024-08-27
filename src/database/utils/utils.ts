@@ -1,10 +1,4 @@
-import {
-  TABLE_ITEM,
-  TABLE_CONTACT,
-  connect,
-  disconnect,
-  TABLE_COLOR,
-} from '@database';
+import {TABLE_ITEM, TABLE_CONTACT, TABLE_COLOR} from '@database';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
 enablePromise(true);
@@ -37,12 +31,11 @@ export async function drop(db: SQLiteDatabase) {
   console.log(`${TABLE_COLOR} has been deleted`);
 }
 
-export async function initDatabase() {
+export async function initDatabase(db: SQLiteDatabase) {
   try {
-    const db = await connect();
     // await drop(db);
     await create(db);
-    await disconnect(db);
+    return db;
   } catch (error) {
     console.error(error);
   }

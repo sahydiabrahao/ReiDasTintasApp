@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 
 import {
+  connect,
+  disconnect,
   initDatabase,
   syncColorWithDatabase,
   syncContactWithDatabase,
@@ -23,24 +25,31 @@ export function HomeScreen() {
   } = useSelector((state: RootState) => state);
 
   const syncDatabase = async () => {
-    const updatedContact = await syncContactWithDatabase(contacts);
-    if (updatedContact) {
-      dispatch(setContact(updatedContact));
-    }
+    const db = await connect();
 
-    const updatedItem = await syncItemWithDatabase();
-    if (updatedItem) {
-      dispatch(setItems(updatedItem));
-    }
+    try {
+      initDatabase(db);
 
-    const updatedColor: any = await syncColorWithDatabase();
-    if (updatedColor) {
-      dispatch(setFavoriteColors(updatedColor));
+      const updatedContact = await syncContactWithDatabase(db, contacts);
+      if (updatedContact) {
+        dispatch(setContact(updatedContact));
+      }
+
+      const updatedItem = await syncItemWithDatabase(db);
+      if (updatedItem) {
+        dispatch(setItems(updatedItem));
+      }
+
+      const updatedColor: any = await syncColorWithDatabase(db);
+      if (updatedColor) {
+        dispatch(setFavoriteColors(updatedColor));
+      }
+    } finally {
+      disconnect(db);
     }
   };
 
   useEffect(() => {
-    initDatabase();
     syncDatabase();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

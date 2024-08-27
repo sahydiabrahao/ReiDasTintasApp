@@ -1,4 +1,4 @@
-import {connect} from '@database';
+import {connect, disconnect} from '@database';
 import {Item} from '@domain';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
@@ -72,9 +72,8 @@ export async function setColorForItem(
   await db.executeSql(query, values);
 }
 
-export async function syncItemWithDatabase() {
+export async function syncItemWithDatabase(db: SQLiteDatabase) {
   try {
-    const db = await connect();
     const firstItem = await fetchAllItems(db);
 
     if (!firstItem) {
@@ -88,13 +87,15 @@ export async function syncItemWithDatabase() {
 }
 
 export async function saveItemIntoDB(items: Item[]) {
+  const db = await connect();
   try {
-    const db = await connect();
     for (const itemIndex of items) {
       await addItem(db, itemIndex);
     }
   } catch (error) {
     console.error(error);
+  } finally {
+    disconnect(db);
   }
 }
 

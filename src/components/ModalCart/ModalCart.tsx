@@ -38,6 +38,7 @@ export function ModalCart() {
 
   const renderFavoriteColors = listFavoriteColors.map(color => (
     <TouchableOpacityBox
+      key={color.name}
       onPress={() => setColor(itemId, color.name)}
       flexDirection="row"
       gap="s8">

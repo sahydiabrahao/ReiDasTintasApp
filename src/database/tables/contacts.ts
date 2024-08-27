@@ -1,4 +1,3 @@
-import {connect} from '@database';
 import {Contact} from '@domain';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
@@ -41,9 +40,11 @@ export async function fetchAllContacts(db: SQLiteDatabase) {
   }
 }
 
-export async function syncContactWithDatabase(contacts: Contact) {
+export async function syncContactWithDatabase(
+  db: SQLiteDatabase,
+  contacts: Contact,
+) {
   try {
-    const db = await connect();
     const [firstContact] = await fetchAllContacts(db);
 
     if (!firstContact) {
