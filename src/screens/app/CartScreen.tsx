@@ -90,9 +90,9 @@ export function CartScreen() {
             <CardCart
               key={item.id}
               item={item}
-              onDelete={handleDeleteItem}
-              onIncrement={handleIncrementItem}
-              onDecrement={handleDecrementItem}
+              handleDeleteItem={handleDeleteItem}
+              handleIncrementItem={handleIncrementItem}
+              handleDecrementItem={handleDecrementItem}
             />
           ))}
           <ModalCart />

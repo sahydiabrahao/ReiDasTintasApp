@@ -21,7 +21,21 @@ export function CardContact({contact}: Props) {
   const dispatch = useDispatch();
   const {showToast} = useToast();
 
-  function handleContact(contactSelected: Contact) {
+  async function syncDatabase() {
+    const db = await connectToDatabase();
+    try {
+      await insertContact(db, contacts);
+    } finally {
+      disconnectFromDatabase(db);
+    }
+  }
+
+  useEffect(() => {
+    syncDatabase();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contacts]);
+
+  function handleInsertContact(contactSelected: Contact) {
     dispatch(setContact(contactSelected));
 
     showToast({
@@ -31,22 +45,9 @@ export function CardContact({contact}: Props) {
     });
   }
 
-  async function handleInsertContact() {
-    const db = await connectToDatabase();
-    try {
-      await insertContact(db, contacts);
-    } finally {
-      disconnectFromDatabase(db);
-    }
-  }
-  useEffect(() => {
-    handleInsertContact();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contacts]);
-
   return (
     <TouchableOpacityBox
-      onPress={() => [handleContact(contact)]}
+      onPress={() => [handleInsertContact(contact)]}
       mb="s32"
       flexDirection="row"
       justifyContent="space-evenly">

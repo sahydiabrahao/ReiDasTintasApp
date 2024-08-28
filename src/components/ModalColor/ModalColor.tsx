@@ -55,9 +55,10 @@ export function ModalColor({color}: Props) {
     }
   };
 
-  const handleCloseModalColor = () => {
-    dispatch(closeModal());
-  };
+  useEffect(() => {
+    syncDatabase(favoriteColors, deletedColorNames);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favoriteColors]);
 
   const handleStoreFavoriteColors = (selectedColor: Color) => {
     dispatch(pushFavoriteColors(selectedColor));
@@ -81,10 +82,9 @@ export function ModalColor({color}: Props) {
     });
   };
 
-  useEffect(() => {
-    syncDatabase(favoriteColors, deletedColorNames);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favoriteColors]);
+  const handleCloseModalColor = () => {
+    dispatch(closeModal());
+  };
 
   return (
     <Modal

@@ -17,7 +17,7 @@ interface Props {
 export function CardCategory({category}: Props) {
   const dispatch = useDispatch();
 
-  function onSelect(categoryName: CategoryName) {
+  function handleSelectCategoryName(categoryName: CategoryName) {
     dispatch(selectCategory(categoryName));
     dispatch(setCategoryTitleByName(categoryName));
     dispatch(filterItemsByCategory(categoryName));
@@ -25,7 +25,7 @@ export function CardCategory({category}: Props) {
 
   return (
     <TouchableOpacityBox
-      onPress={() => onSelect(category.name)}
+      onPress={() => handleSelectCategoryName(category.name)}
       flexDirection="row"
       mb="s8"
       borderRadius="s12"

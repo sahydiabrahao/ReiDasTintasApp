@@ -13,14 +13,14 @@ interface Props {
 export function CardColor({color}: Props) {
   const dispatch = useDispatch();
 
-  const handlePress = (selectedColor: Color) => {
+  const handleOpenModalColor = (selectedColor: Color) => {
     dispatch(openModal());
     dispatch(setColor(selectedColor));
   };
 
   return (
     <TouchableOpacityBox
-      onPress={() => handlePress(color)}
+      onPress={() => handleOpenModalColor(color)}
       flexDirection="row"
       gap="s8">
       <Box

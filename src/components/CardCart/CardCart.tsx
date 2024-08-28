@@ -8,15 +8,20 @@ import {useDispatch} from 'react-redux';
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 interface Props {
   item: Item;
-  onDelete: (id: string) => void;
-  onIncrement: (id: string) => void;
-  onDecrement: (id: string) => void;
+  handleDeleteItem: (id: string) => void;
+  handleIncrementItem: (id: string) => void;
+  handleDecrementItem: (id: string) => void;
 }
 
-export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
+export function CardCart({
+  item,
+  handleDeleteItem,
+  handleIncrementItem,
+  handleDecrementItem,
+}: Props) {
   const dispatch = useDispatch();
 
-  const handleOpen = () => {
+  const handleOpenModalCart = () => {
     dispatch(openModalCart());
     dispatch(setItemId(item.id));
   };
@@ -25,7 +30,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
     <Box mb="s8">
       <Box flexDirection="row">
         <TouchableOpacityBox
-          onPress={() => onDelete(item.id)}
+          onPress={() => handleDeleteItem(item.id)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"
@@ -34,7 +39,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
           <Icon name="delete" color="grayWhite" />
         </TouchableOpacityBox>
         <TouchableOpacityBox
-          onPress={handleOpen}
+          onPress={handleOpenModalCart}
           flexDirection="row"
           flexGrow={1}
           justifyContent="flex-start"
@@ -66,7 +71,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             alignItems="center"
             justifyContent="center"
             flexGrow={1}
-            onPress={() => onIncrement(item.id)}
+            onPress={() => handleIncrementItem(item.id)}
             backgroundColor="bluePrimary"
             padding="s10">
             <Icon name="plus" color="grayWhite" />
@@ -75,7 +80,7 @@ export function CardCart({item, onDelete, onIncrement, onDecrement}: Props) {
             alignItems="center"
             justifyContent="center"
             flexGrow={1}
-            onPress={() => onDecrement(item.id)}
+            onPress={() => handleDecrementItem(item.id)}
             backgroundColor="bluePrimary"
             padding="s10"
             borderBottomRightRadius="s8">

@@ -28,15 +28,15 @@ export function ModalCart() {
     }
   }
 
-  const handleCloseModalCart = () => {
-    dispatch(closeModalCart());
-  };
-
   const handleSetColorForItem = (id: string, colorName: string) => {
     dispatch(updateItemColor({id: id, color: colorName}));
 
     syncDatabase(id, colorName);
 
+    dispatch(closeModalCart());
+  };
+
+  const handleCloseModalCart = () => {
     dispatch(closeModalCart());
   };
 
