@@ -41,8 +41,6 @@ export function HomeScreen() {
       if (updatedColor) {
         dispatch(setFavoriteColors(updatedColor));
       }
-    } catch (error) {
-      console.error('Error syncing database:', error);
     } finally {
       disconnectFromDatabase(db);
     }

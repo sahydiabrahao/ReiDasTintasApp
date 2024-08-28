@@ -1,6 +1,10 @@
 import React, {useEffect} from 'react';
 
-import {connectToDatabase, insertContact} from '@database';
+import {
+  connectToDatabase,
+  disconnectFromDatabase,
+  insertContact,
+} from '@database';
 import {Contact} from '@domain';
 import {RootState, setContact} from '@redux';
 import {useToast} from '@services';
@@ -28,11 +32,11 @@ export function CardContact({contact}: Props) {
   }
 
   async function handleInsertContact() {
+    const db = await connectToDatabase();
     try {
-      const db = await connectToDatabase();
       await insertContact(db, contacts);
-    } catch (error) {
-      console.error(error);
+    } finally {
+      disconnectFromDatabase(db);
     }
   }
   useEffect(() => {

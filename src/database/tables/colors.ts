@@ -56,8 +56,8 @@ export async function updateColor(db: SQLiteDatabase) {
 }
 
 export async function storeFavoriteColors(colors: Color[]) {
+  const db = await connectToDatabase();
   try {
-    const db = await connectToDatabase();
     for (const colorIndex of colors) {
       await insertColor(db, colorIndex);
     }
@@ -67,8 +67,8 @@ export async function storeFavoriteColors(colors: Color[]) {
 }
 
 export async function deleteFavoriteColors(colorName: string[]) {
+  const db = await connectToDatabase();
   try {
-    const db = await connectToDatabase();
     for (const name of colorName) {
       await deleteColor(db, name);
     }

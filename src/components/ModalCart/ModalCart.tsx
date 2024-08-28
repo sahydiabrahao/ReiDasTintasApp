@@ -1,7 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Modal, ScrollView, StyleSheet} from 'react-native';
 
-import {connectToDatabase, setColorForItem} from '@database';
+import {
+  connectToDatabase,
+  disconnectFromDatabase,
+  setColorForItem,
+} from '@database';
 import {closeModalCart, RootState, updateItemColor} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -11,35 +15,35 @@ export function ModalCart() {
   const dispatch = useDispatch();
   const isVisible = useSelector((state: RootState) => state.item.isVisible);
   const itemId = useSelector((state: RootState) => state.item.itemId);
-  const listFavoriteColors = useSelector(
+  const favoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,
   );
 
-  const handleClose = () => {
-    dispatch(closeModalCart());
-  };
-
-  const setColor = (id: string, colorName: string) => {
-    dispatch(updateItemColor({id, color: colorName}));
-    dispatch(closeModalCart());
-    updateColorIntoDB(id, colorName);
-  };
-
-  async function updateColorIntoDB(id: string, name: string) {
+  async function syncDatabase(id: string, name: string) {
+    const db = await connectToDatabase();
     try {
-      const db = await connectToDatabase();
       await setColorForItem(db, id, name);
-    } catch (error) {
-      console.error(error);
+    } finally {
+      disconnectFromDatabase(db);
     }
   }
 
-  useEffect(() => {}, []);
+  const handleCloseModalCart = () => {
+    dispatch(closeModalCart());
+  };
 
-  const renderFavoriteColors = listFavoriteColors.map(color => (
+  const handleSetColorForItem = (id: string, colorName: string) => {
+    dispatch(updateItemColor({id: id, color: colorName}));
+
+    syncDatabase(id, colorName);
+
+    dispatch(closeModalCart());
+  };
+
+  const renderFavoriteColors = favoriteColors.map(color => (
     <TouchableOpacityBox
       key={color.name}
-      onPress={() => setColor(itemId, color.name)}
+      onPress={() => handleSetColorForItem(itemId, color.name)}
       flexDirection="row"
       gap="s8">
       <Box
@@ -70,7 +74,7 @@ export function ModalCart() {
       animationType="slide"
       transparent={true}
       visible={isVisible}
-      onRequestClose={handleClose}>
+      onRequestClose={handleCloseModalCart}>
       <Box style={styles.modalBackground}>
         <Box style={styles.modalContent}>
           <Box style={[styles.modalColor]} />
@@ -93,7 +97,7 @@ export function ModalCart() {
               flexGrow={1}
               mt="s8"
               title="Sair"
-              onPress={handleClose}
+              onPress={handleCloseModalCart}
               backgroundColor="grayWhite"
               borderColor="bluePrimary"
             />

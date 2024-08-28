@@ -38,8 +38,6 @@ export function CartScreen() {
         }
         setDeletedItemIds([]);
       }
-    } catch (error) {
-      console.error('Error syncing database:', error);
     } finally {
       disconnectFromDatabase(db);
     }

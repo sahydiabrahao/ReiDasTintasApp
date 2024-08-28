@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Image} from 'react-native';
 
 import {connectToDatabase, disconnectFromDatabase, insertItem} from '@database';
@@ -23,25 +23,21 @@ export function CardItem({item}: Props) {
       for (const itemIndex of itemsToSync) {
         await insertItem(db, itemIndex);
       }
-    } catch (error) {
-      console.error('Error syncing database:', error);
     } finally {
       disconnectFromDatabase(db);
     }
   };
 
-  useEffect(() => {
-    syncDatabase(items);
-  }, [items]);
-
   async function handleInsertItem(itemSelected: Item) {
+    dispatch(pushItem(itemSelected));
+
+    syncDatabase(items);
+
     showToast({
       message: 'Item adicionado',
       position: 'bottom',
       type: 'success',
     });
-
-    dispatch(pushItem(itemSelected));
   }
 
   return (

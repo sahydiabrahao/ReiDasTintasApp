@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Modal, Pressable, StyleSheet} from 'react-native';
 
-import {deleteFavoriteColors, storeFavoriteColors} from '@database';
+import {
+  connectToDatabase,
+  deleteColor,
+  deleteFavoriteColors,
+  disconnectFromDatabase,
+  insertColor,
+  storeFavoriteColors,
+} from '@database';
 import {Color} from '@domain';
 import {
   closeModal,
@@ -23,16 +30,44 @@ export function ModalColor({color}: Props) {
   const {showToast} = useToast();
   const isVisible = useSelector((state: RootState) => state.color.isVisible);
   const [deletedColorNames, setDeletedColorNames] = useState<string[]>([]);
-  const listFavoriteColors = useSelector(
+  const favoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,
   );
 
-  const handleClose = () => {
+  const syncDatabase = async (
+    colorsToSync?: Color[],
+    colorsNameToSync?: string[],
+  ) => {
+    const db = await connectToDatabase();
+    try {
+      if (colorsToSync && colorsToSync.length > 0) {
+        for (const colorIndex of colorsToSync) {
+          await insertColor(db, colorIndex);
+        }
+      }
+
+      if (colorsNameToSync && colorsNameToSync.length > 0) {
+        for (const nameIndex of colorsNameToSync) {
+          await deleteColor(db, nameIndex);
+        }
+        setDeletedColorNames([]);
+      }
+    } catch (error) {
+      console.error('Error syncing database:', error);
+    } finally {
+      disconnectFromDatabase(db);
+    }
+  };
+
+  const handleCloseModalColor = () => {
     dispatch(closeModal());
   };
 
-  const addToFavorites = (selectedColor: Color) => {
+  const handleStoreFavoriteColors = (selectedColor: Color) => {
     dispatch(pushFavoriteColors(selectedColor));
+
+    syncDatabase(favoriteColors, undefined);
+
     dispatch(closeModal());
     showToast({
       message: 'Cor favoritada!',
@@ -40,8 +75,12 @@ export function ModalColor({color}: Props) {
       type: 'success',
     });
   };
-  const removeFromFavorites = (selectedColor: string) => {
+
+  const handleDeleteFavoriteColors = (selectedColor: string) => {
     dispatch(removeColorByName(selectedColor));
+
+    syncDatabase(undefined, deletedColorNames);
+
     dispatch(closeModal());
     setDeletedColorNames(prev => [...prev, selectedColor]);
 
@@ -53,23 +92,23 @@ export function ModalColor({color}: Props) {
   };
 
   useEffect(() => {
-    storeFavoriteColors(listFavoriteColors);
+    storeFavoriteColors(favoriteColors);
     if (deletedColorNames.length > 0) {
       deleteFavoriteColors(deletedColorNames);
       setDeletedColorNames([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listFavoriteColors]);
+  }, [favoriteColors]);
 
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={isVisible}
-      onRequestClose={handleClose}>
+      onRequestClose={handleCloseModalColor}>
       <Box style={styles.modalBackground}>
         <Box style={styles.modalContent}>
-          <Pressable onPress={() => removeFromFavorites(color.name)}>
+          <Pressable onPress={() => handleDeleteFavoriteColors(color.name)}>
             <Text preset="paragraphCaption" color="error" mb="s12">
               Desfavoritar
             </Text>
@@ -90,7 +129,7 @@ export function ModalColor({color}: Props) {
               preset="outiline"
               flexGrow={1}
               title="Não"
-              onPress={handleClose}
+              onPress={handleCloseModalColor}
               backgroundColor="grayWhite"
               borderColor="bluePrimary"
             />
@@ -98,7 +137,7 @@ export function ModalColor({color}: Props) {
               preset="primary"
               flexGrow={1}
               title="Sim"
-              onPress={() => addToFavorites(color)}
+              onPress={() => handleStoreFavoriteColors(color)}
             />
           </Box>
         </Box>
