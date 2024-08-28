@@ -45,11 +45,8 @@ export function CardContact({contact}: Props) {
 
   return (
     <TouchableOpacityBox
-      borderColor="gray5"
-      borderWidth={1}
       onPress={() => [selectContact(contact)]}
       mb="s32"
-      borderRadius="s8"
       flexDirection="row"
       justifyContent="space-evenly">
       <Box
@@ -63,6 +60,8 @@ export function CardContact({contact}: Props) {
       />
       <Box
         flexGrow={1}
+        borderWidth={1}
+        borderColor="gray5"
         justifyContent="center"
         alignItems="center"
         padding="s12">

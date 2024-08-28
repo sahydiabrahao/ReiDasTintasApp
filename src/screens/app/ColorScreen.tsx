@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, View, Text} from 'react-native';
+import {ScrollView, View} from 'react-native';
 
 import {
   beigesAnBrownsMock,
@@ -16,7 +16,7 @@ import {
 import {RootState} from '@redux';
 import {useSelector} from 'react-redux';
 
-import {GridColor, ModalColor} from '@components';
+import {GridColor, ModalColor, Text} from '@components';
 import {Screen} from '@screens';
 
 export function ColorScreen() {
@@ -65,6 +65,8 @@ export function ColorScreen() {
         {visibleGroups < colorGroups.length && (
           <View>
             <Text
+              color="gray3"
+              preset="paragraphSmall"
               onPress={loadMoreGroups}
               style={{textAlign: 'center', padding: 10}}>
               Carregar mais
