@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Image} from 'react-native';
 
-import {saveItemIntoDB} from '@database';
+import {connectToDatabase, disconnectFromDatabase, insertItem} from '@database';
 import {Item} from '@domain';
 import {pushItem, RootState} from '@redux';
 import {useToast} from '@services';
@@ -15,14 +15,26 @@ interface Props {
 export function CardItem({item}: Props) {
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.item.items);
-
-  useEffect(() => {
-    saveItemIntoDB(items);
-  }, [items]);
-
   const {showToast} = useToast();
 
-  async function selectItem(itemSelected: Item) {
+  const syncDatabase = async (itemsToSync: Item[]) => {
+    const db = await connectToDatabase();
+    try {
+      for (const itemIndex of itemsToSync) {
+        await insertItem(db, itemIndex);
+      }
+    } catch (error) {
+      console.error('Error syncing database:', error);
+    } finally {
+      disconnectFromDatabase(db);
+    }
+  };
+
+  useEffect(() => {
+    syncDatabase(items);
+  }, [items]);
+
+  async function handleInsertItem(itemSelected: Item) {
     showToast({
       message: 'Item adicionado',
       position: 'bottom',
@@ -36,7 +48,7 @@ export function CardItem({item}: Props) {
     <Box borderRadius="s8">
       <Box flexDirection="row">
         <TouchableOpacityBox
-          onPress={() => selectItem(item)}
+          onPress={() => handleInsertItem(item)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"
@@ -69,7 +81,7 @@ export function CardItem({item}: Props) {
           </Box>
         </Box>
         <TouchableOpacityBox
-          onPress={() => selectItem(item)}
+          onPress={() => handleInsertItem(item)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"

@@ -1,4 +1,4 @@
-import {connect} from '@database';
+import {connectToDatabase} from '@database';
 import {Color} from '@domain';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
@@ -6,14 +6,14 @@ import {TABLE_COLOR, ColorDB} from '../types';
 
 enablePromise(true);
 
-export async function addColor(db: SQLiteDatabase, color: Color) {
+export async function insertColor(db: SQLiteDatabase, color: Color) {
   const query = `INSERT OR REPLACE INTO ${TABLE_COLOR} (name, hexValue, contrastColor) VALUES (?, ?, ?)`;
   const values = [color.name, color.hexValue, color.contrastColor];
   console.log('Color successfully updated.');
   await db.executeSql(query, values);
 }
 
-export async function fetchAllColors(db: SQLiteDatabase) {
+export async function getAllColors(db: SQLiteDatabase) {
   try {
     const databaseList: ColorDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_COLOR}`);
@@ -35,15 +35,15 @@ export async function fetchAllColors(db: SQLiteDatabase) {
   }
 }
 
-export async function removeColor(db: SQLiteDatabase, name: string) {
+export async function deleteColor(db: SQLiteDatabase, name: string) {
   const query = `DELETE FROM ${TABLE_COLOR} WHERE name = ?`;
   const value = [name];
   await db.executeSql(query, value);
 }
 
-export async function syncColorWithDatabase(db: SQLiteDatabase) {
+export async function updateColor(db: SQLiteDatabase) {
   try {
-    const firstColor = await fetchAllColors(db);
+    const firstColor = await getAllColors(db);
 
     if (!firstColor) {
       return null;
@@ -55,22 +55,22 @@ export async function syncColorWithDatabase(db: SQLiteDatabase) {
   }
 }
 
-export async function saveFavoriteColorsIntoDB(colors: Color[]) {
+export async function storeFavoriteColors(colors: Color[]) {
   try {
-    const db = await connect();
+    const db = await connectToDatabase();
     for (const colorIndex of colors) {
-      await addColor(db, colorIndex);
+      await insertColor(db, colorIndex);
     }
   } catch (error) {
     console.error(error);
   }
 }
 
-export async function deleteFavoriteColorsIntoDB(colorName: string[]) {
+export async function deleteFavoriteColors(colorName: string[]) {
   try {
-    const db = await connect();
+    const db = await connectToDatabase();
     for (const name of colorName) {
-      await removeColor(db, name);
+      await deleteColor(db, name);
     }
   } catch (error) {
     console.error('Error updating the database:', error);

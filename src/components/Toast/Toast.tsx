@@ -46,11 +46,11 @@ export function Toast() {
 const mapTypeIcon: Record<ToastType, IconProps> = {
   success: {
     color: 'success',
-    name: 'up',
+    name: 'success',
   },
   error: {
     color: 'error',
-    name: 'down',
+    name: 'error',
   },
 };
 

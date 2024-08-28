@@ -8,15 +8,16 @@ import {Box, CardItem, Icon, Text, TextInput} from '@components';
 import {Screen} from '@screens';
 
 export function SearchScreen() {
-  const [searchText, setSearchText] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const dispatch = useDispatch();
-  const searchItems = useSelector((state: any) => state.item.searchItems); // Ajuste o tipo conforme necessário
+  const searchResults = useSelector((state: any) => state.item.searchItems); // Ajuste o tipo conforme necessário
 
-  const handleSearchChange = (text: string) => {
-    setSearchText(text);
+  const handleSearchInput = (text: string) => {
+    setSearchInput(text);
     dispatch(filterItemsBySearch(text));
   };
-  const renderCardItems = searchItems.map((item: Item) => (
+
+  const renderCardItems = searchResults.map((item: Item) => (
     <CardItem key={item.id} item={item} />
   ));
 
@@ -30,14 +31,14 @@ export function SearchScreen() {
       />
       <Box>
         <TextInput
-          value={searchText}
-          onChangeText={handleSearchChange}
+          value={searchInput}
+          onChangeText={handleSearchInput}
           boxProps={{marginBottom: 's12'}}
           placeholder="Insira sua busca aqui..."
           RightComponent={<Icon name="search" color="gray3" />}
         />
       </Box>
-      {searchItems.length === 0 ? (
+      {searchResults.length === 0 ? (
         <Box mb="s12" alignItems="center" justifyContent="center">
           <Text preset="headingSmall" color="gray3">
             Faça uma busca para ver os resultados

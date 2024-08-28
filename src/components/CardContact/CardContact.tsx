@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {connect, addContact} from '@database';
+import {connectToDatabase, insertContact} from '@database';
 import {Contact} from '@domain';
 import {RootState, setContact} from '@redux';
 import {useToast} from '@services';
@@ -13,39 +13,36 @@ interface Props {
 }
 
 export function CardContact({contact}: Props) {
+  const contacts = useSelector((state: RootState) => state.contact.contact);
+  const dispatch = useDispatch();
   const {showToast} = useToast();
 
-  const dispatch = useDispatch();
+  function handleContact(contactSelected: Contact) {
+    dispatch(setContact(contactSelected));
 
-  const contacts = useSelector((state: RootState) => state.contact.contact);
-
-  function selectContact(contactSelected: Contact) {
     showToast({
       message: 'Ótima escolha!',
       position: 'bottom',
       type: 'success',
     });
-
-    dispatch(setContact(contactSelected));
   }
 
-  useEffect(() => {
-    saveContactIntoDB();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contacts]);
-
-  async function saveContactIntoDB() {
+  async function handleInsertContact() {
     try {
-      const db = await connect();
-      await addContact(db, contacts);
+      const db = await connectToDatabase();
+      await insertContact(db, contacts);
     } catch (error) {
       console.error(error);
     }
   }
+  useEffect(() => {
+    handleInsertContact();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contacts]);
 
   return (
     <TouchableOpacityBox
-      onPress={() => [selectContact(contact)]}
+      onPress={() => [handleContact(contact)]}
       mb="s32"
       flexDirection="row"
       justifyContent="space-evenly">

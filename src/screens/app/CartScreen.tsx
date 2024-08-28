@@ -1,7 +1,12 @@
 import React, {useEffect, useState, useCallback} from 'react';
 
-import {deleteItemIntoDB, saveItemIntoDB} from '@database';
-import {openWhatsApp} from '@domain';
+import {
+  connectToDatabase,
+  deleteItem,
+  disconnectFromDatabase,
+  insertItem,
+} from '@database';
+import {Item, openWhatsApp} from '@domain';
 import {
   decrementItemQuantity,
   incrementItemQuantity,
@@ -15,21 +20,37 @@ import {Box, Button, CardCart, ModalCart, Text} from '@components';
 import {Screen} from '@screens';
 
 export function CartScreen() {
+  const [deletedItemIds, setDeletedItemIds] = useState<string[]>([]);
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.item.items);
   const contacts = useSelector((state: RootState) => state.contact.contact);
-  const [deletedItemIds, setDeletedItemIds] = useState<string[]>([]);
   const {showToast} = useToast();
 
-  useEffect(() => {
-    saveItemIntoDB(items);
-    if (deletedItemIds.length > 0) {
-      deleteItemIntoDB(deletedItemIds);
-      setDeletedItemIds([]);
+  const syncDatabase = async (itemsToSync: Item[]) => {
+    const db = await connectToDatabase();
+    try {
+      for (const itemIndex of itemsToSync) {
+        await insertItem(db, itemIndex);
+      }
+      if (deletedItemIds.length > 0) {
+        for (const id of deletedItemIds) {
+          await deleteItem(db, id);
+        }
+        setDeletedItemIds([]);
+      }
+    } catch (error) {
+      console.error('Error syncing database:', error);
+    } finally {
+      disconnectFromDatabase(db);
     }
-  }, [items, deletedItemIds]);
+  };
 
-  const onDelete = useCallback(
+  useEffect(() => {
+    syncDatabase(items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
+
+  const handleDeleteItem = useCallback(
     (id: string) => {
       dispatch(removeItemById(id));
       setDeletedItemIds(prev => [...prev, id]);
@@ -42,14 +63,14 @@ export function CartScreen() {
     [dispatch, showToast],
   );
 
-  const onIncrement = useCallback(
+  const handleIncrementItem = useCallback(
     (id: string) => {
       dispatch(incrementItemQuantity(id));
     },
     [dispatch],
   );
 
-  const onDecrement = useCallback(
+  const handleDecrementItem = useCallback(
     (id: string) => {
       dispatch(decrementItemQuantity(id));
     },
@@ -71,9 +92,9 @@ export function CartScreen() {
             <CardCart
               key={item.id}
               item={item}
-              onDelete={onDelete}
-              onIncrement={onIncrement}
-              onDecrement={onDecrement}
+              onDelete={handleDeleteItem}
+              onIncrement={handleIncrementItem}
+              onDecrement={handleDecrementItem}
             />
           ))}
           <ModalCart />

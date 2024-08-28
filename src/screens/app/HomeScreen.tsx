@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 
 import {
-  connect,
-  disconnect,
-  initDatabase,
-  syncColorWithDatabase,
-  syncContactWithDatabase,
-  syncItemWithDatabase,
+  connectToDatabase,
+  createTable,
+  disconnectFromDatabase,
+  updateColor,
+  updateContact,
+  updateItemInDatabase,
 } from '@database';
 import {RootState, setContact, setFavoriteColors, setItems} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,7 +17,6 @@ import {Screen} from '@screens';
 export function HomeScreen() {
   const dispatch = useDispatch();
 
-  // Desestruturação para melhor legibilidade
   const {
     contact: {contact: contacts},
     category: {selectedCategoryTitle, selectedCategory, categories},
@@ -25,27 +24,27 @@ export function HomeScreen() {
   } = useSelector((state: RootState) => state);
 
   const syncDatabase = async () => {
-    const db = await connect();
-
+    const db = await connectToDatabase();
     try {
-      initDatabase(db);
-
-      const updatedContact = await syncContactWithDatabase(db, contacts);
+      await createTable(db);
+      const updatedContact = await updateContact(db, contacts);
       if (updatedContact) {
         dispatch(setContact(updatedContact));
       }
 
-      const updatedItem = await syncItemWithDatabase(db);
+      const updatedItem = await updateItemInDatabase(db);
       if (updatedItem) {
         dispatch(setItems(updatedItem));
       }
 
-      const updatedColor: any = await syncColorWithDatabase(db);
+      const updatedColor: any = await updateColor(db);
       if (updatedColor) {
         dispatch(setFavoriteColors(updatedColor));
       }
+    } catch (error) {
+      console.error('Error syncing database:', error);
     } finally {
-      disconnect(db);
+      disconnectFromDatabase(db);
     }
   };
 

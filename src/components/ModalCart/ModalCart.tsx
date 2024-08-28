@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Modal, ScrollView, StyleSheet} from 'react-native';
 
-import {connect, setColorForItem} from '@database';
+import {connectToDatabase, setColorForItem} from '@database';
 import {closeModalCart, RootState, updateItemColor} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -27,7 +27,7 @@ export function ModalCart() {
 
   async function updateColorIntoDB(id: string, name: string) {
     try {
-      const db = await connect();
+      const db = await connectToDatabase();
       await setColorForItem(db, id, name);
     } catch (error) {
       console.error(error);

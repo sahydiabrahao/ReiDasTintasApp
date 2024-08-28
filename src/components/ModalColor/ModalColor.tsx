@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Modal, Pressable, StyleSheet} from 'react-native';
 
-import {deleteFavoriteColorsIntoDB, saveFavoriteColorsIntoDB} from '@database';
+import {deleteFavoriteColors, storeFavoriteColors} from '@database';
 import {Color} from '@domain';
 import {
   closeModal,
@@ -53,9 +53,9 @@ export function ModalColor({color}: Props) {
   };
 
   useEffect(() => {
-    saveFavoriteColorsIntoDB(listFavoriteColors);
+    storeFavoriteColors(listFavoriteColors);
     if (deletedColorNames.length > 0) {
-      deleteFavoriteColorsIntoDB(deletedColorNames);
+      deleteFavoriteColors(deletedColorNames);
       setDeletedColorNames([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

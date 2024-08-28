@@ -1,4 +1,3 @@
-import {connect, disconnect} from '@database';
 import {Item} from '@domain';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
@@ -6,7 +5,7 @@ import {ItemDB, TABLE_ITEM} from '../types';
 
 enablePromise(true);
 
-export async function fetchAllItems(db: SQLiteDatabase) {
+export async function getAllItems(db: SQLiteDatabase) {
   try {
     const databaseList: ItemDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_ITEM}`);
@@ -28,7 +27,7 @@ export async function fetchAllItems(db: SQLiteDatabase) {
   }
 }
 
-export async function addItem(db: SQLiteDatabase, item: Item) {
+export async function insertItem(db: SQLiteDatabase, item: Item) {
   const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, quantity, name, brand, specification, color, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
   const values = [
     item.id,
@@ -44,19 +43,7 @@ export async function addItem(db: SQLiteDatabase, item: Item) {
   await db.executeSql(query, values);
 }
 
-// export async function increaseItemQuantity(db: SQLiteDatabase, id: string) {
-//   const query = `UPDATE ${TABLE_ITEM} SET quantity = quantity + 1 WHERE id = ${id}`;
-
-//   await db.executeSql(query);
-// }
-
-// export async function decreaseItemQuantity(db: SQLiteDatabase, id: string) {
-//   const query = `UPDATE ${TABLE_ITEM} SET quantity = CASE WHEN quantity > 1 THEN quantity - 1 ELSE 1 END WHERE id = ${id}`;
-
-//   await db.executeSql(query);
-// }
-
-export async function removeItem(db: SQLiteDatabase, id: string) {
+export async function deleteItem(db: SQLiteDatabase, id: string) {
   const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ?`;
   const value = [id];
   await db.executeSql(query, value);
@@ -72,9 +59,9 @@ export async function setColorForItem(
   await db.executeSql(query, values);
 }
 
-export async function syncItemWithDatabase(db: SQLiteDatabase) {
+export async function updateItemInDatabase(db: SQLiteDatabase) {
   try {
-    const firstItem = await fetchAllItems(db);
+    const firstItem = await getAllItems(db);
 
     if (!firstItem) {
       return null;
@@ -83,29 +70,5 @@ export async function syncItemWithDatabase(db: SQLiteDatabase) {
     }
   } catch (error) {
     console.error('Error updating the contact in the database:', error);
-  }
-}
-
-export async function saveItemIntoDB(items: Item[]) {
-  const db = await connect();
-  try {
-    for (const itemIndex of items) {
-      await addItem(db, itemIndex);
-    }
-  } catch (error) {
-    console.error(error);
-  } finally {
-    disconnect(db);
-  }
-}
-
-export async function deleteItemIntoDB(itemId: string[]) {
-  try {
-    const db = await connect();
-    for (const id of itemId) {
-      await removeItem(db, id);
-    }
-  } catch (error) {
-    console.error('Error updating the database:', error);
   }
 }

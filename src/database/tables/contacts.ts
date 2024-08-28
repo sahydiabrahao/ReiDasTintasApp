@@ -5,7 +5,7 @@ import {TABLE_CONTACT, ContactDB} from '../types';
 
 enablePromise(true);
 
-export async function addContact(db: SQLiteDatabase, contact: Contact) {
+export async function insertContact(db: SQLiteDatabase, contact: Contact) {
   const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
   const values = [
     '0',
@@ -18,7 +18,7 @@ export async function addContact(db: SQLiteDatabase, contact: Contact) {
   await db.executeSql(query, values);
 }
 
-export async function fetchAllContacts(db: SQLiteDatabase) {
+export async function getAllContacts(db: SQLiteDatabase) {
   try {
     const databaseList: ContactDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_CONTACT}`);
@@ -40,12 +40,9 @@ export async function fetchAllContacts(db: SQLiteDatabase) {
   }
 }
 
-export async function syncContactWithDatabase(
-  db: SQLiteDatabase,
-  contacts: Contact,
-) {
+export async function updateContact(db: SQLiteDatabase, contacts: Contact) {
   try {
-    const [firstContact] = await fetchAllContacts(db);
+    const [firstContact] = await getAllContacts(db);
 
     if (!firstContact) {
       return;
