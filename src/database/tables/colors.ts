@@ -1,4 +1,3 @@
-import {connectToDatabase} from '@database';
 import {Color} from '@domain';
 import {enablePromise, SQLiteDatabase} from 'react-native-sqlite-storage';
 
@@ -52,27 +51,5 @@ export async function updateColor(db: SQLiteDatabase) {
     }
   } catch (error) {
     console.error('Error updating the color in the database:', error);
-  }
-}
-
-export async function storeFavoriteColors(colors: Color[]) {
-  const db = await connectToDatabase();
-  try {
-    for (const colorIndex of colors) {
-      await insertColor(db, colorIndex);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function deleteFavoriteColors(colorName: string[]) {
-  const db = await connectToDatabase();
-  try {
-    for (const name of colorName) {
-      await deleteColor(db, name);
-    }
-  } catch (error) {
-    console.error('Error updating the database:', error);
   }
 }

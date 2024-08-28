@@ -4,10 +4,8 @@ import {Modal, Pressable, StyleSheet} from 'react-native';
 import {
   connectToDatabase,
   deleteColor,
-  deleteFavoriteColors,
   disconnectFromDatabase,
   insertColor,
-  storeFavoriteColors,
 } from '@database';
 import {Color} from '@domain';
 import {
@@ -35,18 +33,16 @@ export function ModalColor({color}: Props) {
   );
 
   const syncDatabase = async (
-    colorsToSync?: Color[],
-    colorsNameToSync?: string[],
+    colorsToSync: Color[],
+    colorsNameToSync: string[],
   ) => {
     const db = await connectToDatabase();
     try {
-      if (colorsToSync && colorsToSync.length > 0) {
-        for (const colorIndex of colorsToSync) {
-          await insertColor(db, colorIndex);
-        }
+      for (const colorIndex of colorsToSync) {
+        await insertColor(db, colorIndex);
       }
 
-      if (colorsNameToSync && colorsNameToSync.length > 0) {
+      if (colorsNameToSync.length > 0) {
         for (const nameIndex of colorsNameToSync) {
           await deleteColor(db, nameIndex);
         }
@@ -65,9 +61,6 @@ export function ModalColor({color}: Props) {
 
   const handleStoreFavoriteColors = (selectedColor: Color) => {
     dispatch(pushFavoriteColors(selectedColor));
-
-    syncDatabase(favoriteColors, undefined);
-
     dispatch(closeModal());
     showToast({
       message: 'Cor favoritada!',
@@ -78,9 +71,6 @@ export function ModalColor({color}: Props) {
 
   const handleDeleteFavoriteColors = (selectedColor: string) => {
     dispatch(removeColorByName(selectedColor));
-
-    syncDatabase(undefined, deletedColorNames);
-
     dispatch(closeModal());
     setDeletedColorNames(prev => [...prev, selectedColor]);
 
@@ -92,11 +82,7 @@ export function ModalColor({color}: Props) {
   };
 
   useEffect(() => {
-    storeFavoriteColors(favoriteColors);
-    if (deletedColorNames.length > 0) {
-      deleteFavoriteColors(deletedColorNames);
-      setDeletedColorNames([]);
-    }
+    syncDatabase(favoriteColors, deletedColorNames);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favoriteColors]);
 
