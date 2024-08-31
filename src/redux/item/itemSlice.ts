@@ -78,14 +78,14 @@ const itemSlice = createSlice({
   name: 'item',
   initialState,
   reducers: {
-    setItems: (state, action: PayloadAction<Item[]>) => {
+    updateItems: (state, action: PayloadAction<Item[]>) => {
       state.items = action.payload;
     },
-    setItemId: (state, action: PayloadAction<string>) => {
+    assignItemId: (state, action: PayloadAction<string>) => {
       state.itemId = action.payload;
     },
 
-    pushItem: (state, action: PayloadAction<Item>) => {
+    addItem: (state, action: PayloadAction<Item>) => {
       const itemExists = state.items.some(
         item => item.id === action.payload.id,
       );
@@ -94,17 +94,17 @@ const itemSlice = createSlice({
       }
     },
 
-    removeItemById: (state, action: PayloadAction<string>) => {
+    deleteItemById: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
     },
 
-    incrementItemQuantity: (state, action: PayloadAction<string>) => {
+    increaseItemQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.id === action.payload);
       if (item) {
         item.quantity += 1;
       }
     },
-    decrementItemQuantity: (state, action: PayloadAction<string>) => {
+    decreaseItemQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.id === action.payload);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
@@ -116,7 +116,7 @@ const itemSlice = createSlice({
       state.filteredItems = initialState[categoryName];
     },
 
-    filterItemsBySearch: (state, action: PayloadAction<string>) => {
+    filterItemsBySearchQuery: (state, action: PayloadAction<string>) => {
       const searchText = action.payload.toLowerCase();
       if (searchText.trim() === '' || searchText.trim().length < 2) {
         state.searchItems = [];
@@ -130,33 +130,33 @@ const itemSlice = createSlice({
       );
     },
 
-    updateItemColor(state, action: PayloadAction<{id: string; color: string}>) {
+    changeItemColor(state, action: PayloadAction<{id: string; color: string}>) {
       const {id, color} = action.payload;
       const item = state.items.find(item => item.id === id);
       if (item) {
         item.color = color;
       }
     },
-    openModalCart(state) {
+    showModalCart(state) {
       state.isVisible = true;
     },
-    closeModalCart(state) {
+    hideModalCart(state) {
       state.isVisible = false;
     },
   },
 });
 
 export const {
-  setItems,
-  setItemId,
-  pushItem,
-  removeItemById,
-  incrementItemQuantity,
-  decrementItemQuantity,
+  updateItems,
+  assignItemId,
+  addItem,
+  deleteItemById,
+  increaseItemQuantity,
+  decreaseItemQuantity,
   filterItemsByCategory,
-  filterItemsBySearch,
-  updateItemColor,
-  openModalCart,
-  closeModalCart,
+  filterItemsBySearchQuery,
+  changeItemColor,
+  showModalCart,
+  hideModalCart,
 } = itemSlice.actions;
 export default itemSlice.reducer;

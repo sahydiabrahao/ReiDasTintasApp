@@ -2,7 +2,7 @@ import React from 'react';
 import {Image} from 'react-native';
 
 import {Item} from '@domain';
-import {openModalCart, setItemId} from '@redux';
+import {showModalColor, assignItemId} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
@@ -22,8 +22,8 @@ export function CardCart({
   const dispatch = useDispatch();
 
   const handleOpenModalCart = () => {
-    dispatch(openModalCart());
-    dispatch(setItemId(item.id));
+    dispatch(showModalColor());
+    dispatch(assignItemId(item.id));
   };
 
   return (

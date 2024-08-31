@@ -20,7 +20,7 @@ import {GridColor, ModalColor, Text} from '@components';
 import {Screen} from '@screens';
 
 export function ColorScreen() {
-  const color = useSelector((state: RootState) => state.color.color);
+  const color = useSelector((state: RootState) => state.color.favoriteColor);
 
   const favoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,

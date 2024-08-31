@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
-import {selectCategory} from '@redux';
+import {chooseCategory} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {Box, Icon, TouchableOpacityBox} from '@components';
@@ -13,7 +13,7 @@ export function HeaderScreen() {
 
   function navigateToHomeScreen() {
     navigation.navigate('AppTabNavigator');
-    dispatch(selectCategory('Init'));
+    dispatch(chooseCategory('Init'));
   }
 
   return (

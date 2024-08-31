@@ -4,11 +4,16 @@ import {
   connectToDatabase,
   createTable,
   disconnectFromDatabase,
-  updateColor,
-  updateContact,
-  updateItemInDatabase,
+  dbUpdateColor,
+  dbUpdateContact,
+  dbUpdateItem,
 } from '@database';
-import {RootState, setContact, setFavoriteColors, setItems} from '@redux';
+import {
+  RootState,
+  updateContact,
+  updateFavoriteColors,
+  updateItems,
+} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardCategory, CardItem, Text} from '@components';
@@ -27,19 +32,19 @@ export function HomeScreen() {
     const db = await connectToDatabase();
     try {
       await createTable(db);
-      const updatedContact = await updateContact(db, contacts);
+      const updatedContact = await dbUpdateContact(db, contacts);
       if (updatedContact) {
-        dispatch(setContact(updatedContact));
+        dispatch(updateContact(updatedContact));
       }
 
-      const updatedItem = await updateItemInDatabase(db);
+      const updatedItem = await dbUpdateItem(db);
       if (updatedItem) {
-        dispatch(setItems(updatedItem));
+        dispatch(updateItems(updatedItem));
       }
 
-      const updatedColor: any = await updateColor(db);
+      const updatedColor: any = await dbUpdateColor(db);
       if (updatedColor) {
-        dispatch(setFavoriteColors(updatedColor));
+        dispatch(updateFavoriteColors(updatedColor));
       }
     } finally {
       disconnectFromDatabase(db);

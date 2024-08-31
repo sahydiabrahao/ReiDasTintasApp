@@ -5,14 +5,14 @@ import {TABLE_COLOR, ColorDB} from '../types';
 
 enablePromise(true);
 
-export async function insertColor(db: SQLiteDatabase, color: Color) {
+export async function dbInsertColor(db: SQLiteDatabase, color: Color) {
   const query = `INSERT OR REPLACE INTO ${TABLE_COLOR} (name, hexValue, contrastColor) VALUES (?, ?, ?)`;
   const values = [color.name, color.hexValue, color.contrastColor];
   console.log('Color successfully updated.');
   await db.executeSql(query, values);
 }
 
-export async function getAllColors(db: SQLiteDatabase) {
+export async function dbFetchColors(db: SQLiteDatabase) {
   try {
     const databaseList: ColorDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_COLOR}`);
@@ -34,15 +34,15 @@ export async function getAllColors(db: SQLiteDatabase) {
   }
 }
 
-export async function deleteColor(db: SQLiteDatabase, name: string) {
+export async function dbDeleteColor(db: SQLiteDatabase, name: string) {
   const query = `DELETE FROM ${TABLE_COLOR} WHERE name = ?`;
   const value = [name];
   await db.executeSql(query, value);
 }
 
-export async function updateColor(db: SQLiteDatabase) {
+export async function dbUpdateColor(db: SQLiteDatabase) {
   try {
-    const firstColor = await getAllColors(db);
+    const firstColor = await dbFetchColors(db);
 
     if (!firstColor) {
       return null;

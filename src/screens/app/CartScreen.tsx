@@ -2,15 +2,15 @@ import React, {useEffect, useState, useCallback} from 'react';
 
 import {
   connectToDatabase,
-  deleteItem,
+  dbDeleteItem,
   disconnectFromDatabase,
-  insertItem,
+  dbInsertItem,
 } from '@database';
 import {Item, openWhatsApp} from '@domain';
 import {
-  decrementItemQuantity,
-  incrementItemQuantity,
-  removeItemById,
+  decreaseItemQuantity,
+  increaseItemQuantity,
+  deleteItemById,
   RootState,
 } from '@redux';
 import {useToast} from '@services';
@@ -30,11 +30,11 @@ export function CartScreen() {
     const db = await connectToDatabase();
     try {
       for (const itemIndex of itemsToSync) {
-        await insertItem(db, itemIndex);
+        await dbInsertItem(db, itemIndex);
       }
       if (deletedItemIds.length > 0) {
         for (const id of deletedItemIds) {
-          await deleteItem(db, id);
+          await dbDeleteItem(db, id);
         }
         setDeletedItemIds([]);
       }
@@ -50,7 +50,7 @@ export function CartScreen() {
 
   const handleDeleteItem = useCallback(
     (id: string) => {
-      dispatch(removeItemById(id));
+      dispatch(deleteItemById(id));
       setDeletedItemIds(prev => [...prev, id]);
       showToast({
         message: 'Item removido',
@@ -63,14 +63,14 @@ export function CartScreen() {
 
   const handleIncrementItem = useCallback(
     (id: string) => {
-      dispatch(incrementItemQuantity(id));
+      dispatch(increaseItemQuantity(id));
     },
     [dispatch],
   );
 
   const handleDecrementItem = useCallback(
     (id: string) => {
-      dispatch(decrementItemQuantity(id));
+      dispatch(decreaseItemQuantity(id));
     },
     [dispatch],
   );

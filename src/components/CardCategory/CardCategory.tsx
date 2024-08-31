@@ -3,8 +3,8 @@ import React from 'react';
 import {Category, CategoryName} from '@domain';
 import {
   filterItemsByCategory,
-  selectCategory,
-  setCategoryTitleByName,
+  chooseCategory,
+  updateCategoryTitle,
 } from '@redux';
 import {useDispatch} from 'react-redux';
 
@@ -18,8 +18,8 @@ export function CardCategory({category}: Props) {
   const dispatch = useDispatch();
 
   function handleSelectCategoryName(categoryName: CategoryName) {
-    dispatch(selectCategory(categoryName));
-    dispatch(setCategoryTitleByName(categoryName));
+    dispatch(chooseCategory(categoryName));
+    dispatch(updateCategoryTitle(categoryName));
     dispatch(filterItemsByCategory(categoryName));
   }
 

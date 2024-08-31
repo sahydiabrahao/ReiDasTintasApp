@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import {Item} from '@domain';
-import {filterItemsBySearch} from '@redux';
+import {filterItemsBySearchQuery} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardItem, Icon, Text, TextInput} from '@components';
@@ -14,7 +14,7 @@ export function SearchScreen() {
 
   const handleSearchInput = (text: string) => {
     setSearchInput(text);
-    dispatch(filterItemsBySearch(text));
+    dispatch(filterItemsBySearchQuery(text));
   };
 
   const renderCardItems = searchResults.map((item: Item) => (

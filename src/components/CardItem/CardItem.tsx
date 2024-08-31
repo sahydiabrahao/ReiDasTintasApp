@@ -1,9 +1,13 @@
 import React from 'react';
 import {Image} from 'react-native';
 
-import {connectToDatabase, disconnectFromDatabase, insertItem} from '@database';
+import {
+  connectToDatabase,
+  disconnectFromDatabase,
+  dbInsertItem,
+} from '@database';
 import {Item} from '@domain';
-import {pushItem, RootState} from '@redux';
+import {addItem, RootState} from '@redux';
 import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -21,15 +25,15 @@ export function CardItem({item}: Props) {
     const db = await connectToDatabase();
     try {
       for (const itemIndex of itemsToSync) {
-        await insertItem(db, itemIndex);
+        await dbInsertItem(db, itemIndex);
       }
     } finally {
       disconnectFromDatabase(db);
     }
   };
 
-  async function handleInsertItem(itemSelected: Item) {
-    dispatch(pushItem(itemSelected));
+  async function handleAddItem(itemSelected: Item) {
+    dispatch(addItem(itemSelected));
 
     syncDatabase(items);
 
@@ -44,7 +48,7 @@ export function CardItem({item}: Props) {
     <Box borderRadius="s8">
       <Box flexDirection="row">
         <TouchableOpacityBox
-          onPress={() => handleInsertItem(item)}
+          onPress={() => handleAddItem(item)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"
@@ -77,7 +81,7 @@ export function CardItem({item}: Props) {
           </Box>
         </Box>
         <TouchableOpacityBox
-          onPress={() => handleInsertItem(item)}
+          onPress={() => handleAddItem(item)}
           alignItems="center"
           justifyContent="center"
           backgroundColor="bluePrimary"

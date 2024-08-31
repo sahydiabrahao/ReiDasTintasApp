@@ -6,7 +6,7 @@ import {
   disconnectFromDatabase,
   setColorForItem,
 } from '@database';
-import {closeModalCart, RootState, updateItemColor} from '@redux';
+import {hideModalColor, RootState, changeItemColor} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, Text, TouchableOpacityBox} from '@components';
@@ -29,15 +29,15 @@ export function ModalCart() {
   }
 
   const handleSetColorForItem = (id: string, colorName: string) => {
-    dispatch(updateItemColor({id: id, color: colorName}));
+    dispatch(changeItemColor({id: id, color: colorName}));
 
     syncDatabase(id, colorName);
 
-    dispatch(closeModalCart());
+    dispatch(hideModalColor());
   };
 
   const handleCloseModalCart = () => {
-    dispatch(closeModalCart());
+    dispatch(hideModalColor());
   };
 
   const renderFavoriteColors = favoriteColors.map(color => (

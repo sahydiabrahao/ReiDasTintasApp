@@ -3,15 +3,15 @@ import {Modal, Pressable, StyleSheet} from 'react-native';
 
 import {
   connectToDatabase,
-  deleteColor,
+  dbDeleteColor,
   disconnectFromDatabase,
-  insertColor,
+  dbInsertColor,
 } from '@database';
 import {Color} from '@domain';
 import {
-  closeModal,
-  pushFavoriteColors,
-  removeColorByName,
+  hideModalColor,
+  addFavoriteColor,
+  deleteFavoriteColorByName,
   RootState,
 } from '@redux';
 import {useToast} from '@services';
@@ -39,12 +39,12 @@ export function ModalColor({color}: Props) {
     const db = await connectToDatabase();
     try {
       for (const colorIndex of colorsToSync) {
-        await insertColor(db, colorIndex);
+        await dbInsertColor(db, colorIndex);
       }
 
       if (colorsNameToSync.length > 0) {
         for (const nameIndex of colorsNameToSync) {
-          await deleteColor(db, nameIndex);
+          await dbDeleteColor(db, nameIndex);
         }
         setDeletedColorNames([]);
       }
@@ -61,8 +61,8 @@ export function ModalColor({color}: Props) {
   }, [favoriteColors]);
 
   const handleStoreFavoriteColors = (selectedColor: Color) => {
-    dispatch(pushFavoriteColors(selectedColor));
-    dispatch(closeModal());
+    dispatch(addFavoriteColor(selectedColor));
+    dispatch(hideModalColor());
     showToast({
       message: 'Cor favoritada!',
       position: 'bottom',
@@ -71,8 +71,8 @@ export function ModalColor({color}: Props) {
   };
 
   const handleDeleteFavoriteColors = (selectedColor: string) => {
-    dispatch(removeColorByName(selectedColor));
-    dispatch(closeModal());
+    dispatch(deleteFavoriteColorByName(selectedColor));
+    dispatch(hideModalColor());
     setDeletedColorNames(prev => [...prev, selectedColor]);
 
     showToast({
@@ -83,7 +83,7 @@ export function ModalColor({color}: Props) {
   };
 
   const handleCloseModalColor = () => {
-    dispatch(closeModal());
+    dispatch(hideModalColor());
   };
 
   return (

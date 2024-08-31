@@ -15,14 +15,14 @@ const contactSlice = createSlice({
   name: 'contact',
   initialState,
   reducers: {
-    getContacts: (state, action: PayloadAction<Contact[]>) => {
+    fetchContacts: (state, action: PayloadAction<Contact[]>) => {
       state.contacts = action.payload;
     },
-    setContact: (state, action: PayloadAction<Contact>) => {
+    updateContact: (state, action: PayloadAction<Contact>) => {
       state.contact = action.payload;
     },
   },
 });
 
-export const {getContacts, setContact} = contactSlice.actions;
+export const {fetchContacts, updateContact} = contactSlice.actions;
 export default contactSlice.reducer;

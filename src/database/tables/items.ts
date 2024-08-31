@@ -5,7 +5,7 @@ import {ItemDB, TABLE_ITEM} from '../types';
 
 enablePromise(true);
 
-export async function getAllItems(db: SQLiteDatabase) {
+export async function dbFetchItems(db: SQLiteDatabase) {
   try {
     const databaseList: ItemDB[] = [];
     const results = await db.executeSql(`SELECT * FROM ${TABLE_ITEM}`);
@@ -27,7 +27,7 @@ export async function getAllItems(db: SQLiteDatabase) {
   }
 }
 
-export async function insertItem(db: SQLiteDatabase, item: Item) {
+export async function dbInsertItem(db: SQLiteDatabase, item: Item) {
   const query = `INSERT OR REPLACE INTO ${TABLE_ITEM} (id, quantity, name, brand, specification, color, unit, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
   const values = [
     item.id,
@@ -43,12 +43,13 @@ export async function insertItem(db: SQLiteDatabase, item: Item) {
   await db.executeSql(query, values);
 }
 
-export async function deleteItem(db: SQLiteDatabase, id: string) {
+export async function dbDeleteItem(db: SQLiteDatabase, id: string) {
   const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ?`;
   const value = [id];
   await db.executeSql(query, value);
 }
 
+//TODO:
 export async function setColorForItem(
   db: SQLiteDatabase,
   id: string,
@@ -59,9 +60,9 @@ export async function setColorForItem(
   await db.executeSql(query, values);
 }
 
-export async function updateItemInDatabase(db: SQLiteDatabase) {
+export async function dbUpdateItem(db: SQLiteDatabase) {
   try {
-    const firstItem = await getAllItems(db);
+    const firstItem = await dbFetchItems(db);
 
     if (!firstItem) {
       return null;

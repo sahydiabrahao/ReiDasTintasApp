@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Color} from '@domain';
-import {openModal, setColor} from '@redux';
+import {showModalColor, updateColor} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
@@ -13,14 +13,14 @@ interface Props {
 export function CardColor({color}: Props) {
   const dispatch = useDispatch();
 
-  const handleOpenModalColor = (selectedColor: Color) => {
-    dispatch(openModal());
-    dispatch(setColor(selectedColor));
+  const handleShowModalColor = (selectedColor: Color) => {
+    dispatch(showModalColor());
+    dispatch(updateColor(selectedColor));
   };
 
   return (
     <TouchableOpacityBox
-      onPress={() => handleOpenModalColor(color)}
+      onPress={() => handleShowModalColor(color)}
       flexDirection="row"
       gap="s8">
       <Box

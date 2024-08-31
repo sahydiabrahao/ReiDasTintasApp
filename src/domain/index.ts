@@ -27,7 +27,6 @@ export * from './Category/categoryService';
 export * from './Category/categoriesMock';
 
 export * from './Color/type';
-export * from './Color/favoriteColorsMock';
 export * from './Color/palette/beigesAndBrownsMock';
 export * from './Color/palette/blueGreensMock';
 export * from './Color/palette/bluesMock';

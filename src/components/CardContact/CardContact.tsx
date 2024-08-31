@@ -3,10 +3,10 @@ import React, {useEffect} from 'react';
 import {
   connectToDatabase,
   disconnectFromDatabase,
-  insertContact,
+  dbInsertContact,
 } from '@database';
 import {Contact} from '@domain';
-import {RootState, setContact} from '@redux';
+import {RootState, updateContact} from '@redux';
 import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -24,7 +24,7 @@ export function CardContact({contact}: Props) {
   async function syncDatabase() {
     const db = await connectToDatabase();
     try {
-      await insertContact(db, contacts);
+      await dbInsertContact(db, contacts);
     } finally {
       disconnectFromDatabase(db);
     }
@@ -35,8 +35,8 @@ export function CardContact({contact}: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contacts]);
 
-  function handleInsertContact(contactSelected: Contact) {
-    dispatch(setContact(contactSelected));
+  function handleUpdateContact(contactSelected: Contact) {
+    dispatch(updateContact(contactSelected));
 
     showToast({
       message: 'Ótima escolha!',
@@ -47,7 +47,7 @@ export function CardContact({contact}: Props) {
 
   return (
     <TouchableOpacityBox
-      onPress={() => [handleInsertContact(contact)]}
+      onPress={() => [handleUpdateContact(contact)]}
       mb="s32"
       flexDirection="row"
       justifyContent="space-evenly">
