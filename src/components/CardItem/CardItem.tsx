@@ -47,7 +47,7 @@ export function CardItem({item}: Props) {
 
   return (
     <Box
-      mb="s8"
+      mb="s12"
       borderRadius="s4"
       style={$shadowProps}
       flexGrow={1}

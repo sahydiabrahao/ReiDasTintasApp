@@ -81,9 +81,8 @@ export function CartScreen() {
         <Box backgroundColor="grayWhite">
           <Button
             mb="s12"
-            backgroundColor="grayBlack"
             title="Solicitar orçamento gratuito"
-            preset="primary"
+            preset="outiline"
             onPress={() => openWhatsApp(contacts, items)}
           />
           {items.map(item => (
