@@ -3,6 +3,7 @@ export * from './icons/CartIcon';
 export * from './icons/ContactIcon';
 export * from './icons/SettingsIcon';
 
+export * from './icons/CrownIcon';
 export * from './icons/SearchIcon';
 export * from './icons/PlusIcon';
 export * from './icons/MinusIcon';

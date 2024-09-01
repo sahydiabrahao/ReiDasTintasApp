@@ -14,6 +14,7 @@ import {
   ColorIcon,
   SuccessIcon,
   ErrorIcon,
+  CrownIcon,
 } from '@assets';
 import {useAppTheme} from '@hooks';
 import {ThemeColors} from '@theme';
@@ -45,6 +46,7 @@ const iconRegistry = {
   color: ColorIcon,
   settings: SettingsIcon,
 
+  crown: CrownIcon,
   plus: PlusIcon,
   minus: MinusIcon,
   delete: DeleteIcon,
