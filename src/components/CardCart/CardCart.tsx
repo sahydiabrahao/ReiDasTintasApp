@@ -39,7 +39,7 @@ export function CardCart({
         onPress={() => handleDeleteItem(item.id)}
         alignItems="center"
         justifyContent="center"
-        backgroundColor="bluePrimary"
+        backgroundColor="grayBlack"
         padding="s10"
         borderTopLeftRadius="s4"
         borderBottomLeftRadius="s4">
@@ -66,6 +66,7 @@ export function CardCart({
           <Text preset="paragraphCaption">{item.specification}</Text>
           <Text preset="paragraphCaption">{item.brand}</Text>
           <Text preset="paragraphCaption">{item.color}</Text>
+          <Text preset="paragraphCaption">{item.quantity}</Text>
           <Text preset="paragraphCaption">{item.unit}</Text>
         </Box>
       </TouchableOpacityBox>
@@ -75,7 +76,7 @@ export function CardCart({
           justifyContent="center"
           flexGrow={1}
           onPress={() => handleIncrementItem(item.id)}
-          backgroundColor="bluePrimary"
+          backgroundColor="grayBlack"
           borderTopRightRadius="s4"
           padding="s10">
           <Icon name="plus" color="grayWhite" />
@@ -85,7 +86,7 @@ export function CardCart({
           justifyContent="center"
           flexGrow={1}
           onPress={() => handleDecrementItem(item.id)}
-          backgroundColor="bluePrimary"
+          backgroundColor="grayBlack"
           padding="s10"
           borderBottomRightRadius="s4">
           <Icon name="minus" color="grayWhite" />

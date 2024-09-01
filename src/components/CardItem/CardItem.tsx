@@ -71,11 +71,12 @@ export function CardItem({item}: Props) {
         <Text preset="paragraphCaption">{item.unit}</Text>
       </Box>
       <TouchableOpacityBox
-        borderRadius="s4"
+        borderBottomRightRadius="s4"
+        borderTopRightRadius="s4"
         onPress={() => handleAddItem(item)}
         alignItems="center"
         justifyContent="center"
-        backgroundColor="bluePrimary"
+        backgroundColor="grayBlack"
         padding="s10">
         <Icon name="cart" color="grayWhite" />
       </TouchableOpacityBox>

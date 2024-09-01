@@ -17,7 +17,7 @@ import {
 } from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, CardCategory, CardItem, CardOffer, Text} from '@components';
+import {Box, CardCategory, CardItem, GridOffer, Text} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -57,9 +57,6 @@ export function HomeScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderOffers = () =>
-    offerMock.map(offer => <CardOffer key={offer.name} offer={offer} />);
-
   const renderCategories = () =>
     categories.map(category => (
       <CardCategory key={category.name} category={category} />
@@ -77,7 +74,7 @@ export function HomeScreen() {
           alignItems="flex-start"
           flex={1}
           rowGap="s12">
-          {renderOffers()}
+          <GridOffer offers={offerMock} />
           <Text preset="paragraphCaption" color="grayBlack">
             Categorias
           </Text>

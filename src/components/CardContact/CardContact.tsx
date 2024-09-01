@@ -63,7 +63,7 @@ export function CardContact({contact}: Props) {
         paddingHorizontal="s8"
         borderRadius="s4"
         backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
+          contacts.phone === contact.phone ? 'grayBlack' : 'gray5'
         }>
         <Text
           bold

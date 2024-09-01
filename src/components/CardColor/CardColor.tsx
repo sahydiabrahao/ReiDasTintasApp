@@ -24,6 +24,7 @@ export function CardColor({color}: Props) {
       onPress={() => handleShowModalColor(color)}
       flexDirection="row"
       borderRadius="s4"
+      mb="s8"
       style={[$shadowProps, {backgroundColor: color.hexValue}]}>
       <Box
         width={150}

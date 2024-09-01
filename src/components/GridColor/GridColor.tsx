@@ -31,7 +31,6 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
           data={colors}
           renderItem={renderColors}
           keyExtractor={item => item.name}
-          contentContainerStyle={{gap: 12}}
           columnWrapperStyle={{gap: 8}}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}

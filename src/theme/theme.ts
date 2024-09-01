@@ -1,4 +1,4 @@
-import {ViewStyle} from 'react-native';
+import {TextStyle, ViewStyle} from 'react-native';
 
 import {createTheme} from '@shopify/restyle';
 
@@ -90,6 +90,12 @@ export const $shadowProps: ViewStyle = {
   shadowOpacity: 0.1,
   shadowRadius: 6,
   shadowOffset: {width: 0, height: 4},
+};
+
+export const $textShadowProps: TextStyle = {
+  textShadowColor: '#000000',
+  textShadowOffset: {width: 0, height: 2},
+  textShadowRadius: 4,
 };
 
 export type Theme = typeof theme;
