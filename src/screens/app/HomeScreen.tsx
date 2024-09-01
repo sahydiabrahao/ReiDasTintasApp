@@ -79,11 +79,7 @@ export function HomeScreen() {
           {renderCategories()}
         </Box>
       ) : (
-        <Box>
-          <Box flexGrow={1} justifyContent="flex-start" flex={1} gap="s12">
-            {renderItems()}
-          </Box>
-        </Box>
+        renderItems()
       )}
     </Screen>
   );
