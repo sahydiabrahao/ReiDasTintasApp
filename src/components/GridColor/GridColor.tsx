@@ -16,8 +16,8 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
   );
 
   return (
-    <Box>
-      <Text preset="paragraphCaption" color="gray2">
+    <Box mb="s12">
+      <Text preset="paragraphCaption" color="grayBlack">
         {title}
       </Text>
       <ScrollView
@@ -31,8 +31,8 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
           data={colors}
           renderItem={renderColors}
           keyExtractor={item => item.name}
-          contentContainerStyle={{gap: 2}}
-          columnWrapperStyle={{gap: 4}}
+          contentContainerStyle={{gap: 12}}
+          columnWrapperStyle={{gap: 8}}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
         />

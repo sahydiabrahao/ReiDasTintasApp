@@ -16,7 +16,7 @@ import {
 import {RootState} from '@redux';
 import {useSelector} from 'react-redux';
 
-import {GridColor, ModalColor, Text} from '@components';
+import {Box, GridColor, ModalColor, Text} from '@components';
 import {Screen} from '@screens';
 
 export function ColorScreen() {
@@ -49,8 +49,17 @@ export function ColorScreen() {
 
   return (
     <Screen scrollable>
-      {favoriteColors.length > 0 && (
+      {favoriteColors.length > 0 ? (
         <GridColor title="Favoritas" colors={favoriteColors} />
+      ) : (
+        <Box mb="s12">
+          <Text preset="paragraphCaption" color="grayBlack">
+            Favoritas
+          </Text>
+          <Text preset="paragraphCaption" color="gray2">
+            Você ainda não favoritou nenhuma cor.
+          </Text>
+        </Box>
       )}
       <ScrollView>
         {/* Renderiza apenas os grupos de cores visíveis atualmente */}

@@ -5,6 +5,7 @@ import {showModalColor, updateColor} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
+import {$shadowProps} from '@theme';
 
 interface Props {
   color: Color;
@@ -22,19 +23,14 @@ export function CardColor({color}: Props) {
     <TouchableOpacityBox
       onPress={() => handleShowModalColor(color)}
       flexDirection="row"
-      gap="s8">
+      borderRadius="s4"
+      style={[$shadowProps, {backgroundColor: color.hexValue}]}>
       <Box
-        mb="s12"
         width={150}
         height={64}
         padding="s4"
         alignItems="flex-start"
-        justifyContent="flex-end"
-        style={{
-          borderTopLeftRadius: 8,
-          borderBottomRightRadius: 8,
-          backgroundColor: color.hexValue,
-        }}>
+        justifyContent="flex-end">
         <Text
           preset="paragraphCaption"
           style={{
