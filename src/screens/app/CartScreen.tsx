@@ -48,7 +48,7 @@ export function CartScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
-  const handleDeleteItem = useCallback(
+  const handleDeleteItemById = useCallback(
     (id: string) => {
       dispatch(deleteItemById(id));
       setDeletedItemIds(prev => [...prev, id]);
@@ -61,14 +61,14 @@ export function CartScreen() {
     [dispatch, showToast],
   );
 
-  const handleIncrementItem = useCallback(
+  const handleIncreaseItemQuantity = useCallback(
     (id: string) => {
       dispatch(increaseItemQuantity(id));
     },
     [dispatch],
   );
 
-  const handleDecrementItem = useCallback(
+  const handleDecreaseItemQuantity = useCallback(
     (id: string) => {
       dispatch(decreaseItemQuantity(id));
     },
@@ -90,9 +90,9 @@ export function CartScreen() {
             <CardCart
               key={item.id}
               item={item}
-              handleDeleteItem={handleDeleteItem}
-              handleIncrementItem={handleIncrementItem}
-              handleDecrementItem={handleDecrementItem}
+              handleDeleteItem={handleDeleteItemById}
+              handleIncrementItem={handleIncreaseItemQuantity}
+              handleDecrementItem={handleDecreaseItemQuantity}
             />
           ))}
           <ModalCart />

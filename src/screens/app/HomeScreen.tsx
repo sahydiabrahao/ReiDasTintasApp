@@ -10,7 +10,7 @@ import {
 } from '@database';
 import {
   RootState,
-  updateContact,
+  chooseContact,
   updateFavoriteColors,
   updateItems,
 } from '@redux';
@@ -24,7 +24,11 @@ export function HomeScreen() {
 
   const {
     contact: {contact: contacts},
-    category: {selectedCategoryTitle, selectedCategory, categories},
+    category: {
+      categoryTitle: selectedCategoryTitle,
+      categoryName: selectedCategory,
+      categories,
+    },
     item: {filteredItems},
   } = useSelector((state: RootState) => state);
 
@@ -34,7 +38,7 @@ export function HomeScreen() {
       await createTable(db);
       const updatedContact = await dbUpdateContact(db, contacts);
       if (updatedContact) {
-        dispatch(updateContact(updatedContact));
+        dispatch(chooseContact(updatedContact));
       }
 
       const updatedItem = await dbUpdateItem(db);

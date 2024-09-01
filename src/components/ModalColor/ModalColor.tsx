@@ -26,7 +26,9 @@ interface Props {
 export function ModalColor({color}: Props) {
   const dispatch = useDispatch();
   const {showToast} = useToast();
-  const isVisible = useSelector((state: RootState) => state.color.isVisible);
+  const isModalColorVisible = useSelector(
+    (state: RootState) => state.utils.isModalColorVisible,
+  );
   const [deletedColorNames, setDeletedColorNames] = useState<string[]>([]);
   const favoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,
@@ -90,7 +92,7 @@ export function ModalColor({color}: Props) {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={isVisible}
+      visible={isModalColorVisible}
       onRequestClose={handleCloseModalColor}>
       <Box style={styles.modalBackground}>
         <Box style={styles.modalContent}>

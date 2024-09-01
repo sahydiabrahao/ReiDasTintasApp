@@ -4,6 +4,7 @@ import categoryReducer from './category/categorySlice';
 import colorReducer from './color/colorSlice';
 import contactReducer from './contact/contactSlice';
 import itemtReducer from './item/itemSlice';
+import utilsReducer from './utils/utilsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     item: itemtReducer,
     category: categoryReducer,
     color: colorReducer,
+    utils: utilsReducer,
   },
 });
 

@@ -6,7 +6,7 @@ import {
   dbInsertContact,
 } from '@database';
 import {Contact} from '@domain';
-import {RootState, updateContact} from '@redux';
+import {RootState, chooseContact} from '@redux';
 import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -36,7 +36,7 @@ export function CardContact({contact}: Props) {
   }, [contacts]);
 
   function handleUpdateContact(contactSelected: Contact) {
-    dispatch(updateContact(contactSelected));
+    dispatch(chooseContact(contactSelected));
 
     showToast({
       message: 'Ótima escolha!',

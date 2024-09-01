@@ -43,23 +43,6 @@ export async function dbInsertItem(db: SQLiteDatabase, item: Item) {
   await db.executeSql(query, values);
 }
 
-export async function dbDeleteItem(db: SQLiteDatabase, id: string) {
-  const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ?`;
-  const value = [id];
-  await db.executeSql(query, value);
-}
-
-//TODO:
-export async function setColorForItem(
-  db: SQLiteDatabase,
-  id: string,
-  color: string,
-) {
-  const query = `UPDATE ${TABLE_ITEM} SET color = ? WHERE id = ?`;
-  const values = [color, id];
-  await db.executeSql(query, values);
-}
-
 export async function dbUpdateItem(db: SQLiteDatabase) {
   try {
     const firstItem = await dbFetchItems(db);
@@ -72,4 +55,20 @@ export async function dbUpdateItem(db: SQLiteDatabase) {
   } catch (error) {
     console.error('Error updating the contact in the database:', error);
   }
+}
+
+export async function dbUpdateItemColor(
+  db: SQLiteDatabase,
+  id: string,
+  color: string,
+) {
+  const query = `UPDATE ${TABLE_ITEM} SET color = ? WHERE id = ?`;
+  const values = [color, id];
+  await db.executeSql(query, values);
+}
+
+export async function dbDeleteItem(db: SQLiteDatabase, id: string) {
+  const query = `DELETE FROM ${TABLE_ITEM} WHERE id = ?`;
+  const value = [id];
+  await db.executeSql(query, value);
 }

@@ -29,6 +29,7 @@ const colorSlice = createSlice({
         state.favoriteColors.push(action.payload);
       }
     },
+
     deleteFavoriteColorByName: (state, action: PayloadAction<string>) => {
       state.favoriteColors = state.favoriteColors.filter(
         color => color.name !== action.payload,
@@ -38,12 +39,6 @@ const colorSlice = createSlice({
     updateColor: (state, action: PayloadAction<Color>) => {
       state.favoriteColor = action.payload;
     },
-    showModalColor(state) {
-      state.isVisible = true;
-    },
-    hideModalColor(state) {
-      state.isVisible = false;
-    },
   },
 });
 
@@ -52,7 +47,5 @@ export const {
   addFavoriteColor,
   deleteFavoriteColorByName,
   updateColor,
-  showModalColor,
-  hideModalColor,
 } = colorSlice.actions;
 export default colorSlice.reducer;

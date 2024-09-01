@@ -4,16 +4,18 @@ import {Modal, ScrollView, StyleSheet} from 'react-native';
 import {
   connectToDatabase,
   disconnectFromDatabase,
-  setColorForItem,
+  dbUpdateItemColor,
 } from '@database';
-import {hideModalColor, RootState, changeItemColor} from '@redux';
+import {RootState, changeItemColor, hideModalCart} from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Button, Text, TouchableOpacityBox} from '@components';
 
 export function ModalCart() {
   const dispatch = useDispatch();
-  const isVisible = useSelector((state: RootState) => state.item.isVisible);
+  const isModalCartVisible = useSelector(
+    (state: RootState) => state.utils.isModalCartVisible,
+  );
   const itemId = useSelector((state: RootState) => state.item.itemId);
   const favoriteColors = useSelector(
     (state: RootState) => state.color.favoriteColors,
@@ -22,7 +24,7 @@ export function ModalCart() {
   async function syncDatabase(id: string, name: string) {
     const db = await connectToDatabase();
     try {
-      await setColorForItem(db, id, name);
+      await dbUpdateItemColor(db, id, name);
     } finally {
       disconnectFromDatabase(db);
     }
@@ -33,11 +35,11 @@ export function ModalCart() {
 
     syncDatabase(id, colorName);
 
-    dispatch(hideModalColor());
+    dispatch(hideModalCart());
   };
 
   const handleCloseModalCart = () => {
-    dispatch(hideModalColor());
+    dispatch(hideModalCart());
   };
 
   const renderFavoriteColors = favoriteColors.map(color => (
@@ -73,7 +75,7 @@ export function ModalCart() {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={isVisible}
+      visible={isModalCartVisible}
       onRequestClose={handleCloseModalCart}>
       <Box style={styles.modalBackground}>
         <Box style={styles.modalContent}>

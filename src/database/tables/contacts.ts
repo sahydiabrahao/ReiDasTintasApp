@@ -5,19 +5,6 @@ import {TABLE_CONTACT, ContactDB} from '../types';
 
 enablePromise(true);
 
-export async function dbInsertContact(db: SQLiteDatabase, contact: Contact) {
-  const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
-  const values = [
-    '0',
-    contact.phone,
-    contact.city,
-    contact.address,
-    contact.district,
-  ];
-  console.log('Contact successfully updated.');
-  await db.executeSql(query, values);
-}
-
 export async function dbFetchContacts(db: SQLiteDatabase) {
   try {
     const databaseList: ContactDB[] = [];
@@ -38,6 +25,18 @@ export async function dbFetchContacts(db: SQLiteDatabase) {
     // console.error(error);
     throw Error('Failed to load contacts.');
   }
+}
+export async function dbInsertContact(db: SQLiteDatabase, contact: Contact) {
+  const query = `INSERT OR REPLACE INTO ${TABLE_CONTACT} (id, phone, city, address, district) VALUES (?, ?, ?, ?, ?)`;
+  const values = [
+    '0',
+    contact.phone,
+    contact.city,
+    contact.address,
+    contact.district,
+  ];
+  console.log('Contact successfully updated.');
+  await db.executeSql(query, values);
 }
 
 export async function dbUpdateContact(db: SQLiteDatabase, contacts: Contact) {

@@ -5,13 +5,6 @@ import {TABLE_COLOR, ColorDB} from '../types';
 
 enablePromise(true);
 
-export async function dbInsertColor(db: SQLiteDatabase, color: Color) {
-  const query = `INSERT OR REPLACE INTO ${TABLE_COLOR} (name, hexValue, contrastColor) VALUES (?, ?, ?)`;
-  const values = [color.name, color.hexValue, color.contrastColor];
-  console.log('Color successfully updated.');
-  await db.executeSql(query, values);
-}
-
 export async function dbFetchColors(db: SQLiteDatabase) {
   try {
     const databaseList: ColorDB[] = [];
@@ -33,11 +26,11 @@ export async function dbFetchColors(db: SQLiteDatabase) {
     throw Error('Failed to load colors.');
   }
 }
-
-export async function dbDeleteColor(db: SQLiteDatabase, name: string) {
-  const query = `DELETE FROM ${TABLE_COLOR} WHERE name = ?`;
-  const value = [name];
-  await db.executeSql(query, value);
+export async function dbInsertColor(db: SQLiteDatabase, color: Color) {
+  const query = `INSERT OR REPLACE INTO ${TABLE_COLOR} (name, hexValue, contrastColor) VALUES (?, ?, ?)`;
+  const values = [color.name, color.hexValue, color.contrastColor];
+  console.log('Color successfully updated.');
+  await db.executeSql(query, values);
 }
 
 export async function dbUpdateColor(db: SQLiteDatabase) {
@@ -52,4 +45,10 @@ export async function dbUpdateColor(db: SQLiteDatabase) {
   } catch (error) {
     console.error('Error updating the color in the database:', error);
   }
+}
+
+export async function dbDeleteColor(db: SQLiteDatabase, name: string) {
+  const query = `DELETE FROM ${TABLE_COLOR} WHERE name = ?`;
+  const value = [name];
+  await db.executeSql(query, value);
 }

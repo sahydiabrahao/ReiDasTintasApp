@@ -52,6 +52,9 @@ const initialState: ItemState = {
   items: [],
   itemId: '',
   itemsDatabase: itemsMock,
+  filteredItems: [],
+  searchItems: [],
+  isVisible: false,
   Init: [],
   Wall: wallMock,
   Wood: woodMock,
@@ -69,9 +72,6 @@ const initialState: ItemState = {
   PaintBrush: paintBrushMock,
   SandPapper: sandPapperMock,
   Solvent: solventMock,
-  filteredItems: [],
-  searchItems: [],
-  isVisible: false,
 };
 
 const itemSlice = createSlice({
@@ -80,9 +80,6 @@ const itemSlice = createSlice({
   reducers: {
     updateItems: (state, action: PayloadAction<Item[]>) => {
       state.items = action.payload;
-    },
-    assignItemId: (state, action: PayloadAction<string>) => {
-      state.itemId = action.payload;
     },
 
     addItem: (state, action: PayloadAction<Item>) => {
@@ -94,16 +91,13 @@ const itemSlice = createSlice({
       }
     },
 
-    deleteItemById: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
-    },
-
     increaseItemQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.id === action.payload);
       if (item) {
         item.quantity += 1;
       }
     },
+
     decreaseItemQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.id === action.payload);
       if (item && item.quantity > 1) {
@@ -114,6 +108,14 @@ const itemSlice = createSlice({
     filterItemsByCategory: (state, action: PayloadAction<CategoryName>) => {
       const categoryName: CategoryName = action.payload;
       state.filteredItems = initialState[categoryName];
+    },
+
+    assignItemId: (state, action: PayloadAction<string>) => {
+      state.itemId = action.payload;
+    },
+
+    deleteItemById: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter(item => item.id !== action.payload);
     },
 
     filterItemsBySearchQuery: (state, action: PayloadAction<string>) => {
@@ -137,12 +139,6 @@ const itemSlice = createSlice({
         item.color = color;
       }
     },
-    showModalCart(state) {
-      state.isVisible = true;
-    },
-    hideModalCart(state) {
-      state.isVisible = false;
-    },
   },
 });
 
@@ -156,7 +152,5 @@ export const {
   filterItemsByCategory,
   filterItemsBySearchQuery,
   changeItemColor,
-  showModalCart,
-  hideModalCart,
 } = itemSlice.actions;
 export default itemSlice.reducer;

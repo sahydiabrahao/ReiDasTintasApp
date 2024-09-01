@@ -3,14 +3,14 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface CategoryState {
   categories: Category[];
-  selectedCategory: CategoryName;
-  selectedCategoryTitle?: string;
+  categoryName: CategoryName;
+  categoryTitle?: string;
 }
 
 const initialState: CategoryState = {
   categories: categoriesMock,
-  selectedCategory: 'Init',
-  selectedCategoryTitle: '',
+  categoryName: 'Init',
+  categoryTitle: '',
 };
 
 const categorySlice = createSlice({
@@ -20,17 +20,20 @@ const categorySlice = createSlice({
     updateCategory: (state, action: PayloadAction<Category[]>) => {
       state.categories = action.payload;
     },
+
     chooseCategory: (state, action: PayloadAction<CategoryName>) => {
-      state.selectedCategory = action.payload;
+      state.categoryName = action.payload;
     },
+
     updateCategoryTitle: (state, action: PayloadAction<string>) => {
       const category = state.categories.find(
         cat => cat.name === action.payload,
       );
-      state.selectedCategoryTitle = category?.title;
+      state.categoryTitle = category?.title;
     },
+
     resetSelectedCategory: state => {
-      state.selectedCategory = 'Init';
+      state.categoryName = 'Init';
     },
   },
 });
