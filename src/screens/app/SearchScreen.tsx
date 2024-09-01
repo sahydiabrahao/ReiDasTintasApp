@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardItem, Icon, Text, TextInput} from '@components';
 import {Screen} from '@screens';
+import {$shadowProps} from '@theme';
 
 export function SearchScreen() {
   const [searchInput, setSearchInput] = useState('');
@@ -28,7 +29,9 @@ export function SearchScreen() {
         backgroundColor="grayWhite"
         alignItems="center"
         justifyContent="center"
+        style={$shadowProps}
       />
+
       <Box>
         <TextInput
           value={searchInput}
@@ -40,8 +43,8 @@ export function SearchScreen() {
       </Box>
       {searchResults.length === 0 ? (
         <Box mb="s12" alignItems="center" justifyContent="center">
-          <Text preset="headingSmall" color="gray3">
-            Faça uma busca para ver os resultados
+          <Text preset="paragraphCaption" color="gray2">
+            Faça uma busca para ver os resultados.
           </Text>
         </Box>
       ) : (
