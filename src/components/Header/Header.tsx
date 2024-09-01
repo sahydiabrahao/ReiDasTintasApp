@@ -21,7 +21,7 @@ export function Header() {
         flexDirection="row"
         alignItems="center">
         <Box mr="s4">
-          <Icon name="crown" color="bluePrimary" />
+          <Icon name="crown" color="yellowSecondary" />
         </Box>
         <Text bold preset="paragraphMedium">
           Rei das Tintas
