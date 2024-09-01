@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {TouchableOpacityBox, TouchableOpacityBoxProps, Text} from '@components';
+import {$shadowProps} from '@theme';
 
 import {buttonPresets} from './buttonPresets';
 
@@ -25,14 +26,15 @@ export function Button({
       testID="button"
       disabled={disabled}
       paddingHorizontal="s20"
-      height={50}
+      height={48}
       alignItems="center"
       justifyContent="center"
-      borderRadius="s8"
+      borderRadius="s4"
+      style={$shadowProps}
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       <Text
-        preset="paragraphMedium"
+        preset="paragraphSmall"
         bold
         color={buttonPreset.content.color}
         {...buttonPreset.content.textProps}>

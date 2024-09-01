@@ -19,7 +19,7 @@ export const buttonPresets: Record<
   primary: {
     default: {
       container: {
-        backgroundColor: 'primary',
+        backgroundColor: 'grayBlack',
       },
       content: {color: 'primaryContrast'},
     },
@@ -34,10 +34,10 @@ export const buttonPresets: Record<
     default: {
       container: {
         backgroundColor: 'grayWhite',
-        borderColor: 'bluePrimary',
-        borderWidth: 2,
+        borderColor: 'grayBlack',
+        borderWidth: 1.25,
       },
-      content: {color: 'bluePrimary'},
+      content: {color: 'grayBlack'},
     },
     disabled: {
       container: {

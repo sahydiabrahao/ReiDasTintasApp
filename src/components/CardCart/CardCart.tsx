@@ -41,7 +41,8 @@ export function CardCart({
         justifyContent="center"
         backgroundColor="bluePrimary"
         padding="s10"
-        borderRadius="s4">
+        borderTopLeftRadius="s4"
+        borderBottomLeftRadius="s4">
         <Icon name="delete" color="grayWhite" />
       </TouchableOpacityBox>
       <TouchableOpacityBox
@@ -75,7 +76,6 @@ export function CardCart({
           onPress={() => handleIncrementItem(item.id)}
           backgroundColor="bluePrimary"
           borderTopRightRadius="s4"
-          borderTopLeftRadius="s4"
           padding="s10">
           <Icon name="plus" color="grayWhite" />
         </TouchableOpacityBox>
@@ -86,8 +86,7 @@ export function CardCart({
           onPress={() => handleDecrementItem(item.id)}
           backgroundColor="bluePrimary"
           padding="s10"
-          borderBottomRightRadius="s4"
-          borderBottomLeftRadius="s4">
+          borderBottomRightRadius="s4">
           <Icon name="minus" color="grayWhite" />
         </TouchableOpacityBox>
       </Box>

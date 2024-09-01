@@ -118,8 +118,6 @@ export function ModalColor({color}: Props) {
               flexGrow={1}
               title="Não"
               onPress={handleCloseModalColor}
-              backgroundColor="grayWhite"
-              borderColor="bluePrimary"
             />
             <Button
               preset="primary"

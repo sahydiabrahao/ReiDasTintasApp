@@ -82,7 +82,7 @@ export function CartScreen() {
           <Button
             mb="s12"
             title="Solicitar orçamento gratuito"
-            preset="outiline"
+            preset="primary"
             onPress={() => openWhatsApp(contacts, items)}
           />
           {items.map(item => (

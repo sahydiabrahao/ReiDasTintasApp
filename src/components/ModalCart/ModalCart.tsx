@@ -95,13 +95,11 @@ export function ModalCart() {
             flexDirection="row"
             justifyContent="space-between">
             <Button
-              preset="outiline"
+              preset="primary"
               flexGrow={1}
               mt="s8"
               title="Sair"
               onPress={handleCloseModalCart}
-              backgroundColor="grayWhite"
-              borderColor="bluePrimary"
             />
           </Box>
         </Box>
