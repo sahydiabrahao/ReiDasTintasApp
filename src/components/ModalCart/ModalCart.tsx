@@ -26,7 +26,7 @@ export function ModalCart() {
     try {
       await dbUpdateItemColor(db, id, name);
     } finally {
-      disconnectFromDatabase(db);
+      await disconnectFromDatabase(db);
     }
   }
 

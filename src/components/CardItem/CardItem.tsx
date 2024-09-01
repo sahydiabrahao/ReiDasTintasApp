@@ -29,7 +29,7 @@ export function CardItem({item}: Props) {
         await dbInsertItem(db, itemIndex);
       }
     } finally {
-      disconnectFromDatabase(db);
+      await disconnectFromDatabase(db);
     }
   };
 

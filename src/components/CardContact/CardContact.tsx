@@ -27,7 +27,7 @@ export function CardContact({contact}: Props) {
     try {
       await dbInsertContact(db, contacts);
     } finally {
-      disconnectFromDatabase(db);
+      await disconnectFromDatabase(db);
     }
   }
 

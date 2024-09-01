@@ -47,7 +47,7 @@ export function HomeScreen() {
         dispatch(updateFavoriteColors(updatedColor));
       }
     } finally {
-      disconnectFromDatabase(db);
+      await disconnectFromDatabase(db);
     }
   };
 

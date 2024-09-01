@@ -50,10 +50,8 @@ export function ModalColor({color}: Props) {
         }
         setDeletedColorNames([]);
       }
-    } catch (error) {
-      console.error('Error syncing database:', error);
     } finally {
-      disconnectFromDatabase(db);
+      await disconnectFromDatabase(db);
     }
   };
 

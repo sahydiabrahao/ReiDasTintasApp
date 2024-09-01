@@ -39,7 +39,7 @@ export function CartScreen() {
         setDeletedItemIds([]);
       }
     } finally {
-      disconnectFromDatabase(db);
+      await disconnectFromDatabase(db);
     }
   };
 

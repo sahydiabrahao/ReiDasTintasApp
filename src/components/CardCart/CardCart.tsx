@@ -65,6 +65,7 @@ export function CardCart({
           </Text>
           <Text preset="paragraphCaption">{item.specification}</Text>
           <Text preset="paragraphCaption">{item.brand}</Text>
+          <Text preset="paragraphCaption">{item.color}</Text>
           <Text preset="paragraphCaption">{item.unit}</Text>
         </Box>
       </TouchableOpacityBox>
