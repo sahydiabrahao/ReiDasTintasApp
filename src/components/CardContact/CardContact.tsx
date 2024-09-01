@@ -91,7 +91,7 @@ export function CardContact({contact}: Props) {
           bold
           color={contacts.phone === contact.phone ? 'grayWhite' : 'grayBlack'}
           mb="s8"
-          preset="paragraphLarge">
+          preset="paragraphMedium">
           {contact.phone}
         </Text>
       </Box>
