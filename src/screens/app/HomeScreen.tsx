@@ -8,6 +8,7 @@ import {
   dbUpdateContact,
   dbUpdateItem,
 } from '@database';
+import {offerMock} from '@domain';
 import {
   RootState,
   chooseContact,
@@ -16,7 +17,7 @@ import {
 } from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, CardCategory, CardItem, Text} from '@components';
+import {Box, CardCategory, CardItem, CardOffer, Text} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -56,6 +57,9 @@ export function HomeScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const renderOffers = () =>
+    offerMock.map(offer => <CardOffer key={offer.name} offer={offer} />);
+
   const renderCategories = () =>
     categories.map(category => (
       <CardCategory key={category.name} category={category} />
@@ -73,6 +77,7 @@ export function HomeScreen() {
           alignItems="flex-start"
           flex={1}
           rowGap="s12">
+          {renderOffers()}
           <Text preset="paragraphCaption" color="grayBlack">
             Categorias
           </Text>

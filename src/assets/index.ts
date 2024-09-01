@@ -14,3 +14,5 @@ export * from './icons/ErrorIcon';
 
 export * from './icons/MenuIcon';
 export * from './icons/LogoIcon';
+
+export * from './images/Others';

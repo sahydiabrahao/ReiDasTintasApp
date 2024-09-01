@@ -7,6 +7,7 @@ export * from './CardItem/CardItem';
 export * from './CardContact/CardContact';
 export * from './CardCart/CardCart';
 export * from './CardCategory/CardCategory';
+export * from './CardOffer/CardOffer';
 export * from './Header/Header';
 export * from './Toast/Toast';
 export * from './CardColor/CardColor';
