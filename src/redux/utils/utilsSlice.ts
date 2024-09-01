@@ -1,13 +1,11 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 interface UtilsState {
-  headerRouteName: string;
   isModalColorVisible: boolean;
   isModalCartVisible: boolean;
 }
 
 const initialState: UtilsState = {
-  headerRouteName: '',
   isModalColorVisible: false,
   isModalCartVisible: false,
 };
@@ -16,14 +14,6 @@ const utilsSlice = createSlice({
   name: 'utils',
   initialState,
   reducers: {
-    routerName(state, action: PayloadAction<string>) {
-      if (action.payload === 'Init') {
-        state.headerRouteName = '';
-      } else {
-        state.headerRouteName = action.payload;
-      }
-    },
-
     showModalColor(state) {
       state.isModalColorVisible = true;
     },
@@ -42,11 +32,6 @@ const utilsSlice = createSlice({
   },
 });
 
-export const {
-  routerName,
-  showModalColor,
-  hideModalColor,
-  showModalCart,
-  hideModalCart,
-} = utilsSlice.actions;
+export const {showModalColor, hideModalColor, showModalCart, hideModalCart} =
+  utilsSlice.actions;
 export default utilsSlice.reducer;
