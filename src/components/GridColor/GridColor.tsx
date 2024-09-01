@@ -26,8 +26,8 @@ export const GridColor: React.FC<GridColor> = ({title, colors}) => {
         directionalLockEnabled={true}
         alwaysBounceVertical={false}>
         <FlatList
-          initialNumToRender={6}
-          numColumns={4}
+          initialNumToRender={10}
+          numColumns={10}
           data={colors}
           renderItem={renderColors}
           keyExtractor={item => item.name}
