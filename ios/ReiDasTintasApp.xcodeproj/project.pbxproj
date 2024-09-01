@@ -24,6 +24,8 @@
 		72B95AD46E40410CBDA79B13 /* Satoshi-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 545A8F271C2A4B81BE00AC69 /* Satoshi-Medium.otf */; };
 		D6CF9CA9770444A3BA838163 /* Satoshi-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F55F60D420284F75AE551AA9 /* Satoshi-MediumItalic.otf */; };
 		770D4F7F461A42C093F0AECC /* Satoshi-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8D994E06318941E38988F88E /* Satoshi-Regular.otf */; };
+		A989543875E1441697C4A787 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C7576C80F4065AB28744C /* BootSplash.storyboard */; };
+		BD47ECF3545041BCBF630E5C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F76FCC3271B64208800F5D62 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		545A8F271C2A4B81BE00AC69 /* Satoshi-Medium.otf */ = {isa = PBXFileReference; name = "Satoshi-Medium.otf"; path = "../src/assets/fonts/Satoshi-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F55F60D420284F75AE551AA9 /* Satoshi-MediumItalic.otf */ = {isa = PBXFileReference; name = "Satoshi-MediumItalic.otf"; path = "../src/assets/fonts/Satoshi-MediumItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8D994E06318941E38988F88E /* Satoshi-Regular.otf */ = {isa = PBXFileReference; name = "Satoshi-Regular.otf"; path = "../src/assets/fonts/Satoshi-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		839C7576C80F4065AB28744C /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "ReiDasTintasApp/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F76FCC3271B64208800F5D62 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "ReiDasTintasApp/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				839C7576C80F4065AB28744C /* BootSplash.storyboard */,
+				F76FCC3271B64208800F5D62 /* Colors.xcassets */,
 			);
 			name = ReiDasTintasApp;
 			sourceTree = "<group>";
@@ -294,6 +300,8 @@
 				72B95AD46E40410CBDA79B13 /* Satoshi-Medium.otf in Resources */,
 				D6CF9CA9770444A3BA838163 /* Satoshi-MediumItalic.otf in Resources */,
 				770D4F7F461A42C093F0AECC /* Satoshi-Regular.otf in Resources */,
+				A989543875E1441697C4A787 /* BootSplash.storyboard in Resources */,
+				BD47ECF3545041BCBF630E5C /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

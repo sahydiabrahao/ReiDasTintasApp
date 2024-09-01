@@ -15,6 +15,7 @@ import {
   updateFavoriteColors,
   updateItems,
 } from '@redux';
+import {hideSplashScreen} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, CardCategory, CardItem, GridOffer, Text} from '@components';
@@ -55,6 +56,7 @@ export function HomeScreen() {
   };
 
   useEffect(() => {
+    hideSplashScreen();
     syncDatabase();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
