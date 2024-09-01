@@ -4,13 +4,11 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 interface ColorState {
   favoriteColors: Color[];
   favoriteColor: Color;
-  isVisible: boolean;
 }
 
 const initialState: ColorState = {
   favoriteColors: [],
   favoriteColor: {name: 'Gelo', hexValue: '#FAFAFA', contrastColor: '#000000'},
-  isVisible: false,
 };
 
 const colorSlice = createSlice({

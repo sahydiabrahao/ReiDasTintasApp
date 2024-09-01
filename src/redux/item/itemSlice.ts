@@ -45,7 +45,6 @@ interface ItemState {
   Solvent: Item[];
   filteredItems: Item[];
   searchItems: Item[];
-  isVisible: boolean;
 }
 
 const initialState: ItemState = {
@@ -54,7 +53,6 @@ const initialState: ItemState = {
   itemsDatabase: itemsMock,
   filteredItems: [],
   searchItems: [],
-  isVisible: false,
   Init: [],
   Wall: wallMock,
   Wood: woodMock,
