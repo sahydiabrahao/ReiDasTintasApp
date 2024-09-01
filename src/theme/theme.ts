@@ -10,13 +10,13 @@ const palette = {
   redError: '#E57373',
   greenSuccess: '#4ABC86',
 
-  grayBlack: '#07081D',
-  gray1: '#636363',
-  gray2: '#8E8E8E',
-  gray3: '#B3B3B3',
-  gray4: '#E5EBF1',
-  gray5: '#F5F5F5',
-  grayWhite: '#FFFFFF',
+  grayBlack: '#1C1C1C', // Preto intenso para alto contraste
+  gray1: '#5B5B5B', // Cinza médio-escuro, neutro e moderno
+  gray2: '#9E9E9E', // Cinza médio, que se harmoniza bem com o azul
+  gray3: '#C4C4C4', // Cinza claro, com um tom suave que não compete com o azul
+  gray4: '#E2E2E2', // Cinza muito claro, quase branco, para uma sensação de leveza
+  gray5: '#F4F4F4', // Quase branco, suave e moderno
+  grayWhite: '#FFFFFF', // Branco puro para contraste máximo
 };
 
 export const theme = createTheme({
@@ -85,11 +85,11 @@ export const theme = createTheme({
 });
 
 export const $shadowProps: ViewStyle = {
-  elevation: 2,
+  elevation: 4,
   shadowColor: '#000000',
-  shadowOpacity: 0.05,
-  shadowRadius: 3,
-  shadowOffset: {width: 1, height: 40},
+  shadowOpacity: 0.1,
+  shadowRadius: 6,
+  shadowOffset: {width: 0, height: 4},
 };
 
 export type Theme = typeof theme;

@@ -16,7 +16,7 @@ import {
 } from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, CardCategory, CardItem} from '@components';
+import {Box, CardCategory, CardItem, Text} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -72,7 +72,10 @@ export function HomeScreen() {
           justifyContent="flex-start"
           alignItems="flex-start"
           flex={1}
-          columnGap="s12">
+          rowGap="s12">
+          <Text preset="paragraphCaption" color="grayBlack">
+            Categorias
+          </Text>
           {renderCategories()}
         </Box>
       ) : (

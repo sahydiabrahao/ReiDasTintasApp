@@ -19,5 +19,6 @@ export type CategoryName =
 export interface Category {
   name: CategoryName;
   title: string;
+  description: string;
   icon: any;
 }

@@ -9,6 +9,7 @@ import {
 import {useDispatch} from 'react-redux';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
+import {$shadowProps} from '@theme';
 
 interface Props {
   category: Category;
@@ -30,34 +31,23 @@ export function CardCategory({category}: Props) {
       mb="s8"
       borderRadius="s12"
       justifyContent="flex-start"
-      alignItems="center">
+      alignItems="center"
+      style={$shadowProps}>
       <Box
-        alignItems="center"
-        justifyContent="center"
-        backgroundColor="bluePrimary"
-        borderTopLeftRadius="s8"
-        padding="s10"
-        height={64}
-      />
-      <Box
-        height={64}
         flexGrow={1}
-        alignItems="center"
-        justifyContent="center"
-        borderWidth={1}
-        borderColor="gray4">
-        <Text preset="headingSmall" color="grayBlack">
+        alignItems="flex-start"
+        justifyContent="flex-start"
+        paddingVertical="s4"
+        paddingHorizontal="s8"
+        backgroundColor="gray5"
+        borderRadius="s4">
+        <Text bold preset="paragraphMedium" color="grayBlack" mb="s4">
           {category.title}
         </Text>
+        <Text preset="paragraphCaption" color="grayBlack">
+          {category.description}
+        </Text>
       </Box>
-      <Box
-        alignItems="center"
-        justifyContent="center"
-        backgroundColor="bluePrimary"
-        borderBottomRightRadius="s8"
-        padding="s10"
-        height={64}
-      />
     </TouchableOpacityBox>
   );
 }
