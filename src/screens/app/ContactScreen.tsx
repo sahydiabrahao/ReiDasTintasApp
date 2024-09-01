@@ -19,16 +19,12 @@ export function ContactScreen() {
 
   return (
     <Screen flex={1}>
-      <Box
-        mb="s12"
-        backgroundColor="grayWhite"
-        alignItems="center"
-        justifyContent="center">
-        <Text preset="headingSmall" color="gray3">
-          Selecione sua loja
+      <Box>
+        <Text preset="paragraphCaption" color="grayBlack" mb="s12">
+          Contatos
         </Text>
+        {renderContacts}
       </Box>
-      <Box flexGrow={1}>{renderContacts}</Box>
     </Screen>
   );
 }

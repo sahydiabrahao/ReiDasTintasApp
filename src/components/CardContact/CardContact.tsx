@@ -11,6 +11,7 @@ import {useToast} from '@services';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Box, Text, TouchableOpacityBox} from '@components';
+import {$shadowProps} from '@theme';
 
 interface Props {
   contact: Contact;
@@ -48,47 +49,52 @@ export function CardContact({contact}: Props) {
   return (
     <TouchableOpacityBox
       onPress={() => [handleUpdateContact(contact)]}
-      mb="s32"
       flexDirection="row"
-      justifyContent="space-evenly">
-      <Box
-        alignItems="center"
-        justifyContent="center"
-        backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
-        }
-        padding="s10"
-        borderTopLeftRadius="s8"
-      />
+      mb="s16"
+      borderRadius="s12"
+      justifyContent="flex-start"
+      alignItems="center"
+      style={$shadowProps}>
       <Box
         flexGrow={1}
-        borderWidth={1}
-        borderColor="gray5"
         justifyContent="center"
-        alignItems="center"
-        padding="s12">
-        <Text color="grayBlack" mb="s8" bold preset="headingMedium">
+        alignItems="flex-start"
+        paddingVertical="s4"
+        paddingHorizontal="s8"
+        borderRadius="s4"
+        backgroundColor={
+          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
+        }>
+        <Text
+          bold
+          color={contacts.phone === contact.phone ? 'grayWhite' : 'grayBlack'}
+          mb="s8"
+          preset="headingSmall">
           {contact.city}
         </Text>
-        <Text color="grayBlack" mb="s8" preset="headingSmall">
-          {contact.district}
-        </Text>
-        <Text color="grayBlack" mb="s8" preset="paragraphMedium">
-          {contact.address}
-        </Text>
-        <Text color="grayBlack" mb="s8" bold preset="headingSmall">
+        <Box flexDirection="row" justifyContent="center" alignItems="center">
+          <Text
+            color={contacts.phone === contact.phone ? 'grayWhite' : 'grayBlack'}
+            mb="s8"
+            preset="paragraphSmall"
+            mr="s4">
+            {contact.district},
+          </Text>
+          <Text
+            color={contacts.phone === contact.phone ? 'grayWhite' : 'grayBlack'}
+            mb="s8"
+            preset="paragraphSmall">
+            {contact.address}
+          </Text>
+        </Box>
+        <Text
+          bold
+          color={contacts.phone === contact.phone ? 'grayWhite' : 'grayBlack'}
+          mb="s8"
+          preset="paragraphLarge">
           {contact.phone}
         </Text>
       </Box>
-      <Box
-        alignItems="center"
-        justifyContent="center"
-        backgroundColor={
-          contacts.phone === contact.phone ? 'bluePrimary' : 'gray5'
-        }
-        padding="s10"
-        borderBottomRightRadius="s8"
-      />
     </TouchableOpacityBox>
   );
 }
