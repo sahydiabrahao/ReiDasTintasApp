@@ -98,7 +98,7 @@ export function CartScreen() {
         </Box>
       ) : (
         <Box mb="s12" alignItems="center" justifyContent="center">
-          <Text preset="headingSmall" color="gray3">
+          <Text preset="paragraphCaption" color="gray2">
             Nenhum item adicionado
           </Text>
         </Box>

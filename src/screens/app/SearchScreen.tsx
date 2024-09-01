@@ -25,7 +25,6 @@ export function SearchScreen() {
   return (
     <Screen flex={1} scrollable>
       <Box
-        mb="s12"
         backgroundColor="grayWhite"
         alignItems="center"
         justifyContent="center"
