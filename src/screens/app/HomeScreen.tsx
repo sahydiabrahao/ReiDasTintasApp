@@ -10,8 +10,8 @@ import {
 } from '@database';
 import {offerMock} from '@domain';
 import {
-  RootState,
   chooseContact,
+  RootState,
   updateFavoriteColors,
   updateItems,
 } from '@redux';
@@ -23,11 +23,13 @@ import {Screen} from '@screens';
 export function HomeScreen() {
   const dispatch = useDispatch();
 
-  const {
-    contact: {contact: contacts},
-    category: {categoryName: selectedCategory, categories},
-    item: {filteredItems},
-  } = useSelector((state: RootState) => state);
+  const contacts = useSelector((state: RootState) => state).contact.contact;
+  const selectedCategory = useSelector((state: RootState) => state).category
+    .categoryName;
+  const categories = useSelector((state: RootState) => state).category
+    .categories;
+  const filteredItems = useSelector((state: RootState) => state).item
+    .filteredItems;
 
   const syncDatabase = async () => {
     const db = await connectToDatabase();

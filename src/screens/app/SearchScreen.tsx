@@ -11,7 +11,7 @@ import {$shadowProps} from '@theme';
 export function SearchScreen() {
   const [searchInput, setSearchInput] = useState('');
   const dispatch = useDispatch();
-  const searchResults = useSelector((state: any) => state.item.searchItems); // Ajuste o tipo conforme necessário
+  const searchResults = useSelector((state: any) => state.item.searchItems);
 
   const handleSearchInput = (text: string) => {
     setSearchInput(text);

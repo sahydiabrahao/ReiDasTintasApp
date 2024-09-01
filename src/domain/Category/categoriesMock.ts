@@ -41,13 +41,13 @@ export const categoriesMock: Category[] = [
     name: 'Floor',
     title: 'Pintura de Piso',
     icon: 'floor',
-    description: 'Soluções para pintar e proteger pisos.',
+    description: 'Tintas para pisos internos e externos.',
   },
   {
     name: 'Texture',
     title: 'Texturas e Pedras Naturais',
     icon: 'texture',
-    description: 'Acabamentos texturizados ou imitação de pedras.',
+    description: 'Acabamento que cria uma sensação de profundidade.',
   },
   {
     name: 'Effect',
@@ -59,7 +59,7 @@ export const categoriesMock: Category[] = [
     name: 'Spray',
     title: 'Pintura em Spray',
     icon: 'spray',
-    description: 'Tintas em aerosol para aplicação rápida.',
+    description: 'Aplicação rápida e uniforme para acabamentos diversos.',
   },
   {
     name: 'PaintRoll',
@@ -95,6 +95,6 @@ export const categoriesMock: Category[] = [
     name: 'Solvent',
     title: 'Solventes e Limpadores',
     icon: 'solvent',
-    description: 'Produtos para limpar ferramentas e remover resíduos.',
+    description: 'Produtos para limpeza de ferramentas e diluição de tintas.',
   },
 ];

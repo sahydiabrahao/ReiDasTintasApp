@@ -48,7 +48,7 @@ export async function dbUpdateContact(db: SQLiteDatabase, contacts: Contact) {
     }
 
     if (firstContact.phone === contacts.phone) {
-      console.log('Contact already exists:', firstContact);
+      console.log('Contact already exists.');
       return null;
     } else {
       const {address, city, phone, district} = firstContact;

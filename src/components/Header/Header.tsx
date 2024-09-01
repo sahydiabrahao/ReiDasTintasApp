@@ -6,9 +6,8 @@ import {useSelector} from 'react-redux';
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 
 export function Header() {
-  const {
-    category: {categoryTitle},
-  } = useSelector((state: RootState) => state);
+  const categoryTitle = useSelector((state: RootState) => state).category
+    .categoryTitle;
 
   return (
     <Box
