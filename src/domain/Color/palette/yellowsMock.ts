@@ -15,8 +15,6 @@ export const yellowsMock: Color[] = [
   {name: 'Ambrosia', hexValue: '#E2C0A1', contrastColor: '#000000'},
   {name: 'Sequilho', hexValue: '#E3D4B0', contrastColor: '#000000'},
   {name: 'Açúcar Orgânico', hexValue: '#E4D2B0', contrastColor: '#000000'},
-  {name: 'Pinoli', hexValue: '#B8C2A8', contrastColor: '#000000'},
-  {name: 'Pinus', hexValue: '#A8B1A0', contrastColor: '#000000'},
   {name: 'Luz do Sol', hexValue: '#F2C16B', contrastColor: '#000000'},
   {name: 'Farol do Morro', hexValue: '#D5A94B', contrastColor: '#000000'},
   {name: 'Sol Nascente', hexValue: '#F8D64C', contrastColor: '#000000'},

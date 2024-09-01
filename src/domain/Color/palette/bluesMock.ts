@@ -8,7 +8,6 @@ export const bluesMock: Color[] = [
   {name: 'Céu de Inverno', hexValue: '#90CAF9', contrastColor: '#000000'},
   {name: 'Azul Royal', hexValue: '#4169E1', contrastColor: '#FFFFFF'},
   {name: 'Azul Bic', hexValue: '#0000FF', contrastColor: '#FFFFFF'},
-  {name: 'Trovoada', hexValue: '#00ACC1', contrastColor: '#000000'},
   {name: 'Ilhas Gregas', hexValue: '#0091EA', contrastColor: '#FFFFFF'},
   {name: 'Oceano Pacífico', hexValue: '#0288D1', contrastColor: '#FFFFFF'},
   {name: 'Azul-etéreo', hexValue: '#0288D1', contrastColor: '#FFFFFF'},
