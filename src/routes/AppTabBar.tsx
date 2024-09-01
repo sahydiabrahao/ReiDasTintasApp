@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {chooseCategory} from '@redux';
+import {chooseCategory, updateCategoryTitle} from '@redux';
 import {useDispatch} from 'react-redux';
 
 import {
@@ -31,7 +31,8 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
         const isFocused = state.index === index;
 
         const onPress = () => {
-          dispatch(chooseCategory('Init'));
+          dispatch(chooseCategory(''));
+          dispatch(updateCategoryTitle(''));
 
           const event = navigation.emit({
             type: 'tabPress',

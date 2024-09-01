@@ -16,7 +16,7 @@ import {
 } from '@redux';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Box, CardCategory, CardItem, Text} from '@components';
+import {Box, CardCategory, CardItem} from '@components';
 import {Screen} from '@screens';
 
 export function HomeScreen() {
@@ -24,11 +24,7 @@ export function HomeScreen() {
 
   const {
     contact: {contact: contacts},
-    category: {
-      categoryTitle: selectedCategoryTitle,
-      categoryName: selectedCategory,
-      categories,
-    },
+    category: {categoryName: selectedCategory, categories},
     item: {filteredItems},
   } = useSelector((state: RootState) => state);
 
@@ -70,7 +66,7 @@ export function HomeScreen() {
 
   return (
     <Screen scrollable>
-      {selectedCategory === 'Init' ? (
+      {selectedCategory === '' ? (
         <Box
           flexGrow={1}
           justifyContent="flex-start"
@@ -81,11 +77,6 @@ export function HomeScreen() {
         </Box>
       ) : (
         <Box>
-          <Box mb="s12" alignItems="center" justifyContent="center">
-            <Text preset="headingSmall" color="gray3">
-              {selectedCategoryTitle}
-            </Text>
-          </Box>
           <Box flexGrow={1} justifyContent="flex-start" flex={1} gap="s12">
             {renderItems()}
           </Box>

@@ -1,5 +1,5 @@
 export type CategoryName =
-  | 'Init'
+  | ''
   | 'Wall'
   | 'Wood'
   | 'Metal'

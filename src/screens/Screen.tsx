@@ -1,7 +1,7 @@
 import React from 'react';
 import {KeyboardAvoidingView, Platform} from 'react-native';
 
-import {Box, BoxProps, HeaderScreen} from '@components';
+import {Box, BoxProps, Header} from '@components';
 import {useAppTheme} from '@hooks';
 import {useAppSafeArea} from '@hooks';
 
@@ -26,7 +26,7 @@ export function Screen({
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <HeaderScreen />
+      <Header />
       <Container backgroundColor={colors.background}>
         <Box
           paddingHorizontal="s8"

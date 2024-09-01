@@ -9,7 +9,7 @@ interface CategoryState {
 
 const initialState: CategoryState = {
   categories: categoriesMock,
-  categoryName: 'Init',
+  categoryName: '',
   categoryTitle: '',
 };
 
@@ -31,17 +31,9 @@ const categorySlice = createSlice({
       );
       state.categoryTitle = category?.title;
     },
-
-    resetSelectedCategory: state => {
-      state.categoryName = 'Init';
-    },
   },
 });
 
-export const {
-  updateCategory,
-  chooseCategory,
-  updateCategoryTitle,
-  resetSelectedCategory,
-} = categorySlice.actions;
+export const {updateCategory, chooseCategory, updateCategoryTitle} =
+  categorySlice.actions;
 export default categorySlice.reducer;
